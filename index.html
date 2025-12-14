@@ -369,6 +369,38 @@
   <span class="lightbox-close">&times;</span>
   <img class="lightbox-img" src="" alt="">
 </div>
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.lightbox-close');
+
+  document.querySelectorAll('.media-img.clickable').forEach(img => {
+    img.addEventListener('click', () => {
+      const src = img.dataset.full || img.src;
+      lightboxImg.src = src;
+      lightbox.classList.add('open');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+  });
+</script>
 
 </body>
 </html>
