@@ -221,6 +221,35 @@
   user-select: none;
 }
 
+    .header-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.icon-link img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.icon-link:hover {
+  border-color: var(--blue);
+  background: #eef2ff;
+  transform: translateY(-1px);
+}
     
     form input,
     form textarea {
@@ -290,14 +319,23 @@
     <img class="logo-img" src="assets/images/logo.png" alt="Logo">
     
 
-    <div class="header-icons">
-      <span>WhatsApp</span>
-      <span>Telegram</span>
-      <span>Gmail</span>
-      <span>Viber</span>
-    </div>
+<a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank">
+  <img src="icons/whatsapp.svg" alt="WhatsApp">
+</a>
 
-    <div class="phone">+38 (0XX) XXX-XX-XX</div>
+
+  <a href="https://t.me/hamlet_p10" class="icon-link telegram" aria-label="Telegram">
+    <img src="icons/telegram.svg" alt="Telegram">
+  </a>
+
+  <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail" aria-label="Gmail">
+    <img src="icons/gmail.svg" alt="Gmail">
+  </a>
+
+  <a href="viber://chat?number=380636125766" class="icon-link viber" aria-label="Viber">
+    <img src="icons/viber.svg" alt="Viber">
+  </a>
+</div>
 
     <a href="#contact" class="cta">Зв'язатись</a>
   </div>
