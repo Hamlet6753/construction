@@ -237,6 +237,13 @@
       resize: vertical;
     }
 
+    .media-video {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
     .form-actions {
       grid-column: 1 / -1;
       display: flex;
@@ -301,7 +308,7 @@
   <!-- SECTION 1 -->
   <section class="section">
   <div class="text-block">
-    <h3>- Розробка Проєктів організації будівництва (ПОБ) та Проєктів виконання робіт (ПВР)</h2>
+    <h3>Розробка Проєктів організації будівництва (ПОБ) та Проєктів виконання робіт (ПВР)</h2>
     <p>- З дотриманням всіх вимог нормативної документації.</p>
     <p>- 13 років досвіду в галузі.</p>
     <p>- 170+ успішно реалізованих проєктів.</p>
@@ -309,15 +316,20 @@
     <p>- Проходженння експертизи та коригування проєкту згідно з зауваженнями.</p>
     <p>- Увага до особливих умов кожного об'єкту та вимог замовника.</p>
   </div>
-
-<div class="media">
-  <img
-    class="media-img clickable"
-    src="assets/images/bgp1.jpg"
-    alt="Будгенплан"
-    data-full="assets/images/bgp1.jpg"
-  >
+    
+<div class="media clickable video-preview"
+     data-video="assets/video/bgp1.mp4">
+  <video
+    class="media-video"
+    src="assets/video/bgp1.mp4"
+    autoplay
+    muted
+    loop
+    playsinline>
+  </video>
 </div>
+
+
 
 </section>
 
@@ -328,7 +340,14 @@
       <h2>Заголовок секції</h2>
       <p>Опис рішення, підходу або результату.</p>
     </div>
-    <div class="media-placeholder">MEDIA</div>
+    <div class="media">
+  <img
+    class="media-img clickable"
+    src="assets/images/bgp1.jpg"
+    alt="Будгенплан"
+    data-full="assets/images/bgp1.jpg"
+  >
+</div>
   </section>
 
   <!-- SECTION 3 -->
