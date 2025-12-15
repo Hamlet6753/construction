@@ -14,21 +14,34 @@
 
   * { box-sizing: border-box; }
 
-  body {
+html, body {
+  height: 100%;
+}
+
+body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
-  background-color: rgba(0, 165, 255, 0.2); /* <-- для тесту зробимо явно */
   line-height: 1.6;
+
+  /* ЄДИНИЙ фон сторінки */
+  background: rgba(var(--page-bg-color), var(--page-bg-opacity));
 }
 
-/* головний контейнер як "аркуш" */
+.section,
+.contact {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 main {
-  background: rgba(0, 165, 255, 0.2);
-  border-radius: 24px;
+  width: 100%;
+  background: transparent; /* важливо */
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
 }
-
-
   a { text-decoration: none; color: inherit; }
 
   /* ---------- HEADER ---------- */
@@ -126,15 +139,6 @@ main {
     opacity: 0.95;
   }
 
-  /* ---------- MAIN ---------- */
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 64px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 96px;
-  }
 
   .section {
     display: grid;
