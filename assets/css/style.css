@@ -304,19 +304,35 @@ main {
       resize: vertical;
     }
 
-    .media-video {
+.media-video {
   width: 100%;
+  max-width: 100%;
   height: auto;
+
   border-radius: 16px;
   border: 1px solid var(--border);
 }
 
-        .media.clickable.video-preview {
+
+.media.clickable.video-preview {
   width: 100%;
-  height: auto;
-  border-radius: 16px;
+  max-width: 100%;
+  padding: 20px;
+
+  /* напівпрозорий фон */
+  background: rgba(255, 255, 255, 0.65);
+
+  /* легкий "інженерний" ефект */
+  backdrop-filter: blur(6px);
+
+  border-radius: 24px;
   border: 1px solid var(--border);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
     .form-actions {
       grid-column: 1 / -1;
