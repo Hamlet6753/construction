@@ -110,7 +110,7 @@
     
 .logo-img {
   width: clamp(120px, 12vw, 200px);
-  height: auto;
+  height: 25px;
   display: block;
 }
     
