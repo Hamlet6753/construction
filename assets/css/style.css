@@ -7,8 +7,9 @@
     --border: #e5e7eb;
 
     /* Загальний фон сторінки (керований) */
-    --page-bg-color: rgba(0, 165, 255); /* RGB */
-    --page-bg-opacity: 0.2;      /* 0.00 - 1.00 */
+    --page-bg-color: 0, 165, 255;
+    --page-bg-opacity: 0.2;
+
   }
 
   * { box-sizing: border-box; }
