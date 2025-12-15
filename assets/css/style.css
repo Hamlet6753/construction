@@ -15,12 +15,28 @@
   * { box-sizing: border-box; }
 
   body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: var(--text);
-    background: rgba(var(--page-bg-color), var(--page-bg-opacity));
-    line-height: 1.6;
-  }
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background-color: rgba(0, 165, 255, 0.2); /* <-- для тесту зробимо явно */
+  line-height: 1.6;
+}
+
+/* головний контейнер як "аркуш" */
+main {
+  max-width: 1200px;
+  margin: 24px auto 64px;  /* <-- додав відступи, щоб було видно фон */
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+
+  background: rgba(255, 255, 255, 0.85); /* напівпрозорий білий */
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  backdrop-filter: blur(6px);
+}
+
 
   a { text-decoration: none; color: inherit; }
 
