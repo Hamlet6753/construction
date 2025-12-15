@@ -1,14 +1,8 @@
 <style>
     :root {
-      --blue: #1f4fd8;
-      --yellow: #f2c94c;
-      --light-bg: #f7f9fc;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --page-bg-color: 0, 165, 255; /* RGB */
-      --page-bg-opacity: 0.06;     /* керована прозорість */
-      --border: #e5e7eb;
-    }
+  --page-bg-color: 0, 165, 255; /* RGB */
+  --page-bg-opacity: 0.06;     /* керована прозорість */
+}
 
 /* ---------- HERO SECTION ---------- */
 .hero {
