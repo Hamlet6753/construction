@@ -7,7 +7,7 @@
     --border:#e5e7eb;
 
     /* ЄДИНИЙ фон сторінки (регулюй тільки тут) */
-    --page-bg: rgba(0,165,255,0.20);
+    --page-bg: rgba(0,165,255,0.60);
   }
 
   *{box-sizing:border-box;}
