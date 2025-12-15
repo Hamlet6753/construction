@@ -109,10 +109,9 @@
 }
     
 .logo-img {
-  display: block;
-  width: 7%;
-  max-width: 7%;
+  width: clamp(120px, 12vw, 200px);
   height: auto;
+  display: block;
 }
     
 .media-img {
@@ -264,7 +263,7 @@
   border: 1px solid var(--border);
 }
 
-        .media clickable video-preview {
+        .media.clickable.video-preview {
   width: 100%;
   height: auto;
   border-radius: 16px;
