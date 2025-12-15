@@ -24,17 +24,8 @@
 
 /* головний контейнер як "аркуш" */
 main {
-  max-width: 1200px;
-  margin: 24px auto 64px;  /* <-- додав відступи, щоб було видно фон */
-  padding: 64px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 96px;
-
-  background: rgba(255, 255, 255, 0.85); /* напівпрозорий білий */
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  backdrop-filter: blur(6px);
+  background: rgba(0, 165, 255, 0.2);
+  border-radius: 24px;
 }
 
 
