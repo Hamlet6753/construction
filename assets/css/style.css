@@ -13,7 +13,7 @@
   position: relative;
   height: 250px;
   width: 100%;
-  background-image: url("assets/images/background.jpg");
+  background-image: url("construction/assets/images/background.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
