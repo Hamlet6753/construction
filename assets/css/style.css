@@ -8,7 +8,46 @@
       --border: #e5e7eb;
     }
 
+/* ---------- HERO SECTION ---------- */
+.hero {
+  position: relative;
+  height: 250px;
+  width: 100%;
+  background-image: url("assets/images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
 
+/* затемнення для читабельності тексту */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+/* контент */
+.hero-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  color: white;
+}
+
+.hero-content h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  margin: 0;
+  font-size: 16px;
+  max-width: 720px;
+  opacity: 0.95;
+}
 
     * {
       box-sizing: border-box;
