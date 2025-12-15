@@ -45,12 +45,6 @@
   gap: 16px;
 }
 
-.logo-img {
-  width: clamp(120px, 12vw, 200px);
-  height: auto;
-  display: block;
-}
-
 
 .header-icons {
   margin-left: auto;      /* <-- це відсуває вправо */
