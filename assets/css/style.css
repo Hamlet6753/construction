@@ -354,4 +354,15 @@ main {
         display: none;
       }
     }
+
+@media (max-width: 768px) {
+  .hero {
+    height: 200px;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+  }
+}
+
   </style>
