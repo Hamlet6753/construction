@@ -5,6 +5,8 @@
       --light-bg: #f7f9fc;
       --text: #1f2937;
       --muted: #6b7280;
+      --page-bg-color: 0, 165, 255; /* RGB */
+      --page-bg-opacity: 0.06;     /* керована прозорість */
       --border: #e5e7eb;
     }
 
@@ -54,12 +56,17 @@
     }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: var(--text);
-      background: var(--light-bg);
-      line-height: 1.6;
-    }
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+
+  background: rgba(
+    var(--page-bg-color),
+    var(--page-bg-opacity)
+  );
+
+  line-height: 1.6;
+}
 
     a {
       text-decoration: none;
@@ -93,7 +100,7 @@
 }
 
 main {
-  padding-top: 32px; /* додатковий відступ зверху */
+  padding-top: 12px; /* додатковий відступ зверху */
 }
 
 .site-header {
