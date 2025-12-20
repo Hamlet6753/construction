@@ -13,6 +13,25 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+  <form id="contactForm" action="https://formspree.io/f/xdangzjn" method="POST">
+  <input type="text" name="name" placeholder="Ім'я" required>
+  <input type="text" name="organization" placeholder="Організація (необовʼязково)">
+
+  <input type="email" name="email" placeholder="E-mail" required>
+  <input type="tel" name="phone" placeholder="Телефон (необовʼязково)">
+
+  <!-- ТЕМА ЛИСТА -->
+  <input type="hidden" name="_subject" value="Запит з сайту">
+
+  <textarea name="message" placeholder="Повідомлення" required></textarea>
+
+  <div class="form-actions">
+    <button type="reset" class="btn-reset">Скинути</button>
+    <button type="submit" class="btn-submit">Надіслати</button>
+  </div>
+</form>
+
+
 <body>
 
 <header class="site-header">
