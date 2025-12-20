@@ -52,6 +52,7 @@ a{ text-decoration:none; color:inherit; }
   margin-left:auto;
   display:flex;
   gap:12px;
+  background: #ffeeee1f;
   align-items:center;
 }
 
@@ -63,7 +64,7 @@ a{ text-decoration:none; color:inherit; }
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#fff;
+  background:#fff0;
   transition: all .2s ease;
 }
 
