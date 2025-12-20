@@ -231,23 +231,34 @@
   <section id="contact" class="contact">
   <h2>Зв'язатись</h2>
 
-  <form id="contactForm" action="https://formspree.io/f/xdangzjn" method="POST">
-    <input type="hidden" name="_subject" value="Запит з сайту">
-      <input type="text" name="website" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true">
+<form
+  id="contactForm"
+  action="https://formspree.io/f/XXXXYYYY"
+  method="POST"
+>
+  <!-- тема листа -->
+  <input type="hidden" name="_subject" value="Запит з сайту">
 
-    <input type="text" name="name" placeholder="Ім'я" required />
-    <input type="text" name="organization" placeholder="Організація (необовʼязково)" />
+  <!-- fallback-редірект, якщо JS не спрацює -->
+  <input type="hidden" name="_next" value="/construction/thanks.html">
 
-    <input type="email" name="email" placeholder="E-mail" required />
-    <input type="tel" name="phone" placeholder="Телефон (необовʼязково)" />
+  <!-- Honeypot антиспам -->
+  <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-    <textarea name="message" placeholder="Повідомлення" required></textarea>
+  <input type="text" name="name" placeholder="Ім'я" required />
+  <input type="text" name="organization" placeholder="Організація (необовʼязково)" />
 
-    <div class="form-actions">
-      <button type="reset" class="btn-reset">Скинути</button>
-      <button type="submit" class="btn-submit">Надіслати</button>
-    </div>
-  </form>
+  <input type="email" name="email" placeholder="E-mail" required />
+  <input type="tel" name="phone" placeholder="Телефон (необовʼязково)" />
+
+  <textarea name="message" placeholder="Повідомлення" required></textarea>
+
+  <div class="form-actions">
+    <button type="reset" class="btn-reset">Скинути</button>
+    <button type="submit" class="btn-submit">Надіслати</button>
+  </div>
+</form>
+
 </section>
 
 
