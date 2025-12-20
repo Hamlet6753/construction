@@ -273,3 +273,60 @@ textarea{
 @media (max-width:768px){
   .hero{ height:200px; }
 }
+
+<script>
+  // ===== THANKS MODAL =====
+  const modal = document.getElementById('thanksModal');
+  const closeBtn = document.getElementById('closeThanksBtn');
+
+  function openModal(){
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target?.dataset?.close === 'true') closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ===== FORM SUBMIT (AJAX) =====
+  const form = document.getElementById('contactForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const action = form.getAttribute('action');
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (res.ok) {
+        form.reset();
+        openModal();
+      } else {
+        // якщо Formspree поверне помилку
+        alert('Не вдалося надіслати повідомлення. Спробуйте ще раз або напишіть у месенджер.');
+      }
+    } catch (err) {
+      alert('Помилка мережі. Перевірте інтернет і спробуйте ще раз.');
+    }
+  });
+</script>
