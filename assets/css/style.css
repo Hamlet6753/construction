@@ -264,3 +264,16 @@ textarea{
   user-select:none;
 }
 
+/* щоб кнопка "Надіслати" мала стан "відправляємо..." */
+.btn-submit[disabled]{
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* щоб повідомлення модалки/успіху виглядало акуратно, якщо захочеш додати */
+.form-note{
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 14px;
+}
+
