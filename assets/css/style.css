@@ -71,9 +71,8 @@ a{ text-decoration:none; color:inherit; }
 .icon-link img{ width:25px; height:25px; display:block; }
 
 .icon-link:hover{
-  border-color: var(--blue);
-  background:#eef2ff;
-  transform: translateY(-1px);
+  background: #aef6b2;
+  transform: translateY(-3px);
 }
 
 /* ---------- HERO ---------- */
