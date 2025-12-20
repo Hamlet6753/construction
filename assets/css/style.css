@@ -9,6 +9,8 @@
   --page-bg: rgba(0,165,255,0.22);
 }
 
+.header-title h3 { margin:0; font-size:16px; font-weight:600; }
+
 *{ box-sizing:border-box; }
 
 html, body{
