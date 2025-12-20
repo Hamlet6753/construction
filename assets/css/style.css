@@ -33,7 +33,7 @@ a{ text-decoration:none; color:inherit; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #fff;
+  background: #E0E4E5;
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
 
