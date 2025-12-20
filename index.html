@@ -254,87 +254,105 @@
   <img class="lightbox-img" src="" alt="">
 </div>
 <script>
-  /* ---------- LIGHTBOX ---------- */
+  /* =========================
+     LIGHTBOX (IMAGES)
+  ========================== */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.querySelector('.lightbox-img');
-  const closeBtn = document.querySelector('.lightbox-close');
+  const lightboxClose = document.querySelector('.lightbox-close');
 
-  document.querySelectorAll('.media-img.clickable').forEach(img => {
-    img.addEventListener('click', () => {
-      const src = img.dataset.full || img.src;
-      lightboxImg.src = src;
-      lightbox.classList.add('open');
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.media-img.clickable').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.dataset.full || img.src;
+        lightbox.classList.add('open');
+      });
     });
-  });
 
-  closeBtn.addEventListener('click', () => {
+    lightboxClose?.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxImg.src = '';
-  });
+  }
 
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) {
-      lightbox.classList.remove('open');
-      lightboxImg.src = '';
-    }
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      lightbox.classList.remove('open');
-      lightboxImg.src = '';
-    }
-  });
-
-  /* ---------- CONTACT FORM ---------- */
-  const contactForm = document.getElementById('contactForm');
+  /* =========================
+     THANK YOU MODAL
+  ========================== */
   const thanksModal = document.getElementById('thanksModal');
   const closeThanksBtn = document.getElementById('closeThanksBtn');
 
   function openThanks() {
-    thanksModal.classList.add('open');
+    thanksModal?.classList.add('open');
   }
 
   function closeThanks() {
-    thanksModal.classList.remove('open');
+    thanksModal?.classList.remove('open');
   }
 
-  closeThanksBtn.addEventListener('click', closeThanks);
+  closeThanksBtn?.addEventListener('click', closeThanks);
 
-  thanksModal.addEventListener('click', (e) => {
+  thanksModal?.addEventListener('click', (e) => {
     if (e.target === thanksModal) closeThanks();
   });
 
+  /* =========================
+     ESC KEY (закриває все)
+  ========================== */
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeThanks();
-  });
-
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const submitBtn = contactForm.querySelector('.btn-submit');
-    submitBtn.disabled = true;
-
-    try {
-      const res = await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        contactForm.reset();
-        openThanks();
-      } else {
-        alert('Не вдалося надіслати повідомлення.');
-      }
-    } catch {
-      alert('Помилка мережі.');
-    } finally {
-      submitBtn.disabled = false;
+    if (e.key === 'Escape') {
+      closeLightbox();
+      closeThanks();
     }
   });
+
+  /* =========================
+     CONTACT FORM + LOADING
+  ========================== */
+  const contactForm = document.getElementById('contactForm');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+
+      // loading ON
+      submitBtn.disabled = true;
+      submitBtn.classList.add('is-loading');
+      submitBtn.textContent = 'Надсилаємо...';
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          openThanks();
+        } else {
+          alert('Не вдалося надіслати повідомлення.');
+        }
+      } catch (error) {
+        alert('Помилка мережі. Спробуйте пізніше.');
+      } finally {
+        // loading OFF
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
 </script>
+
 
 
 </body>
