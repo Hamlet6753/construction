@@ -78,6 +78,8 @@
 </script>
 
 
+
+
 <body>
 
 <header class="site-header">
@@ -231,6 +233,7 @@
 
   <form id="contactForm" action="https://formspree.io/f/xdangzjn" method="POST">
     <input type="hidden" name="_subject" value="Запит з сайту">
+      <input type="text" name="website" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true">
 
     <input type="text" name="name" placeholder="Ім'я" required />
     <input type="text" name="organization" placeholder="Організація (необовʼязково)" />
@@ -254,6 +257,8 @@
   <img class="lightbox-img" src="" alt="">
 </div>
 <script>
+  const pageOpenedAt = Date.now();
+
   /* =========================
      LIGHTBOX (IMAGES)
   ========================== */
@@ -327,6 +332,25 @@
       submitBtn.disabled = true;
       submitBtn.classList.add('is-loading');
       submitBtn.textContent = 'Надсилаємо...';
+
+      const secondsOnPage = (Date.now() - pageOpenedAt) / 1000;
+if (secondsOnPage < 2) {
+  alert('Спробуйте ще раз.');
+  submitBtn.disabled = false;
+  submitBtn.classList.remove('is-loading');
+  submitBtn.textContent = originalText;
+  return;
+}
+const hp = contactForm.querySelector('input[name="website"]');
+if (hp && hp.value.trim() !== '') {
+  // бот попався — просто “успішно” і тихо
+  contactForm.reset();
+  openThanks();
+  submitBtn.disabled = false;
+  submitBtn.classList.remove('is-loading');
+  submitBtn.textContent = originalText;
+  return;
+}
 
       try {
         const response = await fetch(contactForm.action, {
