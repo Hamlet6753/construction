@@ -24,58 +24,128 @@
 </div>
 
 <script>
-  const contactForm = document.getElementById('contactForm');
+  const pageOpenedAt = Date.now();
+
+  /* =========================
+     LIGHTBOX (IMAGES)
+  ========================== */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const lightboxClose = document.querySelector('.lightbox-close');
+
+  function closeLightbox() {
+    if (!lightbox || !lightboxImg) return;
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.media-img.clickable').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.dataset.full || img.src;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  /* =========================
+     THANK YOU MODAL
+  ========================== */
   const thanksModal = document.getElementById('thanksModal');
   const closeThanksBtn = document.getElementById('closeThanksBtn');
 
   function openThanks() {
-    thanksModal.classList.add('open');
-    thanksModal.setAttribute('aria-hidden', 'false');
+    thanksModal?.classList.add('open');
   }
 
   function closeThanks() {
-    thanksModal.classList.remove('open');
-    thanksModal.setAttribute('aria-hidden', 'true');
+    thanksModal?.classList.remove('open');
   }
 
-  closeThanksBtn.addEventListener('click', closeThanks);
+  closeThanksBtn?.addEventListener('click', closeThanks);
 
-  // клік по затемненню закриває
-  thanksModal.addEventListener('click', (e) => {
+  thanksModal?.addEventListener('click', (e) => {
     if (e.target === thanksModal) closeThanks();
   });
 
-  // Escape закриває
+  /* =========================
+     ESC KEY (закриває все)
+  ========================== */
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeThanks();
-  });
-
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const submitBtn = contactForm.querySelector('.btn-submit');
-    submitBtn.disabled = true;
-
-    try {
-      const res = await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        contactForm.reset();
-        openThanks();
-      } else {
-        alert('Не вдалося надіслати повідомлення. Спробуйте ще раз.');
-      }
-    } catch (err) {
-      alert('Помилка мережі. Перевірте інтернет і спробуйте ще раз.');
-    } finally {
-      submitBtn.disabled = false;
+    if (e.key === 'Escape') {
+      closeLightbox();
+      closeThanks();
     }
   });
+
+  /* =========================
+     CONTACT FORM + ANTI-SPAM + LOADING
+  ========================== */
+  const contactForm = document.getElementById('contactForm');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+
+      // loading ON
+      submitBtn.disabled = true;
+      submitBtn.classList.add('is-loading');
+      submitBtn.textContent = 'Надсилаємо...';
+
+      // 1) time-trap: якщо сабміт за <2с — майже точно бот
+      const secondsOnPage = (Date.now() - pageOpenedAt) / 1000;
+      if (secondsOnPage < 2) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.textContent = originalText;
+        return; // тихо
+      }
+
+      // 2) honeypot: якщо заповнили _gotcha — бот
+      const hp = contactForm.querySelector('input[name="_gotcha"]');
+      if (hp && hp.value.trim() !== '') {
+        contactForm.reset();
+        openThanks();
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.textContent = originalText;
+        return; // тихо
+      }
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          openThanks();
+        } else {
+          alert('Не вдалося надіслати повідомлення.');
+        }
+      } catch (error) {
+        alert('Помилка мережі. Спробуйте пізніше.');
+      } finally {
+        // loading OFF
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
 </script>
+
 
 
 
