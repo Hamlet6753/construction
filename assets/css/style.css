@@ -515,21 +515,51 @@ main{
   background: rgba(31,79,216,0.08);
 }
 
-/* preview */
+/* ===== Animated accordion panel (no display:none) ===== */
+.acc-panel{
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  transition: max-height .28s ease, opacity .18s ease, margin-top .28s ease;
+}
+
+/* відкритий стан */
+.acc.open .acc-panel{
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* caret rotate already ok */
+.acc-caret{
+  transition: transform .2s ease;
+}
+
+/* ===== Centered preview overlay ===== */
 .acc-preview{
-  margin-top: 12px;
-  display: none;
+  position: fixed;
+  inset: 0;
+  display: none;              /* hidden by default */
+  align-items: center;        /* center vertically */
+  justify-content: center;    /* center horizontally */
+  padding: 24px;
+  z-index: 9998;
+  background: rgba(15,23,42,0.55);
 }
 
 .acc-preview.is-visible{
-  display: block;
+  display: flex;
 }
 
+/* card around image */
 .acc-preview-img{
-  width: 100%;
+  max-width: min(1000px, 92vw);
+  max-height: 82vh;
+  width: auto;
   height: auto;
   border-radius: 16px;
   border: 1px solid var(--border);
+  box-shadow: 0 30px 110px rgba(0,0,0,.55);
+  background: #fff;
   display: block;
 }
-
