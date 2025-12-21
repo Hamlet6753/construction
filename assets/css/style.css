@@ -5,11 +5,9 @@
   --muted:#41444a;
   --border:#e5e7eb;
 
-  /* ЄДИНИЙ фон сторінки (регулюй тільки тут) */
+  /* ЄДИНИЙ фон сторінки */
   --page-bg: rgba(177, 185, 191, 0.22);
 }
-
-.header-title h3 { margin:0; font-size:16px; font-weight:600; }
 
 *{ box-sizing:border-box; }
 
@@ -34,6 +32,7 @@ a{ text-decoration:none; color:inherit; }
   top: 0;
   z-index: 1000;
   background: #E0E4E5;
+  border-bottom: 1px solid var(--yellow);
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
 
@@ -48,11 +47,16 @@ a{ text-decoration:none; color:inherit; }
 
 .logo-img{ height:50px; width:auto; display:block; }
 
+.header-title h3{
+  margin:0;
+  font-size:16px;
+  font-weight:600;
+}
+
 .header-icons{
   margin-left:auto;
   display:flex;
   gap:12px;
-  background: #ffeeee1f;
   align-items:center;
 }
 
@@ -64,7 +68,7 @@ a{ text-decoration:none; color:inherit; }
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#fff0;
+  background: transparent;
   transition: all .2s ease;
 }
 
@@ -75,12 +79,114 @@ a{ text-decoration:none; color:inherit; }
   transform: translateY(-3px);
 }
 
+/* ---------- NAV ACTIONS (buttons row) ---------- */
+.nav-actions{
+  width:100%;
+  padding: 14px 24px;
+}
+
+.nav-actions-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.85);
+  color: var(--text);
+  font-weight: 700;
+  cursor:pointer;
+  user-select:none;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+
+.nav-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(31,79,216,0.35);
+  background: rgba(255,255,255,0.95);
+}
+
+/* ---------- DROPDOWN ---------- */
+.dropdown{
+  position: relative;
+  display: inline-flex;
+}
+
+.dropdown-panel{
+  position:absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 520px;
+  max-width: calc(100vw - 48px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  padding: 16px 16px 10px;
+  display:none;
+  z-index: 2000;
+}
+
+.dropdown.open .dropdown-panel{ display:block; }
+
+.dropdown-panel h2{
+  margin:0 0 10px;
+  font-size:18px;
+  pointer-events:none; /* заголовок не клікабельний */
+  user-select:none;
+}
+
+.norm-list{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:10px;
+}
+
+.norm-list a{
+  display:block;
+  padding:10px 10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.9);
+  transition: background .2s ease, border-color .2s ease, transform .15s ease;
+}
+
+.norm-list a:hover{
+  border-color: var(--blue);
+  background: rgba(31,79,216,0.06);
+  transform: translateY(-1px);
+}
+
+.norm-list h3{
+  margin:0;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.35;
+}
+
+.dropdown-hint{
+  margin:10px 0 0;
+  color: var(--muted);
+  font-size:12px;
+}
+
 /* ---------- HERO ---------- */
 .hero{
   position: relative;
   height: 250px;
   width: 100%;
-  background-image: url("background.jpg"); /* рекомендую такий шлях */
+  background-image: url("background.jpg"); /* як у тебе */
   background-size: cover;
   background-position: center;
   display:flex;
@@ -101,6 +207,19 @@ a{ text-decoration:none; color:inherit; }
   color:#fff;
 }
 
+.hero-content h1{
+  margin:0 0 10px;
+  font-size:32px;
+  line-height:1.2;
+}
+
+.hero-content h3{
+  margin:0;
+  font-size:16px;
+  font-weight:600;
+  opacity:0.95;
+}
+
 /* ---------- MAIN ---------- */
 main{
   width:100%;
@@ -108,10 +227,10 @@ main{
   padding: 64px 24px;
   display:flex;
   flex-direction:column;
-  gap:32px; /* трохи менше, щоб не було "дір" */
+  gap:32px;
 }
 
-/* ВАЖЛИВО: ширина 100% + max-width */
+/* секції однакової ширини */
 .section,
 .contact{
   width:100%;
@@ -119,7 +238,7 @@ main{
   margin:0 auto;
 }
 
-/* секції як "картки" */
+/* секції як картки */
 .section{
   background: rgba(255, 255, 253, 0.88);
   border-radius: 24px;
@@ -146,8 +265,8 @@ main{
   border:1px solid var(--border);
 }
 
-/* ---------- VIDEO CARD ---------- */
-.media.clickable.video-preview{
+/* ---------- VIDEO ---------- */
+.video-preview{
   width:100%;
   padding:20px;
   display:flex;
@@ -162,7 +281,7 @@ main{
   border:1px solid var(--border);
 }
 
-/* ---------- CONTACT ---------- */
+/* ---------- CONTACT (якщо повернеш) ---------- */
 .contact{
   background:#fff;
   padding: 48px;
@@ -186,11 +305,11 @@ form textarea{
   width:100%;
   padding:12px 14px;
   border-radius:8px;
-  border:1px solid var(--border);  /* межі точно будуть */
-  background:#fff;                  /* щоб не було прозоро */
+  border:1px solid var(--border);
+  background:#fff;
   color: var(--text);
   font-size:14px;
-  outline: none;
+  outline:none;
 }
 
 form input:focus,
@@ -224,7 +343,7 @@ textarea{
   border:none;
   padding:10px 20px;
   border-radius:8px;
-  font-weight:600;
+  font-weight:700;
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -252,7 +371,7 @@ textarea{
   transition: transform .3s ease;
 }
 
-.lightbox-img:hover{ transform: scale(1.05); }
+.lightbox-img:hover{ transform: scale(1.03); }
 
 .lightbox-close{
   position:absolute;
@@ -264,53 +383,14 @@ textarea{
   user-select:none;
 }
 
-/* щоб кнопка "Надіслати" мала стан "відправляємо..." */
-.btn-submit[disabled]{
-  opacity: 0.65;
-  cursor: not-allowed;
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px){
+  .section{ grid-template-columns:1fr; }
+  form{ grid-template-columns:1fr; }
+  .dropdown-panel{ min-width: 0; }
 }
 
-/* щоб повідомлення модалки/успіху виглядало акуратно, якщо захочеш додати */
-.form-note{
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* ---------- SUBMIT LOADING STATE ---------- */
-.btn-submit[disabled]{
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-.btn-submit.is-loading{
-  position: relative;
-  padding-left: 42px; /* місце під спінер */
-}
-
-.btn-submit.is-loading::before{
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  width: 16px;
-  height: 16px;
-  margin-top: -8px;
-  border-radius: 50%;
-  border: 2px solid rgba(0,0,0,0.25);
-  border-top-color: rgba(0,0,0,0.75);
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin{
-  to { transform: rotate(360deg); }
-}
-.hp-field{
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  height: 1px !important;
-  width: 1px !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+@media (max-width: 768px){
+  .hero{ height:200px; }
+  .hero-content h1{ font-size:24px; }
 }
