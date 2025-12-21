@@ -426,40 +426,28 @@ main{
 /* ===== Floating preview (no overlay) ===== */
 .acc-preview{
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 1px;
-  height: 1px;
-  pointer-events: none; /* важливо: не блокує курсор */
-  z-index: 9999;
-
-  opacity: 0;
-  transition: opacity .12s ease;
+  inset: 0;
+  background: transparent !important;
+  pointer-events: none;
+  display: none;
+  z-index: 5000;
 }
 
 .acc-preview.is-visible{
-  opacity: 1;
+  display: block;
 }
 
 .acc-preview-img{
   position: fixed;
-  left: 50vw;
-  top: 50vh;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%) scale(0.85);
-
-  max-width: min(920px, 88vw);
-  max-height: 76vh;
-  width: auto;
-  height: auto;
-
+  max-width: min(980px, 92vw);
+  max-height: 82vh;
   border-radius: 16px;
-  border: 1px solid var(--border);
-  box-shadow: 0 26px 90px rgba(0,0,0,.35);
-  background: #fff;
-  display: block;
-
-  will-change: transform, left, top;
+  box-shadow: 0 22px 70px rgba(0,0,0,.22);
 }
+
 
 /* На мобілці hover не має сенсу — просто не показуємо превʼю */
 @media (max-width: 900px) {
