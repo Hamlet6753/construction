@@ -447,3 +447,89 @@ main{
     display: none !important;
   }
 }
+
+/* ========== ACCORDION (works) ========== */
+.acc{
+  width: 100%;
+}
+
+.acc + .acc{
+  margin-top: 12px; /* відстань між акордеонами */
+}
+
+.acc-trigger{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.65);
+  cursor: pointer;
+}
+
+.acc-trigger h3{
+  margin: 0;
+}
+
+.acc-caret{
+  transition: transform .2s ease;
+}
+
+/* панель закрита */
+.acc-panel{
+  display: none;
+  margin-top: 10px;
+}
+
+/* панель відкрита */
+.acc.open .acc-panel{
+  display: block;
+}
+
+.acc.open .acc-caret{
+  transform: rotate(180deg);
+}
+
+.acc-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.acc-item{
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+}
+
+.acc-item:hover{
+  background: rgba(31,79,216,0.08);
+}
+
+/* preview */
+.acc-preview{
+  margin-top: 12px;
+  display: none;
+}
+
+.acc-preview.is-visible{
+  display: block;
+}
+
+.acc-preview-img{
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
