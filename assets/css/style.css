@@ -423,22 +423,42 @@ main{
 }
 
 /* Превʼю-картинка (плаваюча) */
-.acc-preview {
+/* ===== Floating preview (no overlay) ===== */
+.acc-preview{
   position: fixed;
-  z-index: 9998;
-  display: none;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none; /* важливо: не блокує курсор */
+  z-index: 9999;
 
-  width: min(520px, 70vw);
-  pointer-events: none;
+  opacity: 0;
+  transition: opacity .12s ease;
 }
 
-.acc-preview-img {
-  width: 100%;
+.acc-preview.is-visible{
+  opacity: 1;
+}
+
+.acc-preview-img{
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%) scale(0.85);
+
+  max-width: min(920px, 88vw);
+  max-height: 76vh;
+  width: auto;
   height: auto;
-  display: block;
-  border-radius: 14px;
+
+  border-radius: 16px;
   border: 1px solid var(--border);
-  box-shadow: 0 20px 70px rgba(0,0,0,0.25);
+  box-shadow: 0 26px 90px rgba(0,0,0,.35);
+  background: #fff;
+  display: block;
+
+  will-change: transform, left, top;
 }
 
 /* На мобілці hover не має сенсу — просто не показуємо превʼю */
