@@ -5,7 +5,32 @@
   <title>Розробка ПОБ і ПВР на всі види будівельних робіт</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Розробити проєкт організації будівництва або проєкт виконання робіт" />
+  <meta name="description" content="Розробка проєктів організації будівництва (ПОБ) та проєктів виконання робіт (ПВР) для цивільних, промислових та інфраструктурних об’єктів." />
+
+  <!-- =========================
+       SEO: заповни під себе
+  ========================== -->
+  <meta name="keywords" content="ПОБ, ПВР, проект організації будівництва, проект виконання робіт, будівельне проектування, будгенплан, технологічні карти, Україна" />
+  <meta name="robots" content="index, follow" />
+  <!-- <link rel="canonical" href="https://khomenko-build.work/" /> -->
+  <!-- <link rel="sitemap" type="application/xml" href="/sitemap.xml" /> -->
+
+  <!-- Open Graph (соцмережі) -->
+  <!--
+  <meta property="og:title" content="ПОБ та ПВР — Хоменко Андрій" />
+  <meta property="og:description" content="Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khomenko-build.work/" />
+  <meta property="og:image" content="https://khomenko-build.work/assets/images/og.jpg" />
+  -->
+
+  <!-- Twitter -->
+  <!--
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ПОБ та ПВР — Хоменко Андрій" />
+  <meta name="twitter:description" content="ПОБ/ПВР для об’єктів будь-якої складності." />
+  <meta name="twitter:image" content="https://khomenko-build.work/assets/images/og.jpg" />
+  -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -15,19 +40,24 @@
 
 <body>
 
-  <!-- THANKS MODAL (всередині body!) -->
-   <!-- 
-  <div id="thanksModal" class="lightbox" aria-hidden="true">
-    <div class="contact" style="max-width:520px; width:calc(100% - 32px); position:relative;">
-      <h2 style="margin:0 0 8px;">Дякую, повідомлення надіслано</h2>
-      <p style="margin:0 0 16px; color: var(--muted);">Я зв’яжуся з вами найближчим часом.</p>
-      <div class="form-actions" style="justify-content:flex-end;">
+  <!-- =========================
+       THANKS MODAL (закоментовано)
+  ========================== -->
+  <!--
+  <div id="thanksModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <h2>Дякую, повідомлення надіслано</h2>
+      <p>Я зв’яжуся з вами найближчим часом.</p>
+      <div class="modal-actions">
         <button type="button" class="btn-submit" id="closeThanksBtn">Закрити</button>
       </div>
     </div>
   </div>
   -->
 
+  <!-- =========================
+       HEADER
+  ========================== -->
   <header class="site-header">
     <div class="header-inner">
       <img class="logo-img" src="assets/images/logo.png" alt="Logo">
@@ -37,34 +67,80 @@
       </div>
 
       <div class="header-icons">
-        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener">
+        <a href="https://wa.me/380680614300" class="icon-link" target="_blank" rel="noopener">
           <img src="icons/whatsapp.svg" alt="WhatsApp">
         </a>
 
-        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener">
+        <a href="https://t.me/hamlet_p10" class="icon-link" target="_blank" rel="noopener">
           <img src="icons/telegram.svg" alt="Telegram">
         </a>
 
-        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail">
+        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link">
           <img src="icons/gmail.svg" alt="Gmail">
         </a>
 
-        <a href="viber://chat?number=380636125766" class="icon-link viber">
+        <a href="viber://chat?number=380636125766" class="icon-link">
           <img src="icons/viber.svg" alt="Viber">
         </a>
       </div>
     </div>
   </header>
 
+  <!-- =========================
+       BUTTONS ROW (між header і hero)
+  ========================== -->
+  <section class="nav-actions" aria-label="Навігація">
+    <div class="nav-actions-inner">
+
+      <!-- Dropdown: Нормативна база -->
+      <div class="dropdown" id="normDropdown">
+        <button class="nav-btn" type="button" id="normBtn" aria-haspopup="true" aria-expanded="false">
+          Нормативна база <span aria-hidden="true">▾</span>
+        </button>
+
+        <div class="dropdown-panel" id="normPanel" role="menu" aria-labelledby="normBtn">
+          <h2>Нормативна база</h2>
+
+          <ul class="norm-list">
+            <li><a href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener"><h3>ДБН А.3.1-5:2016 "Організація будівельного виробництва"</h3></a></li>
+            <li><a href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener"><h3>ДСТУ А.3.2-2-2009 "Охорона праці і промислова безпека в будівництві"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=53935" target="_blank" rel="noopener"><h3>ДСТУ Б А.3.1-22:2013 "Визначення тривалості будівництва об’єктів"</h3></a></li>
+            <li><a href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener"><h3>ДБН В.1.1-7-2016 "Пожежна безпека об'єктів будівництва"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=77156" target="_blank" rel="noopener"><h3>НПАОП 0.00-1.80-18 "Правила охорони праці під час експлуатації вантажопідіймальних кранів"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=4754" target="_blank" rel="noopener"><h3>ДСТУ Б В.2.8-10-98 "Стропи вантажні. Класифікація, параметри та розміри"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=83263" target="_blank" rel="noopener"><h3>ДСТУ EN ISO 7010:2019 "Графічні символи. Кольори та знаки безпеки"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=75611" target="_blank" rel="noopener"><h3>ДСТУ EN 397:2017 "Каски захисні промислові"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=28232" target="_blank" rel="noopener"><h3>ДСТУ Б В.2.8-43:2011 "Огородження інвентарні будівельних майданчиків"</h3></a></li>
+            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=27975" target="_blank" rel="noopener"><h3>ДСТУ Б А.3.2-15:2011 "Норми освітлення будівельних майданчиків"</h3></a></li>
+          </ul>
+
+          <p class="dropdown-hint">Порада: встав свої посилання замість <code>#</code>.</p>
+        </div>
+      </div>
+
+      <!-- Про мене -->
+      <a class="nav-btn" href="about.html">Про мене</a>
+
+      <!-- Приклади робіт -->
+      <a class="nav-btn" href="works.html">Приклади виконаних робіт</a>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       HERO
+  ========================== -->
   <section class="hero">
     <div class="hero-overlay"></div>
-
     <div class="hero-content">
       <h1>Проєкти організації будівництва та Проєкти виконання робіт</h1>
       <h3>Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів</h3>
     </div>
   </section>
 
+  <!-- =========================
+       MAIN
+  ========================== -->
   <main>
 
     <!-- SECTION 1 -->
@@ -79,7 +155,7 @@
         <p>- Увага до особливих умов кожного об'єкту та вимог замовника.</p>
       </div>
 
-      <div class="media clickable video-preview" data-video="assets/video/bgp1.webm">
+      <div class="media video-preview">
         <video class="media-video" autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/bgp1.webm" type="video/webm">
         </video>
@@ -91,17 +167,12 @@
       <div class="text-block">
         <h3>Що таке Проєкт організації будівництва?</h3>
         <p>Проєкт організації будівництва є ключовим організаційно-технологічним документом, який розробляється для об’єктів різного функціонального призначення - від цивільних будівель і споруд до промислових комплексів, а також споруд цивільного захисту, таких як укриття (бомбосховища). Документація визначає оптимальні рішення з організації будівельного процесу із застосуванням сучасних технологій та раціональних методів виконання робіт.</p>
-        <p>Проєкт організації будівництва розробляється відповідно до чинних нормативно-правових актів та стандартів, зокрема ДБН А.3.1-5:2016 "Організація будівельного виробництва" та  ДБН А.3.2-2-2009 "Охорона праці і промислова безпека у будівництві".</p>
+        <p>Проєкт організації будівництва розробляється відповідно до чинних нормативно-правових актів та стандартів, зокрема ДБН А.3.1-5:2016 "Організація будівельного виробництва" та ДБН А.3.2-2-2009 "Охорона праці і промислова безпека у будівництві".</p>
         <p>На підставі затвердженої проєктної документації замовник і підрядна організація отримують необхідні дозволи на виконання будівельних робіт у встановленому законодавством порядку, а також мають можливість визначити орієнтовну вартість будівництва об’єкта.</p>
       </div>
 
       <div class="media">
-        <img
-          class="media-img clickable"
-          src="assets/images/bgp1.jpg"
-          alt="Будгенплан"
-          data-full="assets/images/bgp1.jpg"
-        >
+        <img class="media-img clickable" src="assets/images/bgp1.jpg" alt="Будгенплан" data-full="assets/images/bgp1.jpg">
       </div>
     </section>
 
@@ -114,17 +185,12 @@
       </div>
 
       <div class="media">
-        <img
-          class="media-img clickable"
-          src="assets/images/poseidon.jpg"
-          alt="Будгенплан"
-          data-full="assets/images/poseidon.jpg"
-        >
+        <img class="media-img clickable" src="assets/images/poseidon.jpg" alt="Приклад виконаних робіт" data-full="assets/images/poseidon.jpg">
       </div>
     </section>
 
     <!-- SECTION 4 -->
-    <section class="section">
+    <section class="section" id="works">
       <div class="text-block">
         <h3>Типи обʼєктів, для яких виконуються ПОБ та ПВР</h3>
         <p>Маю практичний досвід розробки проєктної документації для:</p>
@@ -138,13 +204,14 @@
         <p>Кожен проєкт розглядається як унікальний - з урахуванням умов будівництва, технології виконання робіт та вимог нормативної бази.</p>
       </div>
 
-      <div class="media clickable video-preview" data-video="assets/video/bgp2.webm">
+      <div class="media video-preview">
         <video class="media-video" autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/bgp2.webm" type="video/webm">
         </video>
       </div>
     </section>
 
+    <!-- SECTION 5 -->
     <section class="section">
       <div class="text-block">
         <h3>Супровід проєкту та проходження експертизи</h3>
@@ -153,52 +220,39 @@
       </div>
 
       <div class="media">
-        <img class="media-img clickable"
-             src="assets/images/gazovy.jpg"
-             alt="Газовий об'єкт"
-             data-full="assets/images/gazovy.jpg">
+        <img class="media-img clickable" src="assets/images/gazovy.jpg" alt="Газовий об'єкт" data-full="assets/images/gazovy.jpg">
       </div>
-  </section>
+    </section>
 
-    <!-- CONTACT -->
-    <!-- 
+    <!-- CONTACT (закоментовано) -->
+    <!--
     <section id="contact" class="contact">
       <h2>Зв'язатись</h2>
-
-      
       <form id="contactForm">
-      
         <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-
         <input type="text" name="name" placeholder="Ім'я" required />
         <input type="text" name="organization" placeholder="Організація (необовʼязково)" />
-
         <input type="email" name="email" placeholder="E-mail" required />
         <input type="tel" name="phone" placeholder="Телефон (необовʼязково)" />
-
         <textarea name="message" placeholder="Повідомлення" required></textarea>
-
         <div class="form-actions">
           <button type="reset" class="btn-reset">Скинути</button>
           <button type="submit" class="btn-submit">Надіслати</button>
         </div>
       </form>
-   </section> -->
-    
+    </section>
+    -->
 
   </main>
 
   <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <span class="lightbox-close">&times;</span>
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="lightbox-close" aria-label="Закрити">&times;</span>
     <img class="lightbox-img" src="" alt="">
   </div>
 
-  <!-- SCRIPT (в кінці body!) -->
+  <!-- SCRIPT -->
   <script>
-    const WORKER_URL = "https://contact-form.andrewhomenko675.workers.dev";
-    const pageOpenedAt = Date.now();
-
     /* =========================
        LIGHTBOX (IMAGES)
     ========================== */
@@ -209,6 +263,7 @@
     function closeLightbox() {
       if (!lightbox || !lightboxImg) return;
       lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
       lightboxImg.src = '';
     }
 
@@ -217,6 +272,7 @@
         img.addEventListener('click', () => {
           lightboxImg.src = img.dataset.full || img.src;
           lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
         });
       });
 
@@ -227,111 +283,69 @@
       });
     }
 
-    /* =========================
-       THANK YOU MODAL
-    ========================== */
-    const thanksModal = document.getElementById('thanksModal');
-    const closeThanksBtn = document.getElementById('closeThanksBtn');
-
-    function openThanks() {
-      thanksModal?.classList.add('open');
-      thanksModal?.setAttribute('aria-hidden', 'false');
-    }
-
-    function closeThanks() {
-      thanksModal?.classList.remove('open');
-      thanksModal?.setAttribute('aria-hidden', 'true');
-    }
-
-    closeThanksBtn?.addEventListener('click', closeThanks);
-
-    thanksModal?.addEventListener('click', (e) => {
-      if (e.target === thanksModal) closeThanks();
-    });
-
-    /* =========================
-       ESC KEY (закриває все)
-    ========================== */
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-        closeThanks();
-      }
+      if (e.key === 'Escape') closeLightbox();
     });
 
     /* =========================
-       CONTACT FORM (Cloudflare Worker) + LOADING + ANTISPAM
+       DROPDOWN: hover desktop, click mobile
     ========================== */
-    const contactForm = document.getElementById('contactForm');
+    const normDropdown = document.getElementById('normDropdown');
+    const normBtn = document.getElementById('normBtn');
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    function isTouchDevice() {
+      return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    }
 
-        const submitBtn = contactForm.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
+    function openNorm() {
+      if (!normDropdown) return;
+      normDropdown.classList.add('open');
+      normBtn?.setAttribute('aria-expanded', 'true');
+    }
 
-        submitBtn.disabled = true;
-        submitBtn.classList.add('is-loading');
-        submitBtn.textContent = 'Надсилаємо...';
+    function closeNorm() {
+      if (!normDropdown) return;
+      normDropdown.classList.remove('open');
+      normBtn?.setAttribute('aria-expanded', 'false');
+    }
 
-        // time-trap: <2s — не шлемо
-        const secondsOnPage = (Date.now() - pageOpenedAt) / 1000;
-        if (secondsOnPage < 2) {
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('is-loading');
-          submitBtn.textContent = originalText;
-          return;
-        }
+    function toggleNorm() {
+      if (!normDropdown) return;
+      normDropdown.classList.contains('open') ? closeNorm() : openNorm();
+    }
 
-        // honeypot: якщо заповнили — бот
-        const hp = contactForm.querySelector('input[name="website"]');
-        if (hp && hp.value.trim() !== '') {
-          contactForm.reset();
-          openThanks();
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('is-loading');
-          submitBtn.textContent = originalText;
-          return;
-        }
+    if (normDropdown && normBtn) {
+      // Desktop: hover
+      normDropdown.addEventListener('mouseenter', () => {
+        if (!isTouchDevice()) openNorm();
+      });
 
-        const formData = new FormData(contactForm);
+      normDropdown.addEventListener('mouseleave', () => {
+        if (!isTouchDevice()) closeNorm();
+      });
 
-        const payload = {
-          name: formData.get('name') || '',
-          organization: formData.get('organization') || '',
-          email: formData.get('email') || '',
-          phone: formData.get('phone') || '',
-          message: formData.get('message') || '',
-          website: formData.get('website') || '',
-          elapsedMs: Date.now() - pageOpenedAt
-        };
-
-        try {
-          const res = await fetch(WORKER_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-
-          const json = await res.json().catch(() => ({}));
-
-          if (res.ok && json.ok) {
-            contactForm.reset();
-            openThanks();
-          } else {
-            alert('Не вдалося надіслати повідомлення.');
-            console.error('Worker error:', json);
-          }
-        } catch (error) {
-          alert('Помилка мережі. Спробуйте пізніше.');
-          console.error(error);
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('is-loading');
-          submitBtn.textContent = originalText;
+      // Mobile: click
+      normBtn.addEventListener('click', (e) => {
+        if (isTouchDevice()) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleNorm();
         }
       });
+
+      // Click outside closes (mobile)
+      document.addEventListener('click', (e) => {
+        if (!normDropdown.classList.contains('open')) return;
+        if (!normDropdown.contains(e.target)) closeNorm();
+      });
+
+      // Escape closes
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNorm();
+      });
+
+      // Resize closes
+      window.addEventListener('resize', () => closeNorm());
     }
   </script>
 
