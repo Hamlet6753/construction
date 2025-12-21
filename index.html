@@ -335,76 +335,7 @@
       }
     });
 
-      /* ===== ACCORDION + HOVER PREVIEW ===== */
-  (function () {
-    const acc = document.getElementById('worksAcc');
-    if (!acc) return;
 
-    const trigger = acc.querySelector('.acc-trigger');
-    const panel = acc.querySelector('.acc-panel');
-
-    const preview = acc.querySelector('.acc-preview');
-    const previewImg = acc.querySelector('.acc-preview-img');
-
-    // Accordion toggle
-    trigger.addEventListener('click', () => {
-      const open = acc.classList.toggle('is-open');
-      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
-      acc.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-
-    // Hover preview (desktop)
-    const isFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-
-    if (isFinePointer) {
-      const items = acc.querySelectorAll('.acc-item');
-
-      function hidePreview() {
-        preview.style.display = 'none';
-        previewImg.src = '';
-        previewImg.alt = '';
-      }
-
-      function movePreview(e) {
-        // Позиція біля курсора
-        const offset = 18;
-        let x = e.clientX + offset;
-        let y = e.clientY + offset;
-
-        // Щоб не вилітало за екран
-        const w = preview.offsetWidth || 520;
-        const h = preview.offsetHeight || 300;
-        const maxX = window.innerWidth - w - 12;
-        const maxY = window.innerHeight - h - 12;
-
-        if (x > maxX) x = maxX;
-        if (y > maxY) y = maxY;
-
-        preview.style.left = x + 'px';
-        preview.style.top = y + 'px';
-      }
-
-      items.forEach(btn => {
-        btn.addEventListener('mouseenter', (e) => {
-          const src = btn.dataset.img;
-          if (!src) return;
-
-          previewImg.src = src;
-          previewImg.alt = btn.textContent.trim();
-          preview.style.display = 'block';
-
-          movePreview(e);
-        });
-
-        btn.addEventListener('mousemove', movePreview);
-        btn.addEventListener('mouseleave', hidePreview);
-      });
-
-      // якщо вийшли курсором з панелі — теж ховаємо
-      panel.addEventListener('mouseleave', hidePreview);
-    }
-  })();
   </script>
 
 </body>
