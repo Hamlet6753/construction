@@ -346,80 +346,108 @@
       }
     });
 
-    // ===== ACCORDION (multiple) + only one open at a time =====
-  const accs = document.querySelectorAll('.acc');
+  // ===== ACCORDION (multiple) + only one open at a time + animation =====
+const accs = document.querySelectorAll('.acc');
 
-  function setAccOpen(accEl, isOpen) {
-    const trigger = accEl.querySelector('.acc-trigger');
-    const panel = accEl.querySelector('.acc-panel');
-    if (!trigger || !panel) return;
+function setPanelHeight(accEl, isOpen) {
+  const panel = accEl.querySelector('.acc-panel');
+  if (!panel) return;
 
-    trigger.setAttribute('aria-expanded', String(isOpen));
-    panel.setAttribute('aria-hidden', String(!isOpen));
-    accEl.classList.toggle('open', isOpen);
+  if (isOpen) {
+    // Відкриття: ставимо max-height = scrollHeight
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+  } else {
+    // Закриття: max-height -> 0
+    panel.style.maxHeight = '0px';
+  }
+}
+
+function setAccOpen(accEl, isOpen) {
+  const trigger = accEl.querySelector('.acc-trigger');
+  const panel = accEl.querySelector('.acc-panel');
+  if (!trigger || !panel) return;
+
+  accEl.classList.toggle('open', isOpen);
+  trigger.setAttribute('aria-expanded', String(isOpen));
+  panel.setAttribute('aria-hidden', String(!isOpen));
+
+  setPanelHeight(accEl, isOpen);
+}
+
+function closeAll(exceptAcc = null) {
+  accs.forEach(a => {
+    if (a !== exceptAcc) setAccOpen(a, false);
+  });
+}
+
+accs.forEach(accEl => {
+  const trigger = accEl.querySelector('.acc-trigger');
+  if (!trigger) return;
+
+  // init (закрито)
+  setAccOpen(accEl, false);
+
+  trigger.addEventListener('click', () => {
+    const isOpen = accEl.classList.contains('open');
+    if (isOpen) {
+      setAccOpen(accEl, false);
+    } else {
+      closeAll(accEl);
+      setAccOpen(accEl, true);
+    }
+  });
+});
+
+// При ресайзі перерахувати висоту відкритого панеля
+window.addEventListener('resize', () => {
+  accs.forEach(accEl => {
+    if (accEl.classList.contains('open')) setPanelHeight(accEl, true);
+  });
+});
+
+// ===== Preview overlay (centered) =====
+accs.forEach(accEl => {
+  const previewWrap = accEl.querySelector('.acc-preview');
+  const previewImg = accEl.querySelector('.acc-preview-img');
+  const panel = accEl.querySelector('.acc-panel');
+  if (!previewWrap || !previewImg) return;
+
+  function showPreview(src) {
+    if (!src) return;
+    previewImg.src = src;
+    previewWrap.classList.add('is-visible');
   }
 
-  function closeAll(exceptAcc = null) {
-    accs.forEach(accEl => {
-      if (accEl !== exceptAcc) setAccOpen(accEl, false);
-    });
+  function hidePreview() {
+    previewWrap.classList.remove('is-visible');
+    previewImg.src = '';
   }
 
-  accs.forEach(accEl => {
-    const trigger = accEl.querySelector('.acc-trigger');
-    if (!trigger) return;
+  // hover/leave on items
+  accEl.querySelectorAll('.acc-item').forEach(item => {
+    const src = item.dataset.img;
 
-    trigger.addEventListener('click', () => {
-      const isOpen = accEl.classList.contains('open');
-      if (isOpen) {
-        setAccOpen(accEl, false);
-      } else {
-        closeAll(accEl);        // <-- закриває всі інші
-        setAccOpen(accEl, true);
-      }
-    });
+    item.addEventListener('mouseenter', () => showPreview(src));
+    item.addEventListener('mouseleave', hidePreview);
+
+    // mobile: tap shows (second tap outside closes)
+    item.addEventListener('click', () => showPreview(src));
   });
 
-  // (опційно) клік поза акордеоном закриває всі
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.acc')) closeAll(null);
+  // click on overlay closes
+  previewWrap.addEventListener('click', (e) => {
+    if (e.target === previewWrap) hidePreview();
   });
 
-  // ===== Hover preview (image on hover, hide on leave) =====
-  accs.forEach(accEl => {
-    const previewWrap = accEl.querySelector('.acc-preview');
-    const previewImg = accEl.querySelector('.acc-preview-img');
-    if (!previewWrap || !previewImg) return;
+  // leaving panel hides (desktop)
+  panel?.addEventListener('mouseleave', hidePreview);
 
-    function showPreview(src) {
-      previewImg.src = src;
-      previewWrap.classList.add('is-visible');
-    }
-
-    function hidePreview() {
-      previewWrap.classList.remove('is-visible');
-      previewImg.src = '';
-    }
-
-    accEl.querySelectorAll('.acc-item').forEach(item => {
-      const src = item.dataset.img;
-
-      item.addEventListener('mouseenter', () => {
-        if (src) showPreview(src);
-      });
-
-      item.addEventListener('mouseleave', hidePreview);
-
-      // мобілка: показ по тапу
-      item.addEventListener('click', () => {
-        if (src) showPreview(src);
-      });
-    });
-
-    // якщо мишка пішла з панелі — ховаємо
-    const panel = accEl.querySelector('.acc-panel');
-    panel?.addEventListener('mouseleave', hidePreview);
+  // ESC closes preview too
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hidePreview();
   });
+});
+
   </script>
 
 </body>
