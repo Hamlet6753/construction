@@ -5,32 +5,20 @@
   <title>Розробка ПОБ і ПВР на всі види будівельних робіт</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Розробка проєктів організації будівництва (ПОБ) та проєктів виконання робіт (ПВР) для цивільних, промислових та інфраструктурних об’єктів." />
+  <meta name="description" content="Розробка ПОБ і ПВР. Проєкти організації будівництва та проєкти виконання робіт для цивільних, промислових та інфраструктурних об’єктів." />
 
-  <!-- =========================
-       SEO: заповни під себе
-  ========================== -->
-  <meta name="keywords" content="ПОБ, ПВР, проект організації будівництва, проект виконання робіт, будівельне проектування, будгенплан, технологічні карти, Україна" />
-  <meta name="robots" content="index, follow" />
-  <!-- <link rel="canonical" href="https://khomenko-build.work/" /> -->
-  <!-- <link rel="sitemap" type="application/xml" href="/sitemap.xml" /> -->
+  <!-- SEO: можеш редагувати -->
+  <meta name="keywords" content="ПОБ, ПВР, проєкт організації будівництва, проєкт виконання робіт, будгенплан, будівельні роботи, експертиза, ДБН, ДСТУ" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://khomenko-build.work/" />
 
-  <!-- Open Graph (соцмережі) -->
-  <!--
-  <meta property="og:title" content="ПОБ та ПВР — Хоменко Андрій" />
-  <meta property="og:description" content="Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів." />
+  <!-- Open Graph (для превʼю в месенджерах) -->
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="ПОБ і ПВР — Хоменко Андрій" />
+  <meta property="og:description" content="Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів." />
   <meta property="og:url" content="https://khomenko-build.work/" />
-  <meta property="og:image" content="https://khomenko-build.work/assets/images/og.jpg" />
-  -->
-
-  <!-- Twitter -->
-  <!--
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ПОБ та ПВР — Хоменко Андрій" />
-  <meta name="twitter:description" content="ПОБ/ПВР для об’єктів будь-якої складності." />
-  <meta name="twitter:image" content="https://khomenko-build.work/assets/images/og.jpg" />
-  -->
+  <!-- Постав свій шлях до картинки для превʼю -->
+  <!-- <meta property="og:image" content="https://khomenko-build.work/assets/images/og.jpg" /> -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -40,24 +28,19 @@
 
 <body>
 
-  <!-- =========================
-       THANKS MODAL (закоментовано)
-  ========================== -->
+  <!-- THANKS MODAL (всередині body!) -->
   <!--
-  <div id="thanksModal" class="modal" aria-hidden="true">
-    <div class="modal-card">
+  <div id="thanksModal" class="lightbox" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Повідомлення надіслано">
       <h2>Дякую, повідомлення надіслано</h2>
       <p>Я зв’яжуся з вами найближчим часом.</p>
       <div class="modal-actions">
-        <button type="button" class="btn-submit" id="closeThanksBtn">Закрити</button>
+        <button type="button" class="btn btn-primary" id="closeThanksBtn">Закрити</button>
       </div>
     </div>
   </div>
   -->
 
-  <!-- =========================
-       HEADER
-  ========================== -->
   <header class="site-header">
     <div class="header-inner">
       <img class="logo-img" src="assets/images/logo.png" alt="Logo">
@@ -67,80 +50,97 @@
       </div>
 
       <div class="header-icons">
-        <a href="https://wa.me/380680614300" class="icon-link" target="_blank" rel="noopener">
+        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener">
           <img src="icons/whatsapp.svg" alt="WhatsApp">
         </a>
 
-        <a href="https://t.me/hamlet_p10" class="icon-link" target="_blank" rel="noopener">
+        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener">
           <img src="icons/telegram.svg" alt="Telegram">
         </a>
 
-        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link">
+        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail">
           <img src="icons/gmail.svg" alt="Gmail">
         </a>
 
-        <a href="viber://chat?number=380636125766" class="icon-link">
+        <a href="viber://chat?number=380636125766" class="icon-link viber">
           <img src="icons/viber.svg" alt="Viber">
         </a>
       </div>
     </div>
   </header>
 
-  <!-- =========================
-       BUTTONS ROW (між header і hero)
-  ========================== -->
-  <section class="nav-actions" aria-label="Навігація">
-    <div class="nav-actions-inner">
+  <!-- NAV BUTTONS (між header і hero) -->
+  <div class="top-nav">
+    <div class="top-nav-inner">
 
-      <!-- Dropdown: Нормативна база -->
+      <!-- Dropdown -->
       <div class="dropdown" id="normDropdown">
-        <button class="nav-btn" type="button" id="normBtn" aria-haspopup="true" aria-expanded="false">
-          Нормативна база <span aria-hidden="true">▾</span>
+        <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Нормативна база
+          <span class="caret" aria-hidden="true">▾</span>
         </button>
 
-        <div class="dropdown-panel" id="normPanel" role="menu" aria-labelledby="normBtn">
-          <h2>Нормативна база</h2>
+        <div class="dropdown-menu" role="menu" aria-label="Нормативна база">
+          <div class="dropdown-title">Нормативна база</div>
 
-          <ul class="norm-list">
-            <li><a href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener"><h3>ДБН А.3.1-5:2016 "Організація будівельного виробництва"</h3></a></li>
-            <li><a href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener"><h3>ДСТУ А.3.2-2-2009 "Охорона праці і промислова безпека в будівництві"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=53935" target="_blank" rel="noopener"><h3>ДСТУ Б А.3.1-22:2013 "Визначення тривалості будівництва об’єктів"</h3></a></li>
-            <li><a href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener"><h3>ДБН В.1.1-7-2016 "Пожежна безпека об'єктів будівництва"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=77156" target="_blank" rel="noopener"><h3>НПАОП 0.00-1.80-18 "Правила охорони праці під час експлуатації вантажопідіймальних кранів"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=4754" target="_blank" rel="noopener"><h3>ДСТУ Б В.2.8-10-98 "Стропи вантажні. Класифікація, параметри та розміри"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=83263" target="_blank" rel="noopener"><h3>ДСТУ EN ISO 7010:2019 "Графічні символи. Кольори та знаки безпеки"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=75611" target="_blank" rel="noopener"><h3>ДСТУ EN 397:2017 "Каски захисні промислові"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=28232" target="_blank" rel="noopener"><h3>ДСТУ Б В.2.8-43:2011 "Огородження інвентарні будівельних майданчиків"</h3></a></li>
-            <li><a href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=27975" target="_blank" rel="noopener"><h3>ДСТУ Б А.3.2-15:2011 "Норми освітлення будівельних майданчиків"</h3></a></li>
-          </ul>
+          <!-- Поставиш свої посилання замість # -->
+          <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener">
+            ДБН А.3.1-5:2016 "Організація будівельного виробництва"
+          </a>
 
-          <p class="dropdown-hint">Порада: встав свої посилання замість <code>#</code>.</p>
+          <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener">
+            ДСТУ А.3.2-2-2009 "Охорона праці і промислова безпека в будівництві"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=53935" target="_blank" rel="noopener">
+            ДСТУ Б А.3.1-22:2013 "Визначення тривалості будівництва об’єктів"
+          </a>
+
+          <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener">
+            ДБН В.1.1-7-2016 "Пожежна безпека об'єктів будівництва"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=77156" target="_blank" rel="noopener">
+            НПАОП 0.00-1.80-18 "Правила охорони праці під час експлуатації вантажопідіймальних кранів, підіймальних пристроїв і відповідного обладнання"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=4754" target="_blank" rel="noopener">
+            ДСТУ Б В.2.8-10-98 "Стропи вантажні. Класифікація, параметри та розміри, технічні вимоги"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=83263" target="_blank" rel="noopener">
+            ДСТУ EN ISO 7010:2019 "Графічні символи. Кольори та знаки безпеки"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=75611" target="_blank" rel="noopener">
+            ДСТУ EN 397:2017 "Каски захисні промислові"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=28232" target="_blank" rel="noopener">
+            ДСТУ Б В.2.8-43:2011 "Огородження інвентарні будівельних майданчиків"
+          </a>
+
+          <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=27975" target="_blank" rel="noopener">
+            ДСТУ Б А.3.2-15:2011 "Норми освітлення будівельних майданчиків"
+          </a>
         </div>
       </div>
 
-      <!-- Про мене -->
+      <!-- Links -->
       <a class="nav-btn" href="about.html">Про мене</a>
-
-      <!-- Приклади робіт -->
       <a class="nav-btn" href="works.html">Приклади виконаних робіт</a>
-
     </div>
-  </section>
+  </div>
 
-  <!-- =========================
-       HERO
-  ========================== -->
   <section class="hero">
     <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <h1>Проєкти організації будівництва та Проєкти виконання робіт</h1>
       <h3>Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів</h3>
     </div>
   </section>
 
-  <!-- =========================
-       MAIN
-  ========================== -->
   <main>
 
     <!-- SECTION 1 -->
@@ -155,7 +155,7 @@
         <p>- Увага до особливих умов кожного об'єкту та вимог замовника.</p>
       </div>
 
-      <div class="media video-preview">
+      <div class="media clickable video-preview" data-video="assets/video/bgp1.webm">
         <video class="media-video" autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/bgp1.webm" type="video/webm">
         </video>
@@ -172,7 +172,10 @@
       </div>
 
       <div class="media">
-        <img class="media-img clickable" src="assets/images/bgp1.jpg" alt="Будгенплан" data-full="assets/images/bgp1.jpg">
+        <img class="media-img clickable"
+             src="assets/images/bgp1.jpg"
+             alt="Будгенплан"
+             data-full="assets/images/bgp1.jpg">
       </div>
     </section>
 
@@ -185,12 +188,15 @@
       </div>
 
       <div class="media">
-        <img class="media-img clickable" src="assets/images/poseidon.jpg" alt="Приклад виконаних робіт" data-full="assets/images/poseidon.jpg">
+        <img class="media-img clickable"
+             src="assets/images/poseidon.jpg"
+             alt="Будгенплан"
+             data-full="assets/images/poseidon.jpg">
       </div>
     </section>
 
     <!-- SECTION 4 -->
-    <section class="section" id="works">
+    <section class="section">
       <div class="text-block">
         <h3>Типи обʼєктів, для яких виконуються ПОБ та ПВР</h3>
         <p>Маю практичний досвід розробки проєктної документації для:</p>
@@ -204,14 +210,13 @@
         <p>Кожен проєкт розглядається як унікальний - з урахуванням умов будівництва, технології виконання робіт та вимог нормативної бази.</p>
       </div>
 
-      <div class="media video-preview">
+      <div class="media clickable video-preview" data-video="assets/video/bgp2.webm">
         <video class="media-video" autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/bgp2.webm" type="video/webm">
         </video>
       </div>
     </section>
 
-    <!-- SECTION 5 -->
     <section class="section">
       <div class="text-block">
         <h3>Супровід проєкту та проходження експертизи</h3>
@@ -220,11 +225,14 @@
       </div>
 
       <div class="media">
-        <img class="media-img clickable" src="assets/images/gazovy.jpg" alt="Газовий об'єкт" data-full="assets/images/gazovy.jpg">
+        <img class="media-img clickable"
+             src="assets/images/gazovy.jpg"
+             alt="Газовий об'єкт"
+             data-full="assets/images/gazovy.jpg">
       </div>
     </section>
 
-    <!-- CONTACT (закоментовано) -->
+    <!-- CONTACT: тимчасово вимкнено -->
     <!--
     <section id="contact" class="contact">
       <h2>Зв'язатись</h2>
@@ -251,7 +259,7 @@
     <img class="lightbox-img" src="" alt="">
   </div>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT (в кінці body) -->
   <script>
     /* =========================
        LIGHTBOX (IMAGES)
@@ -283,70 +291,50 @@
       });
     }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-
     /* =========================
        DROPDOWN: hover desktop, click mobile
+       - Заголовок в меню НЕ клікабельний (це .dropdown-title)
     ========================== */
-    const normDropdown = document.getElementById('normDropdown');
-    const normBtn = document.getElementById('normBtn');
+    const dd = document.getElementById('normDropdown');
+    const trigger = dd?.querySelector('.dropdown-trigger');
+    const menu = dd?.querySelector('.dropdown-menu');
 
-    function isTouchDevice() {
-      return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function setExpanded(isOpen) {
+      if (!dd || !trigger) return;
+      dd.classList.toggle('open', isOpen);
+      trigger.setAttribute('aria-expanded', String(isOpen));
     }
 
-    function openNorm() {
-      if (!normDropdown) return;
-      normDropdown.classList.add('open');
-      normBtn?.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeNorm() {
-      if (!normDropdown) return;
-      normDropdown.classList.remove('open');
-      normBtn?.setAttribute('aria-expanded', 'false');
-    }
-
-    function toggleNorm() {
-      if (!normDropdown) return;
-      normDropdown.classList.contains('open') ? closeNorm() : openNorm();
-    }
-
-    if (normDropdown && normBtn) {
-      // Desktop: hover
-      normDropdown.addEventListener('mouseenter', () => {
-        if (!isTouchDevice()) openNorm();
-      });
-
-      normDropdown.addEventListener('mouseleave', () => {
-        if (!isTouchDevice()) closeNorm();
-      });
-
-      // Mobile: click
-      normBtn.addEventListener('click', (e) => {
-        if (isTouchDevice()) {
+    if (dd && trigger && menu) {
+      if (!canHover) {
+        // mobile: toggle on click
+        trigger.addEventListener('click', (e) => {
           e.preventDefault();
-          e.stopPropagation();
-          toggleNorm();
-        }
-      });
+          setExpanded(!dd.classList.contains('open'));
+        });
 
-      // Click outside closes (mobile)
-      document.addEventListener('click', (e) => {
-        if (!normDropdown.classList.contains('open')) return;
-        if (!normDropdown.contains(e.target)) closeNorm();
-      });
-
-      // Escape closes
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeNorm();
-      });
-
-      // Resize closes
-      window.addEventListener('resize', () => closeNorm());
+        // close on outside click
+        document.addEventListener('click', (e) => {
+          if (!dd.contains(e.target)) setExpanded(false);
+        });
+      } else {
+        // desktop: keep aria state synced (open handled by CSS hover)
+        dd.addEventListener('mouseenter', () => setExpanded(true));
+        dd.addEventListener('mouseleave', () => setExpanded(false));
+      }
     }
+
+    /* =========================
+       ESC closes lightbox + dropdown
+    ========================== */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        setExpanded(false);
+      }
+    });
   </script>
 
 </body>
