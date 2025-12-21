@@ -326,7 +326,8 @@
 
         // close on outside click
         document.addEventListener('click', (e) => {
-          if (!dd.contains(e.target)) setExpanded(false);
+       if (dd && trigger) trigger.setAttribute('aria-expanded', 'false');
+        dd?.classList.remove('open');
         });
       } else {
         // desktop: keep aria state synced (open handled by CSS hover)
