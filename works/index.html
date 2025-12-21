@@ -394,22 +394,7 @@
         raf = null;
       }
 
-      function setTargetFromEvent(e){
-        const cx = window.innerWidth / 2;
-        const cy = window.innerHeight / 2;
-
-        const mx = e.clientX;
-        const my = e.clientY;
-
-        let mixX = mx * 0.65 + cx * 0.35;
-        let mixY = my * 0.55 + cy * 0.45;
-
-        mixX += 90;
-        mixY += 110;
-
-        tx = clamp(mixX, 120, window.innerWidth - 120);
-        ty = clamp(mixY, 120, window.innerHeight - 120);
-      }
+      setTargetFromEvent
 
       function showPreview(src, e){
         if (!src) return;
