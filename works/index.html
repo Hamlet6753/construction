@@ -144,14 +144,47 @@
 
     <!-- SECTION 1 -->
     <section class="section">
-      <div class="text-block">
-        <h3>Хоменко Андрій Анатолійович</h3>
-        
-        <p>ПОБ з будівництва будівлі</p>
-        
-      </div>
+  <div class="text-block">
+    <div class="acc" id="worksAcc">
+      <!-- Заголовок акордеона (НЕ посилання) -->
+      <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="accPanel1">
+        <h3 class="acc-title">2025 рік/h3>
+        <span class="acc-caret" aria-hidden="true">▾</span>
+      </button>
 
-    </section>
+      <!-- Вміст акордеона -->
+      <div class="acc-panel" id="accPanel1" role="region" aria-hidden="true">
+        <ul class="acc-list">
+          <li>
+            <button
+              type="button"
+              class="acc-item"
+              data-img="assets/images/bgp1.jpg"
+            >
+              ПОБ з будівництва будівлі
+            </button>
+          </li>
+
+          <li>
+            <button
+              type="button"
+              class="acc-item"
+              data-img="assets/images/bgp2.jpg"
+            >
+              ПВР з будівництва будівлі
+            </button>
+          </li>
+        </ul>
+
+        <!-- Контейнер для hover-зображення -->
+        <div class="acc-preview" aria-hidden="true">
+          <img class="acc-preview-img" src="" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- CONTACT: тимчасово вимкнено -->
     <!--
