@@ -7,6 +7,9 @@
 
   /* ЄДИНИЙ фон сторінки */
   --page-bg: rgba(177, 185, 191, 0.22);
+
+  --card-bg: rgba(255, 255, 253, 0.88);
+  --header-bg: #E0E4E5;
 }
 
 *{ box-sizing:border-box; }
@@ -26,13 +29,16 @@ body{
 
 a{ text-decoration:none; color:inherit; }
 
+/* прибираємо дефолтні величезні марджини в заголовків */
+h1,h2,h3,p{ margin:0; }
+p{ margin-top:10px; }
+
 /* ---------- HEADER ---------- */
 .site-header{
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #E0E4E5;
-  border-bottom: 1px solid var(--yellow);
+  background: var(--header-bg);
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
 
@@ -47,11 +53,7 @@ a{ text-decoration:none; color:inherit; }
 
 .logo-img{ height:50px; width:auto; display:block; }
 
-.header-title h3{
-  margin:0;
-  font-size:16px;
-  font-weight:600;
-}
+.header-title h3{ font-size:16px; font-weight:600; margin:0; }
 
 .header-icons{
   margin-left:auto;
@@ -68,7 +70,7 @@ a{ text-decoration:none; color:inherit; }
   display:flex;
   align-items:center;
   justify-content:center;
-  background: transparent;
+  background:transparent;
   transition: all .2s ease;
 }
 
@@ -79,114 +81,105 @@ a{ text-decoration:none; color:inherit; }
   transform: translateY(-3px);
 }
 
-/* ---------- NAV ACTIONS (buttons row) ---------- */
-.nav-actions{
+/* ---------- TOP NAV (між header і hero) ---------- */
+.top-nav{
   width:100%;
-  padding: 14px 24px;
+  background: rgba(255,255,255,0.35);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.nav-actions-inner{
+.top-nav-inner{
   max-width:1200px;
   margin:0 auto;
+  padding: 10px 24px;
   display:flex;
   gap:12px;
   align-items:center;
   flex-wrap:wrap;
 }
 
-.nav-btn{
+/* Buttons */
+.nav-btn,
+.dropdown-trigger{
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background: rgba(255,255,255,0.85);
+  gap:8px;
+  height:40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.75);
   color: var(--text);
-  font-weight: 700;
-  cursor:pointer;
+  font-weight: 600;
+  cursor: pointer;
   user-select:none;
-  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
 }
 
-.nav-btn:hover{
-  transform: translateY(-1px);
-  border-color: rgba(31,79,216,0.35);
+.nav-btn:hover,
+.dropdown-trigger:hover{
   background: rgba(255,255,255,0.95);
+  border-color: rgba(0,0,0,0.12);
+  transform: translateY(-1px);
 }
 
-/* ---------- DROPDOWN ---------- */
+.caret{ font-size: 12px; opacity: .8; }
+
+/* Dropdown container */
 .dropdown{
   position: relative;
-  display: inline-flex;
 }
 
-.dropdown-panel{
+/* Menu */
+.dropdown-menu{
   position:absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   left: 0;
-  min-width: 520px;
-  max-width: calc(100vw - 48px);
+  width: min(720px, calc(100vw - 48px));
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-  padding: 16px 16px 10px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.15);
+  padding: 12px;
   display:none;
   z-index: 2000;
 }
 
-.dropdown.open .dropdown-panel{ display:block; }
-
-.dropdown-panel h2{
-  margin:0 0 10px;
-  font-size:18px;
-  pointer-events:none; /* заголовок не клікабельний */
-  user-select:none;
+.dropdown-title{
+  font-size: 18px;       /* як h2 по відчуттю */
+  font-weight: 800;
+  margin: 2px 6px 10px;
+  color: var(--text);
+  pointer-events: none;  /* НЕ клікабельний */
 }
 
-.norm-list{
-  margin:0;
-  padding:0;
-  list-style:none;
-  display:grid;
-  gap:10px;
-}
-
-.norm-list a{
+.dropdown-item{
   display:block;
-  padding:10px 10px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background: rgba(255,255,255,0.9);
-  transition: background .2s ease, border-color .2s ease, transform .15s ease;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: var(--text);
+  font-weight: 700;      /* як h3 по відчуттю */
+  line-height: 1.3;
 }
 
-.norm-list a:hover{
-  border-color: var(--blue);
-  background: rgba(31,79,216,0.06);
-  transform: translateY(-1px);
+.dropdown-item:hover{
+  background: rgba(31,79,216,0.08);
 }
 
-.norm-list h3{
-  margin:0;
-  font-size:14px;
-  font-weight:700;
-  line-height:1.35;
+/* Desktop: hover opens */
+@media (hover:hover) and (pointer:fine){
+  .dropdown:hover .dropdown-menu{ display:block; }
 }
 
-.dropdown-hint{
-  margin:10px 0 0;
-  color: var(--muted);
-  font-size:12px;
-}
+/* Mobile: JS toggles .open */
+.dropdown.open .dropdown-menu{ display:block; }
 
 /* ---------- HERO ---------- */
 .hero{
   position: relative;
   height: 250px;
   width: 100%;
-  background-image: url("background.jpg"); /* як у тебе */
+  background-image: url("background.jpg"); /* як ти і казав: працює */
   background-size: cover;
   background-position: center;
   display:flex;
@@ -208,29 +201,28 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .hero-content h1{
-  margin:0 0 10px;
-  font-size:32px;
-  line-height:1.2;
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 10px;
 }
 
 .hero-content h3{
-  margin:0;
-  font-size:16px;
-  font-weight:600;
-  opacity:0.95;
+  font-size: 16px;
+  font-weight: 600;
+  opacity: .95;
 }
 
 /* ---------- MAIN ---------- */
 main{
   width:100%;
   background: transparent;
-  padding: 64px 24px;
+  padding: 32px 24px 64px;
   display:flex;
   flex-direction:column;
   gap:32px;
 }
 
-/* секції однакової ширини */
+/* ВАЖЛИВО: ширина 100% + max-width */
 .section,
 .contact{
   width:100%;
@@ -238,9 +230,9 @@ main{
   margin:0 auto;
 }
 
-/* секції як картки */
+/* секції як "картки" */
 .section{
-  background: rgba(255, 255, 253, 0.88);
+  background: var(--card-bg);
   border-radius: 24px;
   padding: 32px;
 
@@ -253,8 +245,14 @@ main{
 .section:nth-child(even){ direction: rtl; }
 .section:nth-child(even) > *{ direction:ltr; }
 
+.text-block h3{
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
 .text-block p{ color: var(--muted); }
 
+/* media */
 .media{ width:100%; }
 
 .media-img{
@@ -265,10 +263,12 @@ main{
   border:1px solid var(--border);
 }
 
-/* ---------- VIDEO ---------- */
-.video-preview{
+.media-img.clickable{ cursor: zoom-in; }
+
+/* VIDEO */
+.media.clickable.video-preview{
   width:100%;
-  padding:20px;
+  padding: 0;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -281,7 +281,7 @@ main{
   border:1px solid var(--border);
 }
 
-/* ---------- CONTACT (якщо повернеш) ---------- */
+/* ---------- CONTACT (поки не використовуєш — ок) ---------- */
 .contact{
   background:#fff;
   padding: 48px;
@@ -289,66 +289,7 @@ main{
   border:1px solid var(--border);
 }
 
-.contact h2{
-  margin-top:0;
-  margin-bottom: 24px;
-}
-
-form{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-}
-
-form input,
-form textarea{
-  width:100%;
-  padding:12px 14px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:#fff;
-  color: var(--text);
-  font-size:14px;
-  outline:none;
-}
-
-form input:focus,
-form textarea:focus{
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(31,79,216,0.15);
-}
-
-textarea{
-  grid-column:1 / -1;
-  min-height:120px;
-  resize:vertical;
-}
-
-.form-actions{
-  grid-column:1 / -1;
-  display:flex;
-  gap:16px;
-  justify-content:flex-end;
-}
-
-.btn-reset{
-  background:transparent;
-  border:1px solid var(--border);
-  padding:10px 16px;
-  border-radius:8px;
-}
-
-.btn-submit{
-  background: var(--yellow);
-  border:none;
-  padding:10px 20px;
-  border-radius:8px;
-  font-weight:700;
-}
-
 /* ---------- LIGHTBOX ---------- */
-.media-img.clickable{ cursor: zoom-in; }
-
 .lightbox{
   position:fixed;
   inset:0;
@@ -386,11 +327,11 @@ textarea{
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px){
   .section{ grid-template-columns:1fr; }
-  form{ grid-template-columns:1fr; }
-  .dropdown-panel{ min-width: 0; }
 }
 
 @media (max-width: 768px){
   .hero{ height:200px; }
   .hero-content h1{ font-size:24px; }
+  .top-nav-inner{ gap:10px; }
+  .dropdown-menu{ width: calc(100vw - 48px); }
 }
