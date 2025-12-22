@@ -257,6 +257,8 @@ main{
 .sectionwork{
   background: var(--card-bg);
   border-radius: 24px;
+  align-items: center;
+  max-width: 1200px;
   padding: 32px;
 
   grid-template-columns:1fr 1fr;
