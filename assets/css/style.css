@@ -700,3 +700,15 @@ main{
     grid-template-columns: 1fr;
   }
 }
+
+.nav-btn[aria-current="page"]{
+  background: rgba(31,79,216,0.12);
+  border-color: rgba(31,79,216,0.45);
+  color: var(--text);
+  font-weight: 800;
+  cursor: default;
+}
+
+.nav-btn[aria-current="page"]:hover{
+  transform: none;
+}
