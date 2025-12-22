@@ -497,6 +497,111 @@
       });
     });
   </script>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Contacts -->
+    <div class="footer-col">
+      <h3 class="footer-title">Контакти</h3>
+
+      <p class="footer-strong">ФОП Хоменко Андрій Анатолійович</p>
+      <p class="footer-muted">Інженер-будівельник (ПОБ / ПВР)</p>
+      <p class="footer-muted">Україна</p>
+
+      <div class="footer-links">
+        <a class="footer-link" href="tel:+380680614300">+38 (068) 061-43-00</a>
+        <a class="footer-link" href="mailto:andrewhomenko675@gmail.com">andrewhomenko675@gmail.com</a>
+      </div>
+
+      <div class="footer-icons">
+        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <img src="/icons/whatsapp.svg" alt="">
+        </a>
+
+        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <img src="/icons/telegram.svg" alt="">
+        </a>
+
+        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail" aria-label="Gmail">
+          <img src="/icons/gmail.svg" alt="">
+        </a>
+
+        <a href="viber://chat?number=380636125766" class="icon-link viber" aria-label="Viber">
+          <img src="/icons/viber.svg" alt="">
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="footer-col">
+      <h3 class="footer-title">Навігація</h3>
+      <nav class="footer-nav" aria-label="Навігація футера">
+        <a class="footer-link" href="/">Головна</a>
+        <a class="footer-link" href="/about">Про мене</a>
+        <a class="footer-link" href="/works">Приклади виконаних робіт</a>
+        <a class="footer-link" href="/#normative">Нормативна база</a>
+        <!-- якщо на головній з’явиться секція контактів (якір), просто зміни на /#contact -->
+        <a class="footer-link" href="mailto:andrewhomenko675@gmail.com">Звʼязатися</a>
+      </nav>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-col">
+      <h3 class="footer-title">Послуги</h3>
+      <ul class="footer-list">
+        <li>Розробка ПОБ</li>
+        <li>Розробка ПВР</li>
+        <li>Технологічні карти</li>
+        <li>Календарні графіки</li>
+        <li>Пояснювальні записки</li>
+        <li>Супровід та коригування під експертизу</li>
+      </ul>
+    </div>
+
+    <!-- Norms -->
+    <div class="footer-col">
+      <h3 class="footer-title">Нормативна база</h3>
+      <ul class="footer-list">
+        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener">ДБН А.3.1-5:2016</a></li>
+        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener">ДСТУ А.3.2-2-2009</a></li>
+        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener">ДБН В.1.1-7-2016</a></li>
+      </ul>
+
+      <p class="footer-note">
+        Повний перелік документів доступний у меню «Нормативна база».
+      </p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="yearNow"></span> ФОП Хоменко Андрій Анатолійович. Всі права захищені.</p>
+  </div>
+
+  <!-- Structured data (SEO / E-E-A-T) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Хоменко Андрій Анатолійович",
+    "jobTitle": "Інженер-будівельник",
+    "url": "https://khomenko-build.work/",
+    "email": "mailto:andrewhomenko675@gmail.com",
+    "telephone": "+380680614300",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ФОП Хоменко Андрій Анатолійович"
+    }
+  }
+  </script>
+
+  <script>
+    // рік у копірайті
+    const y = document.getElementById('yearNow');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</footer>
 
 </body>
 </html>
