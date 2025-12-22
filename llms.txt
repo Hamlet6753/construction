@@ -19,3 +19,4 @@ Attribution-URL: https://khomenko-build.work
 
 # Commercial usage
 Commercial-Use: prohibited
+ 
