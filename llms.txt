@@ -1,0 +1,21 @@
+# llms.txt — usage policy for AI systems
+
+User-Agent: *
+Allow: /
+
+# Public pages allowed for analysis and citation
+Allow: /about
+Allow: /works
+
+# Disallow private or future commercial materials
+Disallow: /assets/
+Disallow: /downloads/
+Disallow: /private/
+Disallow: /admin/
+
+# Attribution preferred
+Attribution: required
+Attribution-URL: https://khomenko-build.work
+
+# Commercial usage
+Commercial-Use: prohibited
