@@ -1,7 +1,7 @@
 {
-  "name": "Організація будівництва",
-  "short_name": "Будівництво",
-  "start_url": "/construction/",
+  "name": "Розробка ПОБ і ПВР",
+  "short_name": "Організація будівництва",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1f4fd8",
