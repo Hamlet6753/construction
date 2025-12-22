@@ -12,6 +12,10 @@
   --header-bg: #E0E4E5;
 }
 
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; }
+
+
 *{ box-sizing:border-box; }
 
 html, body{
@@ -47,17 +51,25 @@ p{ margin-top:10px; }
   margin: 0 auto;
   padding: 12px 24px;
   display:flex;
+  flex-wrap: wrap;
   align-items:center;
   gap:16px;
 }
 
 .logo-img{ height:50px; width:auto; display:block; }
 
-.header-title h3{ font-size:16px; font-weight:600; margin:0; }
+.header-title{
+  min-width: 0; /* важливо для flex, щоб текст не розпирав */
+}
+
+.header-title h3{ font-size:16px; font-weight:600; margin:0; 
+overflow-wrap: anywhere;              
+                }
 
 .header-icons{
   margin-left:auto;
   display:flex;
+  flex-wrap: wrap;
   gap:12px;
   align-items:center;
 }
@@ -704,10 +716,26 @@ main{
 .nav-btn[aria-current="page"]{
   background: rgba(131, 152, 212, 0.12);
   color: var(--text);
-  font-weight: 710;
+  font-weight: 700;
   cursor: default;
 }
 
 .nav-btn[aria-current="page"]:hover{
   transform: none;
+}
+
+
+@media (max-width: 520px){
+  .header-inner{ padding: 10px 14px; }
+  .logo-img{ height: 42px; }
+
+  .header-title{ flex: 1 1 100%; }
+  .header-icons{ margin-left: 0; }
+
+  .top-nav-inner{ padding: 10px 14px; }
+  .nav-btn, .dropdown-trigger{ height: 38px; padding: 0 10px; }
+
+  .hero-content{ padding: 0 14px; }
+  .hero-content h1{ font-size: 22px; }
+  .hero-content h3{ font-size: 14px; }
 }
