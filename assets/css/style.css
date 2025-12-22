@@ -704,7 +704,7 @@ main{
 .nav-btn[aria-current="page"]{
   background: rgba(131, 152, 212, 0.12);
   color: var(--text);
-  font-weight: 700;
+  font-weight: 710;
   cursor: default;
 }
 
