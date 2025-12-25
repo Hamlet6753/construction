@@ -262,16 +262,20 @@ main{
 }
 
 .sectionwork{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
   background: var(--card-bg);
   border-radius: 24px;
-  align-items: center;
-  max-width: 1200px;
   padding: 32px;
 
-  grid-template-columns:1fr 1fr;
-  gap:48px;
-  align-items:center;
+  display: grid;                 /* <-- ОЦЕ ГОЛОВНЕ */
+  grid-template-columns: 1fr;    /* тобі тут 2 колонки не треба */
+  gap: 24px;
+  align-items: start;
 }
+
 
 .section:nth-child(even){ direction: rtl; }
 .section:nth-child(even) > *{ direction:ltr; }
