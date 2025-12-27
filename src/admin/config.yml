@@ -1,1 +1,22 @@
+backend:
+  name: github
+  repo:  Hamlet6753
+  branch: main
 
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "blog"
+    label: "Блог"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Опис (meta)", name: "description", widget: "string", required: false }
+      - { label: "Обкладинка", name: "cover", widget: "image", required: false }
+      - { label: "Текст", name: "body", widget: "markdown" }
