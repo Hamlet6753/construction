@@ -755,15 +755,16 @@ main{
 
 /* Snow layer: над зображеннями, але під текстом */
 
-.snow{
+#snow{
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
   display: block !important;
   pointer-events: none !important;
-  z-index: 2;
+  z-index: 9999;
 }
+
 
 
 /* Текст/контент — вище снігу */
