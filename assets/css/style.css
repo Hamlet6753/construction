@@ -752,3 +752,26 @@ main{
   .hero-content h1{ font-size: 22px; }
   .hero-content h3{ font-size: 14px; }
 }
+
+/* Snow layer: над зображеннями, але під текстом */
+#snow{
+  position: fixed;
+  inset: 0;
+  z-index: 2;            /* сніг */
+  pointer-events: none;  /* щоб не блокував кліки */
+}
+
+/* Текст/контент — вище снігу */
+.site-header,
+.top-nav,
+.hero-content,
+main,
+footer{
+  position: relative;
+  z-index: 3;
+}
+
+/* Фон/оверлеї/картинки — нижче снігу */
+.hero-overlay{
+  z-index: 1;
+}
