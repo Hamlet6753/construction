@@ -1,1 +1,16 @@
+---
+layout: layout.njk
+title: Блог
+permalink: /blog/
+---
 
+<h1>Блог</h1>
+
+<ul>
+{% for post in collections.blog | reverse %}
+  <li>
+    <a href="{{ post.url }}">{{ post.data.title }}</a>
+    <div style="opacity:.7; font-size:14px;">{{ post.date | date("yyyy-MM-dd") }}</div>
+  </li>
+{% endfor %}
+</ul>
