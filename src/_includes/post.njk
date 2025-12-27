@@ -1,0 +1,9 @@
+---
+layout: layout.njk
+---
+
+<article>
+  <h1>{{ title }}</h1>
+  {% if cover %}<img src="{{ cover }}" alt="" style="max-width:100%; border-radius:16px; margin:16px 0;">{% endif %}
+  <div>{{ content | safe }}</div>
+</article>
