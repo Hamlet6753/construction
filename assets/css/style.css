@@ -755,7 +755,7 @@ main{
 
 /* Snow layer: над зображеннями, але під текстом */
 
-#snow{
+.snow{
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
