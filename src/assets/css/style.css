@@ -193,7 +193,7 @@ overflow-wrap: anywhere;
   width: 100%;
   background-image: url("background.jpg");
   background-size: cover;
-  background-position: center top; /* ✅ ОЦЕ змінити */
+  background-position: center 35%;
   display:flex;
   align-items:center;
 }
