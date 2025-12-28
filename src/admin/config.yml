@@ -28,3 +28,5 @@ collections:
       - label: "Тіло"
         name: "body"
         widget: "markdown"
+      - { label: "Зображення", name: "image", widget: "image", required: false }
+
