@@ -7,6 +7,18 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/site.webmanifest": "site.webmanifest" });
   eleventyConfig.addPassthroughCopy({ "src/admin/config.yml": "admin/config.yml" });
 
+      // ✅ Date filter for Nunjucks: {{ post.date | date("uk-UA") }}
+  eleventyConfig.addFilter("date", (value, locale = "uk-UA") => {
+    const d = value instanceof Date ? value : new Date(value);
+    if (isNaN(d)) return value;
+
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "2-digit"
+    }).format(d);
+  });
+
   eleventyConfig.addCollection("blog", (collectionApi) => {
     return collectionApi.getFilteredByGlob("src/posts/*.md");
   });
