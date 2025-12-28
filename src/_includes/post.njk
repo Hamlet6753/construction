@@ -2,8 +2,24 @@
 layout: base.njk
 ---
 
-<article class="post">
-  <h1>{{ title }}</h1>
-  <div class="post-meta">{{ date | date("uk-UA") }}</div>
-  {{ content | safe }}
-</article>
+<section class="sectionwork post-page">
+  <article class="post-article">
+    <div class="post-top">
+      <h1 class="post-title">{{ title }}</h1>
+      <div class="post-date">{{ date | date("uk-UA") }}</div>
+      {% if description %}
+        <p class="post-desc">{{ description }}</p>
+      {% endif %}
+    </div>
+
+    {% if image %}
+      <div class="post-hero">
+        <img src="{{ image }}" alt="{{ title | escape }}">
+      </div>
+    {% endif %}
+
+    <div class="post-content">
+      {{ content | safe }}
+    </div>
+  </article>
+</section>
