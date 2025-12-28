@@ -7,6 +7,13 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/site.webmanifest": "site.webmanifest" });
   eleventyConfig.addPassthroughCopy({ "src/admin/config.yml": "admin/config.yml" });
 
+  eleventyConfig.addFilter("truncate", (str = "", len = 180) => {
+  if (!str) return "";
+  const s = String(str);
+  return s.length > len ? s.slice(0, len).trim() + "…" : s;
+});
+
+  
       // ✅ Date filter for Nunjucks: {{ post.date | date("uk-UA") }}
   eleventyConfig.addFilter("date", (value, locale = "uk-UA") => {
     const d = value instanceof Date ? value : new Date(value);
