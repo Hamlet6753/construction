@@ -4,28 +4,126 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  {# TITLE #}
   <title>{{ title or "Хоменко Андрій" }}</title>
 
-  {# твій основний CSS #}
+  {# DESCRIPTION (для головної ти вже передаєш в frontmatter) #}
+  {% if description %}
+    <meta name="description" content="{{ description }}">
+  {% else %}
+    <meta name="description" content="Розробка ПОБ та ПВР для цивільних, промислових та інфраструктурних об’єктів будівництва.">
+  {% endif %}
+
+  {# KEYWORDS / ROBOTS #}
+  <meta name="keywords" content="ПОБ, ПВР, проект, проєкт організації будівництва, проєкт виконання робіт, ПОС, ППР, будгенплан, будівельні роботи, експертиза, ДБН, ДСТУ">
+  <meta name="robots" content="index,follow" />
+
+  {# CANONICAL #}
+  {% if canonical %}
+    <link rel="canonical" href="{{ canonical }}">
+  {% endif %}
+
+  {# Open Graph #}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ og_title or (title or 'ПОБ і ПВР — Хоменко Андрій') }}" />
+  <meta property="og:description" content="{{ og_description or (description or 'Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів.') }}" />
+  <meta property="og:url" content="{{ canonical or 'https://khomenko-build.work/' }}" />
+  {# Якщо додаси og_image в frontmatter — підтягнеться #}
+  {% if og_image %}
+    <meta property="og:image" content="{{ og_image }}" />
+  {% endif %}
+
+  {# Icons / Manifest #}
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  {# CSS #}
   <link rel="stylesheet" href="/assets/css/style.css">
 
-  {# якщо маєш favicon/manifest — можеш теж тут #}
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  {# JSON-LD (ProfessionalService) #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Хоменко Андрій — ПОБ та ПВР",
+    "url": "https://khomenko-build.work",
+    "description": "Розробка ПОБ і ПВР для будівництва цивільних, промислових та інфраструктурних об’єктів",
+    "areaServed": "UA",
+    "knowsAbout": [
+      "ПОБ",
+      "ПВР",
+      "Організація будівельного виробництва",
+      "ДБН",
+      "ДСТУ"
+    ],
+    "sameAs": [
+      "https://t.me/hamlet_p10"
+    ]
+  }
+  </script>
 </head>
 
 <body>
+
+  {# Сніг: canvas має бути ПЕРШИМ у body, щоб накривало все. 
+     Позиціювання/з-індекс — у твоєму CSS. #}
+  <canvas id="snow" aria-hidden="true"></canvas>
+
   {% include "header.njk" %}
 
   <main>
     {{ content | safe }}
   </main>
 
+  {# LIGHTBOX (для всіх сторінок з клікабельними зображеннями) #}
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="lightbox-close" aria-label="Закрити">&times;</span>
+    <img class="lightbox-img" src="" alt="">
+  </div>
+
   {% include "footer.njk" %}
 
-  {# якщо dropdown/скрипти були на сторінках — краще теж винести сюди або в окремий js #}
+  {# JS: Snow #}
+  <script src="/assets/js/snow.js" defer></script>
+
   <script>
-    // твій dropdown (якщо він потрібен на всіх сторінках)
+    /* =========================
+       LIGHTBOX (IMAGES)
+    ========================== */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    function closeLightbox() {
+      if (!lightbox || !lightboxImg) return;
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    }
+
+    function bindLightbox() {
+      if (!lightbox || !lightboxImg) return;
+
+      document.querySelectorAll('.media-img.clickable').forEach(img => {
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.dataset.full || img.src;
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
+        });
+      });
+
+      lightboxClose?.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+    }
+
+    /* =========================
+       DROPDOWN: hover desktop, click mobile
+       - Заголовок в меню НЕ клікабельний (це .dropdown-title)
+    ========================== */
     const dd = document.getElementById('normDropdown');
     const trigger = dd?.querySelector('.dropdown-trigger');
     const menu = dd?.querySelector('.dropdown-menu');
@@ -37,22 +135,41 @@
       trigger.setAttribute('aria-expanded', String(isOpen));
     }
 
-    if (dd && trigger && menu) {
+    function bindDropdown() {
+      if (!dd || !trigger || !menu) return;
+
       if (!canHover) {
+        // mobile: toggle on click
         trigger.addEventListener('click', (e) => {
           e.preventDefault();
           setExpanded(!dd.classList.contains('open'));
         });
-        document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
+
+        // close on outside click
+        document.addEventListener('click', (e) => {
+          if (!dd.contains(e.target)) setExpanded(false);
+        });
       } else {
+        // desktop: keep aria state synced (open handled by CSS hover)
         dd.addEventListener('mouseenter', () => setExpanded(true));
         dd.addEventListener('mouseleave', () => setExpanded(false));
       }
     }
 
+    /* =========================
+       ESC closes lightbox + dropdown
+    ========================== */
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') setExpanded(false);
+      if (e.key === 'Escape') {
+        closeLightbox();
+        setExpanded(false);
+      }
     });
+
+    // init
+    bindDropdown();
+    bindLightbox();
   </script>
+
 </body>
 </html>
