@@ -1,553 +1,110 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <link rel="manifest" href="/site.webmanifest">
+---
+layout: base.njk
+title: "Розробка проєктів ПОБ і ПВР для будь-яких об'єктів будівництва"
+description: "Розробка ПОБ та ПВР для цивільних, промислових та інфраструктурних об’єктів будівництва. Виконання проєктів згідно вимог ДБН та ДСТУ"
+canonical: "https://khomenko-build.work/"
+---
 
-  <meta charset="UTF-8" />
-  <title>Розробка проєктів ПОБ і ПВР для будь-яких об'єктів будівництва</title>
+<section class="hero">
+  <div class="hero-overlay"></div>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Розробка ПОБ та ПВР для цивільних, промислових та інфраструктурних об’єктів будівництва. Виконання проєктів згідно вимог ДБН та ДСТУ" />
-
-  <!-- SEO: можеш редагувати -->
-  <meta name="keywords" content="ПОБ, ПВР, проект, проект організації будівництва, проектування, ПОС, ППР, проєкт організації будівництва, проєкт виконання робіт, будгенплан, будівельні роботи, експертиза, ДБН, ДСТУ" />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://khomenko-build.work/" />
-
-  <!-- Open Graph (для превʼю в месенджерах) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="ПОБ і ПВР — Хоменко Андрій" />
-  <meta property="og:description" content="Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів." />
-  <meta property="og:url" content="https://khomenko-build.work/" />
-  <!-- Постав свій шлях до картинки для превʼю -->
-  <!-- <meta property="og:image" content="https://khomenko-build.work/assets/images/og.jpg" /> -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-  <link rel="stylesheet" href="assets/css/style.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Хоменко Андрій — ПОБ та ПВР",
-  "url": "https://khomenko-build.work",
-  "description": "Розробка ПОБ і ПВР для будівництва цивільних, промислових та інфраструктурних об’єктів",
-  "areaServed": "UA",
-  "knowsAbout": [
-    "ПОБ",
-    "ПВР",
-    "Організація будівельного виробництва",
-    "ДБН",
-    "ДСТУ"
-  ],
-  "sameAs": [
-    "https://t.me/hamlet_p10"
-  ]
-}
-</script>
-
-  
-</head>
-
-  <!-- Сніжинки -->
-
-  <canvas id="snow" aria-hidden="true"></canvas>
-
-<script>
-(() => {
-  const canvas = document.getElementById('snow');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let w = 0, h = 0, dpr = 1;
-
-  function resize(){
-    dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    w = window.innerWidth;
-    h = window.innerHeight;
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const flakes = [];
-  const FLAKE_COUNT = Math.round(Math.min(140, Math.max(60, w / 10)));
-
-  function rand(min, max){ return Math.random() * (max - min) + min; }
-
-  function spawnFlake(){
-    return {
-      x: rand(0, w),
-      y: rand(-h, 0),
-      r: rand(1, 3.2),
-      vy: rand(0.6, 2.0),
-      vx: rand(-0.4, 0.4),
-      drift: rand(0.002, 0.01),
-      phase: rand(0, Math.PI * 2),
-      alpha: rand(0.35, 0.85)
-    };
-  }
-
-  for (let i = 0; i < FLAKE_COUNT; i++) flakes.push(spawnFlake());
-
-  let last = performance.now();
-  function tick(now){
-    const dt = Math.min(33, now - last);
-    last = now;
-
-    ctx.clearRect(0, 0, w, h);
-
-    for (const f of flakes){
-      f.phase += f.drift * dt;
-      f.x += f.vx * dt * 0.06 + Math.sin(f.phase) * 0.35;
-      f.y += f.vy * dt * 0.06;
-
-      if (f.y - f.r > h) {
-        f.y = -f.r;
-        f.x = rand(0, w);
-      }
-      if (f.x < -10) f.x = w + 10;
-      if (f.x > w + 10) f.x = -10;
-
-      ctx.beginPath();
-      ctx.globalAlpha = f.alpha;
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
-    }
-
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-</script>
-
-
-<body>
-
-  <!-- THANKS MODAL (всередині body!) -->
-  <!--
-  <div id="thanksModal" class="lightbox" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Повідомлення надіслано">
-      <h2>Дякую, повідомлення надіслано</h2>
-      <p>Я зв’яжуся з вами найближчим часом.</p>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-primary" id="closeThanksBtn">Закрити</button>
-      </div>
-    </div>
+  <div class="hero-content">
+    <h1>Проєкти організації будівництва та Проєкти виконання робіт</h1>
+    <h2>Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів</h2>
   </div>
-  -->
+</section>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <img class="logo-img" src="assets/images/logo.png" alt="Khomenko">
+<main>
 
-      <div class="header-title">
-        <h3>ФОП Хоменко Андрій Анатолійович, кандидат технічних наук</h3>
-      </div>
-
-      <div class="header-icons">
-        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener">
-          <img src="icons/whatsapp.svg" alt="WhatsApp">
-        </a>
-
-        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener">
-          <img src="icons/telegram.svg" alt="Telegram">
-        </a>
-
-        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail">
-          <img src="icons/gmail.svg" alt="Gmail">
-        </a>
-
-        <a href="viber://chat?number=380636125766" class="icon-link viber">
-          <img src="icons/viber.svg" alt="Viber">
-        </a>
-      </div>
+  <!-- SECTION 1 -->
+  <section class="section">
+    <div class="text-block">
+      <h3>Розробка Проєктів організації будівництва (ПОБ) та Проєктів виконання робіт (ПВР)</h3>
+      <p>- З дотриманням всіх вимог <a href="https://e-construction.gov.ua/laws_detail/3113373519350597353">нормативної документації.</a></p>
+      <p>- <a href="/works">13 років досвіду в галузі</a> (розробка ПОБ, ПВР, висновків про технічний стан будівель, архітектурних проєктів).</p>
+      <p>- 170+ успішно реалізованих проєктів.</p>
+      <p>- Всі види будівельних об'єктів - житлові, промислові, споруди цівільного захисту, дитячі садки, інженерне обладнання.</p>
+      <p>- Проходженння експертизи та коригування проєкту згідно з зауваженнями.</p>
+      <p>- Увага до особливих умов кожного об'єкту та вимог замовника. Кожен будівельний об'єкт є унікальним,
+        тому під час розробки організаційно-технологічних рішень розглядаються умови будівництва, характерні особливості об'єкту, побажання або особливі вимоги замовників.</p>
     </div>
-  </header>
 
-  <!-- NAV BUTTONS (між header і hero) -->
-  <div class="top-nav">
-    <div class="top-nav-inner">
-
-      <!-- Dropdown -->
-      <div class="dropdown" id="normDropdown">
-  <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-    Нормативна база <span class="caret" aria-hidden="true">▾</span>
-  </button>
-
-  <div class="dropdown-menu" role="menu" aria-label="Нормативна база">
-    <div class="dropdown-title">Нормативна база</div>
-
-    <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener">
-      ДБН А.3.1-5:2016 "Організація будівельного виробництва"
-    </a>
-
-    <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener">
-      ДСТУ А.3.2-2-2009 "Охорона праці і промислова безпека в будівництві"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=53935" target="_blank" rel="noopener">
-      ДСТУ Б А.3.1-22:2013 "Визначення тривалості будівництва об’єктів"
-    </a>
-
-    <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener">
-      ДБН В.1.1-7-2016 "Пожежна безпека об'єктів будівництва"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=77156" target="_blank" rel="noopener">
-      НПАОП 0.00-1.80-18 "Правила охорони праці під час експлуатації вантажопідіймальних кранів"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=4754" target="_blank" rel="noopener">
-      ДСТУ Б В.2.8-10-98 "Стропи вантажні. Класифікація, параметри та розміри"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=83263" target="_blank" rel="noopener">
-      ДСТУ EN ISO 7010:2019 "Графічні символи. Кольори та знаки безпеки"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=75611" target="_blank" rel="noopener">
-      ДСТУ EN 397:2017 "Каски захисні промислові"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=28232" target="_blank" rel="noopener">
-      ДСТУ Б В.2.8-43:2011 "Огородження інвентарні будівельних майданчиків"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=27975" target="_blank" rel="noopener">
-      ДСТУ Б А.3.2-15:2011 "Норми освітлення будівельних майданчиків"
-    </a>
-  </div>
-</div>
-
-
-      <!-- Links -->
-      <a class="nav-btn" href="/about">Про мене</a>
-      <a class="nav-btn" href="/works">Приклади виконаних робіт</a>
-    </div>
-  </div>
-
-  <section class="hero">
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <h1>Проєкти організації будівництва та Проєкти виконання робіт</h1>
-      <h2>Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів</h2>
+    <div class="media clickable video-preview" data-video="assets/video/bgp1.webm">
+      <video class="media-video" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/video/bgp1.webm" type="video/webm">
+      </video>
     </div>
   </section>
 
-  <main>
-
-    <!-- SECTION 1 -->
-    <section class="section">
-      <div class="text-block">
-        <h3>Розробка Проєктів організації будівництва (ПОБ) та Проєктів виконання робіт (ПВР)</h3>
-        <p>- З дотриманням всіх вимог <a href="https://e-construction.gov.ua/laws_detail/3113373519350597353">нормативної документації.</a></p>
-        <p>- <a href="/works">13 років досвіду в галузі</a> (розробка ПОБ, ПВР, висновків про технічний стан будівель, архітектурних проєктів).</p>
-        <p>- 170+ успішно реалізованих проєктів.</p>
-        <p>- Всі види будівельних об'єктів - житлові, промислові, споруди цівільного захисту, дитячі садки, інженерне обладнання.</p>
-        <p>- Проходженння експертизи та коригування проєкту згідно з зауваженнями.</p>
-        <p>- Увага до особливих умов кожного об'єкту та вимог замовника. Кожен будівельний об'єкт є унікальним, 
-          тому під час розробки організаційно-технологічних рішень розглядаються умови будівництва, характерні особливості об'єкту, побажання або особливі вимоги замовників.</p>
-      </div>
-
-      <div class="media clickable video-preview" data-video="assets/video/bgp1.webm">
-        <video class="media-video" autoplay muted loop playsinline preload="metadata">
-          <source src="assets/video/bgp1.webm" type="video/webm">
-        </video>
-      </div>
-    </section>
-
-    <!-- SECTION 2 -->
-    <section class="section">
-      <div class="text-block">
-        <h3>Що таке Проєкт організації будівництва?</h3>
-        <p>Проєкт організації будівництва є <a href="https://e-construction.gov.ua/laws_detail/3192355188719486804">ключовим організаційно-технологічним документом</a>, який розробляється для об’єктів різного функціонального призначення - від цивільних будівель і споруд до промислових комплексів, а також споруд цивільного захисту, таких як укриття (бомбосховища). Документація визначає оптимальні рішення з організації будівельного процесу із застосуванням сучасних технологій та раціональних методів виконання робіт.</p>
-        <p>Проєкт організації будівництва розробляється відповідно до чинних нормативно-правових актів та стандартів, зокрема ДБН А.3.1-5:2016 "Організація будівельного виробництва" та ДБН А.3.2-2-2009 "Охорона праці і промислова безпека у будівництві".</p>
-        <p>На підставі затвердженої проєктної документації замовник і підрядна організація отримують необхідні дозволи на виконання будівельних робіт у встановленому законодавством порядку, а також мають можливість визначити орієнтовну вартість будівництва об’єкта.</p>
-      </div>
-
-      <div class="media">
-        <img class="media-img clickable"
-             src="assets/images/bgp1.jpg"
-             alt="Будгенплан"
-             data-full="assets/images/bgp1.jpg">
-      </div>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="section">
-      <div class="text-block">
-        <h3>Проєктування ПОБ та ПВР для обʼєктів будь-якої складності</h3>
-        <p>Виконую розробку Проєктів організації будівництва та Проєктів виконання робіт для широкого спектра обʼєктів цивільного та промислового призначення. Підхід до кожного проєкту базується на аналізі умов будівництва, логістики, технологічних процесів та реальних можливостей виконання робіт.</p>
-        <p>ПОБ і ПВР розробляються з урахуванням стадійності будівництва, обмежень будівельного майданчика, існуючої забудови, інженерних мереж та вимог замовника.</p>
-      </div>
-
-      <div class="media">
-        <img class="media-img clickable"
-             src="assets/images/poseidon.jpg"
-             alt="Будгенплан"
-             data-full="assets/images/poseidon.jpg">
-      </div>
-    </section>
-
-    <!-- SECTION 4 -->
-    <section class="section">
-      <div class="text-block">
-        <h3>Типи обʼєктів, для яких виконуються ПОБ та ПВР</h3>
-        <p>Маю практичний досвід розробки проєктної документації для:</p>
-        <p>- захисних споруд цивільного захисту та укриттів (бомбосховищ).</p>
-        <p>- житлових будівель різної поверховості.</p>
-        <p>- громадських та адміністративних обʼєктів.</p>
-        <p>- промислових будівель і виробничих комплексів.</p>
-        <p>- складських та логістичних обʼєктів.</p>
-        <p>- мостів, шляхопроводів та транспортних споруд.</p>
-        <p>- зовнішніх та внутрішніх інженерних мереж.</p>
-        <p>Кожен проєкт розглядається як унікальний - з урахуванням умов будівництва, технології виконання робіт та вимог нормативної бази.</p>
-      </div>
-
-      <div class="media clickable video-preview" data-video="assets/video/bgp2.webm">
-        <video class="media-video" autoplay muted loop playsinline preload="metadata">
-          <source src="assets/video/bgp2.webm" type="video/webm">
-        </video>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="text-block">
-        <h3>Супровід проєкту та проходження експертизи</h3>
-        <p>Забезпечується супровід проєктів на стадії експертизи, включно з опрацюванням зауважень та коригуванням проєктних рішень. Робота ведеться до отримання позитивного висновку з урахуванням усіх вимог експертних органів.</p>
-        <p>За потреби проєкт може бути адаптований до змін вихідних даних, умов будівництва або додаткових вимог замовника.</p>
-      </div>
-
-      <div class="media">
-        <img class="media-img clickable"
-             src="assets/images/gazovy.jpg"
-             alt="Газовий об'єкт"
-             data-full="assets/images/gazovy.jpg">
-      </div>
-    </section>
-
-    <!-- CONTACT: тимчасово вимкнено -->
-    <!--
-    <section id="contact" class="contact">
-      <h2>Зв'язатись</h2>
-      <form id="contactForm">
-        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="text" name="name" placeholder="Ім'я" required />
-        <input type="text" name="organization" placeholder="Організація (необовʼязково)" />
-        <input type="email" name="email" placeholder="E-mail" required />
-        <input type="tel" name="phone" placeholder="Телефон (необовʼязково)" />
-        <textarea name="message" placeholder="Повідомлення" required></textarea>
-        <div class="form-actions">
-          <button type="reset" class="btn-reset">Скинути</button>
-          <button type="submit" class="btn-submit">Надіслати</button>
-        </div>
-      </form>
-    </section>
-    -->
-
-  </main>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <span class="lightbox-close" aria-label="Закрити">&times;</span>
-    <img class="lightbox-img" src="" alt="">
-  </div>
-
-  <!-- SCRIPT (в кінці body) -->
-  <script>
-    /* =========================
-       LIGHTBOX (IMAGES)
-    ========================== */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.querySelector('.lightbox-img');
-    const lightboxClose = document.querySelector('.lightbox-close');
-
-    function closeLightbox() {
-      if (!lightbox || !lightboxImg) return;
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImg.src = '';
-    }
-
-    if (lightbox && lightboxImg) {
-      document.querySelectorAll('.media-img.clickable').forEach(img => {
-        img.addEventListener('click', () => {
-          lightboxImg.src = img.dataset.full || img.src;
-          lightbox.classList.add('open');
-          lightbox.setAttribute('aria-hidden', 'false');
-        });
-      });
-
-      lightboxClose?.addEventListener('click', closeLightbox);
-
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-      });
-    }
-
-    /* =========================
-       DROPDOWN: hover desktop, click mobile
-       - Заголовок в меню НЕ клікабельний (це .dropdown-title)
-    ========================== */
-    const dd = document.getElementById('normDropdown');
-    const trigger = dd?.querySelector('.dropdown-trigger');
-    const menu = dd?.querySelector('.dropdown-menu');
-
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    function setExpanded(isOpen) {
-      if (!dd || !trigger) return;
-      dd.classList.toggle('open', isOpen);
-      trigger.setAttribute('aria-expanded', String(isOpen));
-    }
-
-    if (dd && trigger && menu) {
-      if (!canHover) {
-        // mobile: toggle on click
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          setExpanded(!dd.classList.contains('open'));
-        });
-
-        // close on outside click
-        document.addEventListener('click', (e) => {
-          if (!dd.contains(e.target)) setExpanded(false);
-        });
-      } else {
-        // desktop: keep aria state synced (open handled by CSS hover)
-        dd.addEventListener('mouseenter', () => setExpanded(true));
-        dd.addEventListener('mouseleave', () => setExpanded(false));
-      }
-    }
-
-    /* =========================
-       ESC closes lightbox + dropdown
-    ========================== */
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-        setExpanded(false);
-      }
-    });
-
-
-  </script>
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-
-    <!-- Contacts -->
-    <div class="footer-col">
-      <h3 class="footer-title">Контакти</h3>
-
-      <p class="footer-strong">ФОП Хоменко Андрій Анатолійович</p>
-      <p class="footer-muted">Інженер-будівельник (ПОБ / ПВР)</p>
-      <p class="footer-muted">Україна</p>
-
-      <div class="footer-links">
-        <a class="footer-link" href="tel:+380506225031">+38 (050) 622-50-31</a>
-        <a class="footer-link" href="mailto:andrewhomenko675@gmail.com">andrewhomenko675@gmail.com</a>
-      </div>
-
-      <div class="footer-icons">
-        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <img src="/icons/whatsapp.svg" alt="WhatsApp">
-        </a>
-
-        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener" aria-label="Telegram">
-          <img src="/icons/telegram.svg" alt="Telegram">
-        </a>
-
-        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail" aria-label="Gmail">
-          <img src="/icons/gmail.svg" alt="Gmail">
-        </a>
-
-        <a href="viber://chat?number=380636125766" class="icon-link viber" aria-label="Viber">
-          <img src="/icons/viber.svg" alt="Viber">
-        </a>
-      </div>
+  <!-- SECTION 2 -->
+  <section class="section">
+    <div class="text-block">
+      <h3>Що таке Проєкт організації будівництва?</h3>
+      <p>Проєкт організації будівництва є <a href="https://e-construction.gov.ua/laws_detail/3192355188719486804">ключовим організаційно-технологічним документом</a>, який розробляється для об’єктів різного функціонального призначення - від цивільних будівель і споруд до промислових комплексів, а також споруд цивільного захисту, таких як укриття (бомбосховища). Документація визначає оптимальні рішення з організації будівельного процесу із застосуванням сучасних технологій та раціональних методів виконання робіт.</p>
+      <p>Проєкт організації будівництва розробляється відповідно до чинних нормативно-правових актів та стандартів, зокрема ДБН А.3.1-5:2016 "Організація будівельного виробництва" та ДБН А.3.2-2-2009 "Охорона праці і промислова безпека у будівництві".</p>
+      <p>На підставі затвердженої проєктної документації замовник і підрядна організація отримують необхідні дозволи на виконання будівельних робіт у встановленому законодавством порядку, а також мають можливість визначити орієнтовну вартість будівництва об’єкта.</p>
     </div>
 
-    <!-- Navigation -->
-    <div class="footer-col">
-      <h3 class="footer-title">Навігація</h3>
-      <nav class="footer-nav" aria-label="Навігація футера">
-        <a class="footer-link" href="/">Головна</a>
-        <a class="footer-link" href="/about">Про мене</a>
-        <a class="footer-link" href="/works">Приклади виконаних робіт</a>
-        <a class="footer-link" href="/#normative">Нормативна база</a>
-        <!-- якщо на головній з’явиться секція контактів (якір), просто зміни на /#contact -->
-        <a class="footer-link" href="mailto:andrewhomenko675@gmail.com">Звʼязатися</a>
-      </nav>
+    <div class="media">
+      <img class="media-img clickable"
+           src="assets/images/bgp1.jpg"
+           alt="Будгенплан"
+           data-full="assets/images/bgp1.jpg">
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="section">
+    <div class="text-block">
+      <h3>Проєктування ПОБ та ПВР для обʼєктів будь-якої складності</h3>
+      <p>Виконую розробку Проєктів організації будівництва та Проєктів виконання робіт для широкого спектра обʼєктів цивільного та промислового призначення. Підхід до кожного проєкту базується на аналізі умов будівництва, логістики, технологічних процесів та реальних можливостей виконання робіт.</p>
+      <p>ПОБ і ПВР розробляються з урахуванням стадійності будівництва, обмежень будівельного майданчика, існуючої забудови, інженерних мереж та вимог замовника.</p>
     </div>
 
-    <!-- Services -->
-    <div class="footer-col">
-      <h3 class="footer-title">Послуги</h3>
-      <ul class="footer-list">
-        <li>Розробка ПОБ</li>
-        <li>Розробка ПВР</li>
-        <li>Технологічні карти</li>
-        <li>Календарні графіки</li>
-        <li>Пояснювальні записки</li>
-        <li>Супровід та коригування під експертизу</li>
-      </ul>
+    <div class="media">
+      <img class="media-img clickable"
+           src="assets/images/poseidon.jpg"
+           alt="Будгенплан"
+           data-full="assets/images/poseidon.jpg">
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="section">
+    <div class="text-block">
+      <h3>Типи обʼєктів, для яких виконуються ПОБ та ПВР</h3>
+      <p>Маю практичний досвід розробки проєктної документації для:</p>
+      <p>- захисних споруд цивільного захисту та укриттів (бомбосховищ).</p>
+      <p>- житлових будівель різної поверховості.</p>
+      <p>- громадських та адміністративних обʼєктів.</p>
+      <p>- промислових будівель і виробничих комплексів.</p>
+      <p>- складських та логістичних обʼєктів.</p>
+      <p>- мостів, шляхопроводів та транспортних споруд.</p>
+      <p>- зовнішніх та внутрішніх інженерних мереж.</p>
+      <p>Кожен проєкт розглядається як унікальний - з урахуванням умов будівництва, технології виконання робіт та вимог нормативної бази.</p>
     </div>
 
-    <!-- Norms -->
-    <div class="footer-col">
-      <h3 class="footer-title">Нормативна база</h3>
-      <ul class="footer-list">
-        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener">ДБН А.3.1-5:2016</a></li>
-        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener">ДСТУ А.3.2-2-2009</a></li>
-        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener">ДБН В.1.1-7-2016</a></li>
-      </ul>
+    <div class="media clickable video-preview" data-video="assets/video/bgp2.webm">
+      <video class="media-video" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/video/bgp2.webm" type="video/webm">
+      </video>
+    </div>
+  </section>
 
-      <p class="footer-note">
-        Повний перелік документів доступний у меню «Нормативна база».
-      </p>
+  <!-- SECTION 5 -->
+  <section class="section">
+    <div class="text-block">
+      <h3>Супровід проєкту та проходження експертизи</h3>
+      <p>Забезпечується супровід проєктів на стадії експертизи, включно з опрацюванням зауважень та коригуванням проєктних рішень. Робота ведеться до отримання позитивного висновку з урахуванням усіх вимог експертних органів.</p>
+      <p>За потреби проєкт може бути адаптований до змін вихідних даних, умов будівництва або додаткових вимог замовника.</p>
     </div>
 
-  </div>
+    <div class="media">
+      <img class="media-img clickable"
+           src="assets/images/gazovy.jpg"
+           alt="Газовий об'єкт"
+           data-full="assets/images/gazovy.jpg">
+    </div>
+  </section>
 
-  <div class="footer-bottom">
-    <p>© <span id="yearNow"></span> ФОП Хоменко Андрій Анатолійович. Всі права захищені.</p>
-  </div>
-
-  <!-- Structured data (SEO / E-E-A-T) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Хоменко Андрій Анатолійович",
-    "jobTitle": "Інженер-будівельник",
-    "url": "https://khomenko-build.work/",
-    "email": "mailto:andrewhomenko675@gmail.com",
-    "telephone": "+380506225031",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "ФОП Хоменко Андрій Анатолійович"
-    }
-  }
-  </script>
-
-  <script>
-    // рік у копірайті
-    const y = document.getElementById('yearNow');
-    if (y) y.textContent = new Date().getFullYear();
-  </script>
-</footer>
-<canvas id="snow" aria-hidden="true"></canvas>
-<script src="/assets/js/snow.js" defer></script>
-
-</body>
-</html>
+</main>
