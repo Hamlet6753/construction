@@ -5,6 +5,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/sitemap.xml": "sitemap.xml" });
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({ "src/site.webmanifest": "site.webmanifest" });
+  eleventyConfig.addPassthroughCopy({ "src/admin/config.yml": "admin/config.yml" });
 
   eleventyConfig.addCollection("blog", (collectionApi) => {
     return collectionApi.getFilteredByGlob("src/posts/*.md");
