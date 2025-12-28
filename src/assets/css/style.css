@@ -191,12 +191,13 @@ overflow-wrap: anywhere;
   position: relative;
   height: 250px;
   width: 100%;
-  background-image: url("background.jpg"); /* як ти і казав: працює */
+  background-image: url("background.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center top; /* ✅ ОЦЕ змінити */
   display:flex;
   align-items:center;
 }
+
 
 .hero-overlay{
   position:absolute;
