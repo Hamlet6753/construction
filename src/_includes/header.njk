@@ -1,0 +1,47 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/">
+      <img class="logo-img" src="/assets/images/logo.png" alt="Khomenko">
+    </a>
+
+    <div class="header-title">
+      <h3>ФОП Хоменко Андрій Анатолійович</h3>
+    </div>
+
+    <div class="header-icons">
+      <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener">
+        <img src="/icons/whatsapp.svg" alt="WhatsApp">
+      </a>
+      <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener">
+        <img src="/icons/telegram.svg" alt="Telegram">
+      </a>
+      <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail">
+        <img src="/icons/gmail.svg" alt="Gmail">
+      </a>
+      <a href="viber://chat?number=380636125766" class="icon-link viber">
+        <img src="/icons/viber.svg" alt="Viber">
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="top-nav">
+  <div class="top-nav-inner">
+
+    {# твій dropdown як є #}
+    <div class="dropdown" id="normDropdown">
+      <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+        Нормативна база <span class="caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="dropdown-menu" role="menu" aria-label="Нормативна база">
+        <div class="dropdown-title">Нормативна база</div>
+        {# … твої лінки … #}
+      </div>
+    </div>
+
+    <a class="nav-btn" href="/about" {% if page.url == "/about/" %}aria-current="page"{% endif %}>Про мене</a>
+    <a class="nav-btn" href="/works" {% if page.url == "/works/" %}aria-current="page"{% endif %}>Приклади виконаних робіт</a>
+    <a class="nav-btn" href="/blog"  {% if page.url == "/blog/" or page.url | slice(0,6) == "/blog/" %}aria-current="page"{% endif %}>Блог</a>
+
+  </div>
+</div>
