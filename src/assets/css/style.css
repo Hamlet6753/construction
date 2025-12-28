@@ -781,3 +781,118 @@ footer{
 .hero-overlay{
   z-index: 1;
 }
+
+/* BLOG */
+.blog-section { padding: 32px; }
+.blog-head { margin-bottom: 18px; }
+.blog-sub { opacity: 0.8; margin-top: 6px; }
+
+.blog-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 900px){
+  .blog-grid{ grid-template-columns: 1fr; }
+}
+
+/* card height: тут цифра, з якою ти потім пограєш */
+.post-card{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+
+  text-decoration: none;
+  color: inherit;
+
+  border-radius: 18px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;
+
+  min-height: 180px;
+  height: 210px; /* <- ОЦЕ міняй як хочеш */
+}
+
+@media (max-width: 700px){
+  .post-card{
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+.post-card__media{
+  height: 100%;
+  background: rgba(0,0,0,0.04);
+}
+
+.post-card__media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.post-card__placeholder{
+  height: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.post-card__body{
+  padding: 16px 16px 16px 0;
+  display:flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+@media (max-width: 700px){
+  .post-card__body{ padding: 14px; }
+}
+
+.post-card__meta{
+  font-size: 14px;
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
+
+.post-card__title{
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.post-card__excerpt{
+  opacity: 0.9;
+  line-height: 1.45;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;  /* <- скільки рядків прев’ю */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* POST PAGE */
+.post-page { padding: 32px; }
+.post-article{ max-width: 900px; margin: 0 auto; }
+.post-title{ margin: 0; }
+.post-date{ opacity: .75; margin: 8px 0 14px; }
+.post-desc{ opacity: .9; margin: 0 0 18px; }
+
+.post-hero{
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 18px 0;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.post-hero img{ width:100%; height: auto; display:block; }
+
+.post-content{
+  line-height: 1.75;
+}
+.post-content h2, .post-content h3{ margin-top: 22px; }
