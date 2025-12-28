@@ -1,0 +1,11 @@
+{
+  "name": "construction",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "scripts": {
+    "build": "eleventy"
+  }
+}
