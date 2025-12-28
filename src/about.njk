@@ -1,31 +1,64 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8" />
-  <title>Спеціаліст з розробки ПОБ і ПВР</title>
+---
+layout: base.njk
+title: Спеціаліст з розробки ПОБ і ПВР
+description: Проєкти організації будівництва та проєкти виконання робіт для цивільних, промислових та інфраструктурних об’єктів будь-якої складності.
+canonical: https://khomenko-build.work/about
+---
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Проєкти організації будівництва та проєкти виконання робіт для цивільних, промислових та інфраструктурних об’єктів будь-якої складності." />
+<section class="hero">
+  <div class="hero-overlay"></div>
 
-  <!-- SEO: можеш редагувати -->
-  <meta name="keywords" content="Інженер-будівельник. 13 років досвіду розробки ПОБ і ПВР." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://khomenko-build.work/about" />
+  <div class="hero-content">
+    <h1>Проєкти організації будівництва та Проєкти виконання робіт</h1>
+    <h2>Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів</h2>
+  </div>
+</section>
 
-  <!-- Open Graph (для превʼю в месенджерах) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="ПОБ і ПВР — Хоменко Андрій" />
-  <meta property="og:description" content="Проєкти організації будівництва та проєкти виконання робіт для цивільних, промислових та інфраструктурних об’єктів будь-якої складності." />
-  <meta property="og:url" content="https://khomenko-build.work/about" />
-  <!-- Постав свій шлях до картинки для превʼю -->
-  <!-- <meta property="og:image" content="https://khomenko-build.work/assets/images/og.jpg" /> -->
+<section class="section">
+  <div class="text-block">
+    <h2>Хоменко Андрій Анатолійович</h2>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <p>У 2010 році закінчив
+      <a href="https://odaba.edu.ua/" target="_blank" rel="noopener">Одеську державну академію будівництва та архітектури</a>
+      за спеціальністю "Промислове та цивільне будівництво".
+    </p>
 
-  <link rel="stylesheet" href="/assets/css/style.css">
+    <p>У 2015 році захистив дисертацію та здобув ступінь кандидата технічних наук за спеціальністю 05.23.05 - Будівельні матеріали та вироби.</p>
 
-  <script type="application/ld+json">
+    <p>
+      З 2012 року активно працюю над розробкою проєктів організації будівництва та проєктів виконання робіт на різноманітні об'єкти та види робіт —
+      від будівництва цивільних будинків та демонтажу промислових корпусів до берегоукріплення та влаштування укриттів на територіях цивільних об'єктів
+      (школи, дитячі садки, громадські установи).
+    </p>
+
+    <p>Маю досвід розробки проєктів автомобільних доріг і архітектурних рішень з будівництва приватних будинків.</p>
+    <p>Працюю з об'єктами в будь-яких точках України.</p>
+    <p>Маю великий досвід обстеження технічного стану будівель та споруд з розробкою рекомендацій щодо подальшої безпечної експлуатації.</p>
+
+    <p>
+      Доцент
+      <a href="https://odaba.edu.ua/academy/institutes-and-faculties/ihece/department-of-roads-and-airfields" target="_blank" rel="noopener">
+        кафедри автомобільних доріг і аеродромів ОДАБА з 2014 року
+      </a>
+    </p>
+  </div>
+
+  <div class="media">
+    <img class="media-img clickable"
+         src="/assets/images/me.jpg"
+         alt="Хоменко Андрій"
+         data-full="/assets/images/me.jpg">
+  </div>
+</section>
+
+{# LIGHTBOX markup (потрібен в DOM) #}
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <span class="lightbox-close" aria-label="Закрити">&times;</span>
+  <img class="lightbox-img" src="" alt="">
+</div>
+
+{# Structured data (як було) #}
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -33,370 +66,7 @@
   "url": "https://khomenko-build.work",
   "description": "Розробка ПОБ і ПВР для будівництва цивільних, промислових та інфраструктурних об’єктів",
   "areaServed": "UA",
-  "knowsAbout": [
-    "ПОБ",
-    "ПВР",
-    "Організація будівельного виробництва",
-    "ДБН",
-    "ДСТУ"
-  ],
-  "sameAs": [
-    "https://t.me/hamlet_p10"
-  ]
+  "knowsAbout": ["ПОБ","ПВР","Організація будівельного виробництва","ДБН","ДСТУ"],
+  "sameAs": ["https://t.me/hamlet_p10"]
 }
 </script>
-  
-</head>
-
-<body>
-
-  <!-- THANKS MODAL (всередині body!) -->
-  <!--
-  <div id="thanksModal" class="lightbox" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Повідомлення надіслано">
-      <h2>Дякую, повідомлення надіслано</h2>
-      <p>Я зв’яжуся з вами найближчим часом.</p>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-primary" id="closeThanksBtn">Закрити</button>
-      </div>
-    </div>
-  </div>
-  -->
-
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="https://khomenko-build.work"><img class="logo-img" src="/assets/images/logo.png" alt="Khomenko"></a>
-
-      <div class="header-title">
-        <h3>ФОП Хоменко Андрій Анатолійович, кандидат технічних наук</h3>
-      </div>
-
-      <div class="header-icons">
-        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener">
-          <img src="/icons/whatsapp.svg" alt="WhatsApp">
-        </a>
-
-        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener">
-          <img src="/icons/telegram.svg" alt="Telegram">
-        </a>
-
-        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail">
-          <img src="/icons/gmail.svg" alt="Gmail">
-        </a>
-
-        <a href="viber://chat?number=380636125766" class="icon-link viber">
-          <img src="/icons/viber.svg" alt="Viber">
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- NAV BUTTONS (між header і hero) -->
-  <div class="top-nav">
-    <div class="top-nav-inner">
-
-      <!-- Dropdown -->
-      <div class="dropdown" id="normDropdown">
-  <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-    Нормативна база <span class="caret" aria-hidden="true">▾</span>
-  </button>
-
-  <div class="dropdown-menu" role="menu" aria-label="Нормативна база">
-    <div class="dropdown-title">Нормативна база</div>
-
-    <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener">
-      ДБН А.3.1-5:2016 "Організація будівельного виробництва"
-    </a>
-
-    <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener">
-      ДСТУ А.3.2-2-2009 "Охорона праці і промислова безпека в будівництві"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=53935" target="_blank" rel="noopener">
-      ДСТУ Б А.3.1-22:2013 "Визначення тривалості будівництва об’єктів"
-    </a>
-
-    <a class="dropdown-item" href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener">
-      ДБН В.1.1-7-2016 "Пожежна безпека об'єктів будівництва"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=77156" target="_blank" rel="noopener">
-      НПАОП 0.00-1.80-18 "Правила охорони праці під час експлуатації вантажопідіймальних кранів"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=4754" target="_blank" rel="noopener">
-      ДСТУ Б В.2.8-10-98 "Стропи вантажні. Класифікація, параметри та розміри"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=83263" target="_blank" rel="noopener">
-      ДСТУ EN ISO 7010:2019 "Графічні символи. Кольори та знаки безпеки"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=75611" target="_blank" rel="noopener">
-      ДСТУ EN 397:2017 "Каски захисні промислові"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=28232" target="_blank" rel="noopener">
-      ДСТУ Б В.2.8-43:2011 "Огородження інвентарні будівельних майданчиків"
-    </a>
-
-    <a class="dropdown-item" href="https://online.budstandart.com/ua/catalog/doc-page.html?id_doc=27975" target="_blank" rel="noopener">
-      ДСТУ Б А.3.2-15:2011 "Норми освітлення будівельних майданчиків"
-    </a>
-  </div>
-</div>
-
-
-      <!-- Links -->
-      <a class="nav-btn" href="/about" aria-current="page">Про мене</a>
-      <a class="nav-btn" href="/works">Приклади виконаних робіт</a>
-    </div>
-  </div>
-
-  <section class="hero">
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <h1>Проєкти організації будівництва та Проєкти виконання робіт</h1>
-      <h2>Інженерні рішення для будівництва цивільних, промислових та інфраструктурних об’єктів</h2>
-    </div>
-  </section>
-
-  <main>
-
-    <!-- SECTION 1 -->
-    <section class="section">
-      <div class="text-block">
-        <h2>Хоменко Андрій Анатолійович</h2>
-        <p>У 2010 році закінчив 
-<a href="https://odaba.edu.ua/">Одеську державну академію будівництва та архітектури</a> за спеціальністю "Промислове та цивільне будівництво".</p>
-        <p>У 2015 році захистив дисертацію та здобув ступінь кандидата технічних наук за спеціальністю 05.23.05 - Будівельні матеріали та вироби.</p>
-        <p>З 2012 року активно працюю над розробкою проєктів організації будівництва та проєктів виконання робіт на різноманітні об'єкти та види робіт -
-          від будівництва цивільних будинків та демонтажу промислових корпусів до берегоукріплення та влаштування укриттів на територіях цивільних об'єктів (школи, дитячі садки, громадські установи).</p>
-        <p>Маю досвід розробки проєктів автомобільних доріг і архітектурних рішень з будівництва приватних будинків.</p>
-        <p>Працюю з об'єктами в будь-яких точках України.</p>
-        <p>Маю великий досвід обстеження технічного стану будівель та споруд з розробкою рекомендацій щодо подальшої безпечної експлуатації.</p>
-        <p>Доцент <a href="https://odaba.edu.ua/academy/institutes-and-faculties/ihece/department-of-roads-and-airfields">кафедри автомобільних доріг і аеродромів ОДАБА з 2014 року</a></p>
-      </div>
-
-      <div class="media">
-        <img class="media-img clickable"
-             src="/assets/images/me.jpg"
-             alt="Хоменко Андрій"
-             data-full="/assets/images/me.jpg">
-      </div>
-    </section>
-
-    <!-- CONTACT: тимчасово вимкнено -->
-    <!--
-    <section id="contact" class="contact">
-      <h2>Зв'язатись</h2>
-      <form id="contactForm">
-        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="text" name="name" placeholder="Ім'я" required />
-        <input type="text" name="organization" placeholder="Організація (необовʼязково)" />
-        <input type="email" name="email" placeholder="E-mail" required />
-        <input type="tel" name="phone" placeholder="Телефон (необовʼязково)" />
-        <textarea name="message" placeholder="Повідомлення" required></textarea>
-        <div class="form-actions">
-          <button type="reset" class="btn-reset">Скинути</button>
-          <button type="submit" class="btn-submit">Надіслати</button>
-        </div>
-      </form>
-    </section>
-    -->
-
-  </main>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <span class="lightbox-close" aria-label="Закрити">&times;</span>
-    <img class="lightbox-img" src="" alt="">
-  </div>
-
-  <!-- SCRIPT (в кінці body) -->
-  <script>
-    /* =========================
-       LIGHTBOX (IMAGES)
-    ========================== */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.querySelector('.lightbox-img');
-    const lightboxClose = document.querySelector('.lightbox-close');
-
-    function closeLightbox() {
-      if (!lightbox || !lightboxImg) return;
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImg.src = '';
-    }
-
-    if (lightbox && lightboxImg) {
-      document.querySelectorAll('.media-img.clickable').forEach(img => {
-        img.addEventListener('click', () => {
-          lightboxImg.src = img.dataset.full || img.src;
-          lightbox.classList.add('open');
-          lightbox.setAttribute('aria-hidden', 'false');
-        });
-      });
-
-      lightboxClose?.addEventListener('click', closeLightbox);
-
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-      });
-    }
-
-    /* =========================
-       DROPDOWN: hover desktop, click mobile
-       - Заголовок в меню НЕ клікабельний (це .dropdown-title)
-    ========================== */
-    const dd = document.getElementById('normDropdown');
-    const trigger = dd?.querySelector('.dropdown-trigger');
-    const menu = dd?.querySelector('.dropdown-menu');
-
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    function setExpanded(isOpen) {
-      if (!dd || !trigger) return;
-      dd.classList.toggle('open', isOpen);
-      trigger.setAttribute('aria-expanded', String(isOpen));
-    }
-
-    if (dd && trigger && menu) {
-      if (!canHover) {
-        // mobile: toggle on click
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          setExpanded(!dd.classList.contains('open'));
-        });
-
-        // close on outside click
-        document.addEventListener('click', (e) => {
-          if (!dd.contains(e.target)) setExpanded(false);
-        });
-      } else {
-        // desktop: keep aria state synced (open handled by CSS hover)
-        dd.addEventListener('mouseenter', () => setExpanded(true));
-        dd.addEventListener('mouseleave', () => setExpanded(false));
-      }
-    }
-
-    /* =========================
-       ESC closes lightbox + dropdown
-    ========================== */
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-        setExpanded(false);
-      }
-    });
-  </script>
-  
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-
-    <!-- Contacts -->
-    <div class="footer-col">
-      <h3 class="footer-title">Контакти</h3>
-
-      <p class="footer-strong">ФОП Хоменко Андрій Анатолійович</p>
-      <p class="footer-muted">Інженер-будівельник (ПОБ / ПВР)</p>
-      <p class="footer-muted">Україна</p>
-
-      <div class="footer-links">
-        <a class="footer-link" href="tel:+380506225031">+38 (050) 622-50-31</a>
-        <a class="footer-link" href="mailto:andrewhomenko675@gmail.com">andrewhomenko675@gmail.com</a>
-      </div>
-
-      <div class="footer-icons">
-        <a href="https://wa.me/380680614300" class="icon-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <img src="/icons/whatsapp.svg" alt="WhatsApp">
-        </a>
-
-        <a href="https://t.me/hamlet_p10" class="icon-link telegram" target="_blank" rel="noopener" aria-label="Telegram">
-          <img src="/icons/telegram.svg" alt="Telegram">
-        </a>
-
-        <a href="mailto:andrewhomenko675@gmail.com" class="icon-link gmail" aria-label="Gmail">
-          <img src="/icons/gmail.svg" alt="Gmail">
-        </a>
-
-        <a href="viber://chat?number=380636125766" class="icon-link viber" aria-label="Viber">
-          <img src="/icons/viber.svg" alt="Viber">
-        </a>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <div class="footer-col">
-      <h3 class="footer-title">Навігація</h3>
-      <nav class="footer-nav" aria-label="Навігація футера">
-        <a class="footer-link" href="/">Головна</a>
-        <a class="footer-link" href="/about">Про мене</a>
-        <a class="footer-link" href="/works">Приклади виконаних робіт</a>
-        <a class="footer-link" href="/#normative">Нормативна база</a>
-        <!-- якщо на головній з’явиться секція контактів (якір), просто зміни на /#contact -->
-        <a class="footer-link" href="mailto:andrewhomenko675@gmail.com">Звʼязатися</a>
-      </nav>
-    </div>
-
-    <!-- Services -->
-    <div class="footer-col">
-      <h3 class="footer-title">Послуги</h3>
-      <ul class="footer-list">
-        <li>Розробка ПОБ</li>
-        <li>Розробка ПВР</li>
-        <li>Технологічні карти</li>
-        <li>Календарні графіки</li>
-        <li>Пояснювальні записки</li>
-        <li>Супровід та коригування під експертизу</li>
-      </ul>
-    </div>
-
-    <!-- Norms -->
-    <div class="footer-col">
-      <h3 class="footer-title">Нормативна база</h3>
-      <ul class="footer-list">
-        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3113373519350597353" target="_blank" rel="noopener">ДБН А.3.1-5:2016</a></li>
-        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3074220455066862610" target="_blank" rel="noopener">ДСТУ А.3.2-2-2009</a></li>
-        <li><a class="footer-link" href="https://e-construction.gov.ua/laws_detail/3080743763845318619" target="_blank" rel="noopener">ДБН В.1.1-7-2016</a></li>
-      </ul>
-
-      <p class="footer-note">
-        Повний перелік документів доступний у меню «Нормативна база».
-      </p>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© <span id="yearNow"></span> ФОП Хоменко Андрій Анатолійович. Всі права захищені.</p>
-  </div>
-
-  <!-- Structured data (SEO / E-E-A-T) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Хоменко Андрій Анатолійович",
-    "jobTitle": "Інженер-будівельник",
-    "url": "https://khomenko-build.work/",
-    "email": "mailto:andrewhomenko675@gmail.com",
-    "telephone": "+380506225031",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "ФОП Хоменко Андрій Анатолійович"
-    }
-  }
-  </script>
-
-  <script>
-    // рік у копірайті
-    const y = document.getElementById('yearNow');
-    if (y) y.textContent = new Date().getFullYear();
-  </script>
-</footer>
-  
-</body>
-</html>
