@@ -3,16 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title or "Хоменко Андрій" }}</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
 
-  {# якщо маєш готовий header/nav як include — підключимо потім #}
+  <title>{{ title or "Хоменко Андрій" }}</title>
+
+  {# твій основний CSS #}
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  {# якщо маєш favicon/manifest — можеш теж тут #}
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+  {% include "header.njk" %}
 
   <main>
     {{ content | safe }}
   </main>
 
+  {% include "footer.njk" %}
+
+  {# якщо dropdown/скрипти були на сторінках — краще теж винести сюди або в окремий js #}
+  <script>
+    // твій dropdown (якщо він потрібен на всіх сторінках)
+    const dd = document.getElementById('normDropdown');
+    const trigger = dd?.querySelector('.dropdown-trigger');
+    const menu = dd?.querySelector('.dropdown-menu');
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function setExpanded(isOpen) {
+      if (!dd || !trigger) return;
+      dd.classList.toggle('open', isOpen);
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    if (dd && trigger && menu) {
+      if (!canHover) {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          setExpanded(!dd.classList.contains('open'));
+        });
+        document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
+      } else {
+        dd.addEventListener('mouseenter', () => setExpanded(true));
+        dd.addEventListener('mouseleave', () => setExpanded(false));
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setExpanded(false);
+    });
+  </script>
 </body>
 </html>
