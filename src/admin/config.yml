@@ -1,13 +1,16 @@
 backend:
   name: github
-  repo:  Hamlet6753
+  repo: Hamlet6753/construction
   branch: main
+  # це додамо після налаштування Worker-auth:
+  base_url: https://YOUR_AUTH_WORKER_SUBDOMAIN.workers.dev
+  auth_endpoint: auth
 
 media_folder: "src/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "blog"
+  - name: "posts"
     label: "Блог"
     folder: "src/posts"
     create: true
@@ -17,6 +20,5 @@ collections:
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Дата", name: "date", widget: "datetime" }
-      - { label: "Опис (meta)", name: "description", widget: "string", required: false }
-      - { label: "Обкладинка", name: "cover", widget: "image", required: false }
-      - { label: "Текст", name: "body", widget: "markdown" }
+      - { label: "Опис", name: "description", widget: "text", required: false }
+      - { label: "Тіло", name: "body", widget: "markdown" }
