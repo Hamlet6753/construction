@@ -2,7 +2,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/icons": "icons" });
 
-  // ROOT static files
+  // ROOT  static files
   eleventyConfig.addPassthroughCopy({ "src/sitemap.xml": "sitemap.xml" });
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy("src/favicon.png");
