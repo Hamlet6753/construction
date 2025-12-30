@@ -211,6 +211,7 @@ overflow-wrap: anywhere;
   margin:0 auto;
   padding:0 24px;
   color:#fff;
+  z-index:1000;
 }
 
 .hero-content h1{
