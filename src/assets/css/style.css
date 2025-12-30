@@ -778,7 +778,6 @@ footer{
 .blog-sub { opacity: 0.8; margin-top: 6px; }
 
 .blog-grid{
-  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
