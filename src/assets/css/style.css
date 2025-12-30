@@ -785,7 +785,7 @@ main, footer, .hero-content{
 /* BLOG */
 .blog-section { padding: 32px; }
 .blog-head { margin-bottom: 18px; }
-.blog-sub { opacity: 0.8; margin-top: 6px; }
+.blog-sub { opacity: 1; margin-top: 6px; }
 
 .blog-grid{
   grid-template-columns: repeat(2, minmax(0, 1fr));
