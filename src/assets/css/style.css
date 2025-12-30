@@ -758,14 +758,24 @@ main{
 
 
 /* Текст/контент — вище снігу */
-.site-header,
-.top-nav,
-.hero-content,
-main,
-footer{
-  position: relative;
-  z-index: 3;
+/* Тільки шапка і top-nav мають бути “над” сторінкою */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 2000;
 }
+
+.top-nav{
+  position: relative;
+  z-index: 1500;
+}
+
+/* інше — без z-index, щоб не створювати зайві stacking contexts */
+main, footer, .hero-content{
+  position: relative; /* можна навіть прибрати, якщо не треба */
+  z-index: 1000;
+}
+
 
 /* Фон/оверлеї/картинки — нижче снігу */
 .hero-overlay{
