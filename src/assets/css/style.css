@@ -229,7 +229,7 @@ overflow-wrap: anywhere;
 main{
   width:100%;
   background: transparent;
-  padding: 32px 24px 64px;
+  padding: 32px 24px 16px;
   display:flex;
   flex-direction:column;
   gap:32px;
@@ -273,7 +273,7 @@ main{
 
   display: grid;                 /* <-- ОЦЕ ГОЛОВНЕ */
   grid-template-columns: 1fr;    /* тобі тут 2 колонки не треба */
-  gap: 24px;
+  gap: 4px;
   align-items: start;
 }
 
