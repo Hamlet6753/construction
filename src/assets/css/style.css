@@ -885,12 +885,16 @@ main, footer, .hero-content{
 .post-desc{ opacity: .9; margin: 0 0 18px; }
 
 .post-hero{
-  border-radius: 18px;
-  overflow: hidden;
-  margin: 18px 0;
-  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: center; /* горизонтальне центрування */
 }
-.post-hero img{ width:100%; height: auto; display:block; }
+
+.post-hero img{
+  width: 60%;
+  height: auto;
+  display: block;
+}
+
 
 .post-content{
   line-height: 1.75;
