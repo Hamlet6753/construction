@@ -1,37 +1,28 @@
-backend:
-  name: github
-  repo: Hamlet6753/construction
-  branch: main
-
-media_folder: "src/assets/uploads"
-public_folder: "/assets/uploads"
-
 collections:
   - name: "posts"
     label: "Блог"
     folder: "src/posts"
     create: true
-    slug: "{{slug}}"
-    extension: "md"
     format: "frontmatter"
-    fields:
-    - label: "Slug (URL)"
-      name: "slug"
-      widget: "string"
-      required: true
-      hint: "Тільки латиниця, цифри та дефіси. Наприклад: reconstruction-urban-areas"
-      - label: "Заголовок"
-        name: "title"
-        widget: "string"
-      - label: "Дата"
-        name: "date"
-        widget: "datetime"
-      - label: "Опис"
-        name: "description"
-        widget: "text"
-        required: false
-      - label: "Тіло"
-        name: "body"
-        widget: "markdown"
-      - { label: "Зображення", name: "image", widget: "image", required: false }
+    extension: "md"
+    slug: "{{slug}}"
 
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+
+      - label: "Slug (URL)"
+        name: "slug"
+        widget: "string"
+        required: true
+        hint: "Тільки латиниця, цифри та дефіси. Наприклад: reconstruction-urban-areas"
+
+      - { label: "Дата", name: "date", widget: "datetime" }
+
+      - { label: "Опис", name: "description", widget: "text", required: false }
+
+      - label: "Зображення"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - { label: "Контент", name: "body", widget: "markdown" }
