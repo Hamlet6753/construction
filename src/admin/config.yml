@@ -22,7 +22,7 @@ collections:
         name: "slug"
         widget: "string"
         required: true
-        hint: "Тільки латиниця, цифри та дефіси. Наприклад: reconstruction-urban-areas"
+        hint: "Тільки латиниця, цифри та дефіси. Наприклад: reconstruction-urban-arseas"
 
       - { label: "Дата", name: "date", widget: "datetime" }
 
