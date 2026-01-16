@@ -56,5 +56,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
-
+  
+    <url>
+    <loc>https://khomenko-build.work/blog/cars-dwg/</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 </urlset>
