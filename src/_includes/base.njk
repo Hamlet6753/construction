@@ -75,10 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ===== CONTACT FORM ===== */
-  const form = document.getElementById("contactForm");
-  const statusEl = document.getElementById("formStatus");
+const forms = document.querySelectorAll(".contactForm");
 
-  if (!form) return;
+if (!forms.length) return;
+
+forms.forEach(form => {
+
+  const statusEl = form.querySelector(".formStatus");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
