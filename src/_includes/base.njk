@@ -72,27 +72,35 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     statusEl.textContent = "Надсилаю...";
 
+    const token = grecaptcha.getResponse();
+    if (!token) {
+      statusEl.textContent = "Підтвердіть, що ви не робот.";
+      return;
+    }
+
     const data = {
       email: form.email.value.trim(),
-      text: form.text.value.trim()
+      text: form.text.value.trim(),
+      recaptcha: token
     };
 
     try {
-      const res = await fetch("https://hook.eu1.make.com/m2v3n5la1qknvlh81td9q3z2ma923wi3", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data)
-});
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
 
       if (res.ok) {
-        statusEl.textContent = "Повідомлення надіслано!";
+        statusEl.textContent = "Повідомлення надіслано! Я зв'яжусь з Вами якомога швидше.";
         form.reset();
+        grecaptcha.reset();
       } else {
         statusEl.textContent = "Помилка при надсиланні.";
       }
 
     } catch (err) {
-      statusEl.textContent = "Помилка мережі.";
+      statusEl.textContent = "Не вдалося надіслати.";
     }
   });
 });
