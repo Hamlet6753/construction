@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch("https://hook.eu1.make.com/2o590dpimiclyuqwy66i9hfvlemtlcf8", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify({email, text})
       });
 
       if (res.ok) {
