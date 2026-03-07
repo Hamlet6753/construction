@@ -72,11 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     statusEl.textContent = "Надсилаю...";
 
-    const token = grecaptcha.getResponse();
-    if (!token) {
-      statusEl.textContent = "Підтвердіть, що ви не робот.";
-      return;
-    }
+    // Генерація токена reCAPTCHA v3
+    const token = await grecaptcha.execute("6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV", {
+      action: "contact"
+    });
 
     const data = {
       email: form.email.value.trim(),
@@ -84,23 +83,17 @@ document.addEventListener("DOMContentLoaded", () => {
       recaptcha: token
     };
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
 
-      if (res.ok) {
-        statusEl.textContent = "Повідомлення надіслано! Я зв'яжусь з Вами якомога швидше.";
-        form.reset();
-        grecaptcha.reset();
-      } else {
-        statusEl.textContent = "Помилка при надсиланні.";
-      }
-
-    } catch (err) {
-      statusEl.textContent = "Не вдалося надіслати.";
+    if (res.ok) {
+      statusEl.textContent = "Повідомлення надіслано!";
+      form.reset();
+    } else {
+      statusEl.textContent = "Помилка при надсиланні.";
     }
   });
 });
