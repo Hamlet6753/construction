@@ -74,17 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ===== CONTACT FORM ===== */
+ /* ===== CONTACT FORM ===== */
+
 const forms = document.querySelectorAll(".contactForm");
 
 if (!forms.length) return;
 
 forms.forEach(form => {
 
-  const statusEl = form.querySelector(".formStatus");
+  const statusEl = form.querySelector(".formStatus") || { textContent: "" };
 
   form.addEventListener("submit", async (e) => {
+
     e.preventDefault();
+
     statusEl.textContent = "Надсилаю...";
 
     try {
@@ -97,8 +100,8 @@ forms.forEach(form => {
       );
 
       const data = {
-        email: form.email.value.trim(),
-        text: form.text.value.trim(),
+        email: form.querySelector('[name="email"]').value.trim(),
+        text: form.querySelector('[name="text"]').value.trim(),
         recaptcha: token
       };
 
@@ -116,6 +119,7 @@ forms.forEach(form => {
       }
 
     } catch (err) {
+      console.error(err);
       statusEl.textContent = "Помилка мережі.";
     }
 
