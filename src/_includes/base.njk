@@ -61,5 +61,40 @@
       if (e.key === 'Escape') setExpanded(false);
     });
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.textContent = "Надсилаю...";
+
+    const data = {
+      email: form.email.value.trim(),
+      text: form.text.value.trim()
+    };
+
+    try {
+      const res = await fetch("https://hook.eu1.make.com/9g3xg118029culehh2mkjurltf0u8sc1", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        statusEl.textContent = "Повідомлення надіслано!";
+        form.reset();
+      } else {
+        statusEl.textContent = "Помилка при надсиланні.";
+      }
+
+    } catch (err) {
+      statusEl.textContent = "Помилка мережі.";
+    }
+  });
+});
+</script>
 </body>
 </html>
