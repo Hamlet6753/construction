@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      await grecaptcha.ready();
+      await new Promise(resolve => grecaptcha.ready(resolve));
 
       const token = await grecaptcha.execute(
         "6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV",
