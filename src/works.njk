@@ -239,26 +239,77 @@ hero_subtitle: Інженерні рішення для будівництва �
         </div>
 
       
-    </section>
+</section>
+
 <section class="sectionwork">
+
   <h3>Зв’язатися зі мною</h3>
 
   <form id="contactForm" class="contact-form">
-    <label>
+
+    <label for="email">
       Email:
-      <input type="email" name="email" required>
     </label>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+    >
 
-    <label>
+    <label for="text">
       Повідомлення:
-      <textarea name="text" rows="5" required></textarea>
     </label>
-<div class="g-recaptcha" data-sitekey="6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV"></div>
-    <button type="submit">Надіслати</button>
+    <textarea
+      id="text"
+      name="text"
+      rows="5"
+      required
+    ></textarea>
 
-    <p id="formStatus" style="margin-top:10px; font-size:14px;"></p>
+    <button type="submit">
+      Надіслати
+    </button>
+
+    <p id="formStatus"></p>
+
   </form>
+
 </section>
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:500px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  font-size:14px;
+}
+
+.contact-form button{
+  width:fit-content;
+  padding:10px 18px;
+  border:none;
+  border-radius:10px;
+  background:var(--blue);
+  color:white;
+  cursor:pointer;
+}
+
+.contact-form button:hover{
+  opacity:0.9;
+}
+
+#formStatus{
+  margin-top:8px;
+  font-size:14px;
+}
   </main>
 
   <!-- LIGHTBOX -->
