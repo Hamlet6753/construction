@@ -1061,6 +1061,7 @@ main, footer, .hero-content{
 
 .post-toc a:hover{
   color:#000;
+  background:rgba(31,79,216,0.08);
 }
 
 /* offset для заголовків */
