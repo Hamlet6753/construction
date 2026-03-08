@@ -236,16 +236,8 @@ const headings = content.querySelectorAll("h2, h3");
 
 headings.forEach((heading,i)=>{
 
-function slugify(text){
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g,"")
-    .trim()
-    .replace(/\s+/g,"-");
-}
-
-const id = slugify(heading.textContent);
-heading.id = id;
+const id = "section-"+i;
+heading.id=id;
 
 const li=document.createElement("li");
 const a=document.createElement("a");
