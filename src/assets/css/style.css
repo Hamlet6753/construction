@@ -924,8 +924,24 @@ main, footer, .hero-content{
   display: block;
 }
 
-
 .post-content{
   line-height: 1.75;
 }
 .post-content h2, .post-content h3{ margin-top: 22px; }
+
+/* Breadcrumbs */
+.breadcrumbs{
+  max-width:1200px;
+  margin:20px auto 0;
+  padding:0 24px;
+  font-size:14px;
+  color:#6b7280;
+}
+
+.breadcrumbs a{
+  color:#374151;
+}
+
+.breadcrumbs span{
+  margin:0 6px;
+}
