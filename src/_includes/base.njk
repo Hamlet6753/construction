@@ -143,7 +143,14 @@ dd.addEventListener("mouseenter", ()=>setExpanded(true));
 dd.addEventListener("mouseleave", ()=>setExpanded(false));
 
 }
+const tocToggle = document.querySelector(".toc-toggle");
+const toc = document.getElementById("postToc");
 
+if(tocToggle && toc){
+  tocToggle.addEventListener("click",()=>{
+    toc.classList.toggle("open");
+  });
+}
 }
 
 /* CONTACT FORM */
