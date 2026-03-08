@@ -157,65 +157,64 @@ if (e.key === 'Escape') setExpanded(false);
 
 const forms = document.querySelectorAll(".contactForm");
 
-if (!forms.length) return;
+if (forms.length) {
 
-forms.forEach(form => {
+  forms.forEach(form => {
 
-const statusEl = form.querySelector(".formStatus") || { textContent: "" };
+    const statusEl = form.querySelector(".formStatus") || { textContent: "" };
 
-form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async (e) => {
 
-e.preventDefault();
+      e.preventDefault();
 
-statusEl.textContent = "Надсилаю...";
+      statusEl.textContent = "Надсилаю...";
 
-try {
+      try {
 
-await new Promise(resolve => grecaptcha.ready(resolve));
+        await new Promise(resolve => grecaptcha.ready(resolve));
 
-const token = await grecaptcha.execute(
-"6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV",
-{ action: "contact" }
-);
+        const token = await grecaptcha.execute(
+          "6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV",
+          { action: "contact" }
+        );
 
-const data = {
-email: form.querySelector('[name="email"]').value.trim(),
-text: form.querySelector('[name="text"]').value.trim(),
-recaptcha: token
-};
+        const data = {
+          email: form.querySelector('[name="email"]').value.trim(),
+          text: form.querySelector('[name="text"]').value.trim(),
+          recaptcha: token
+        };
 
-const res = await fetch("/api/contact", {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify(data)
-});
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
 
-if (res.ok) {
-statusEl.textContent = "Повідомлення надіслано!";
-form.reset();
-} else {
-statusEl.textContent = "Помилка при надсиланні.";
+        if (res.ok) {
+          statusEl.textContent = "Повідомлення надіслано!";
+          form.reset();
+        } else {
+          statusEl.textContent = "Помилка при надсиланні.";
+        }
+
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Помилка мережі.";
+      }
+
+    });
+
+  });
+
 }
 
-} catch (err) {
-console.error(err);
-statusEl.textContent = "Помилка мережі.";
+});
+
+});
+
 }
 
-});
-
-});
-
-});
-</script>
-
-/* lightbox */
-
-<div id="blogLightbox" class="blog-lightbox">
-  <img src="" alt="">
-</div>
-
-/* ===== BLOG IMAGE LIGHTBOX ===== */
+/* ===== IMAGE LIGHTBOX ===== */
 
 const lightbox = document.getElementById("blogLightbox");
 
@@ -223,7 +222,9 @@ if (lightbox) {
 
   const lightboxImg = lightbox.querySelector("img");
 
-  document.querySelectorAll(".post-content img").forEach(img => {
+  document.querySelectorAll("main img").forEach(img => {
+
+    img.style.cursor = "zoom-in";
 
     img.addEventListener("click", () => {
       lightboxImg.src = img.src;
@@ -237,6 +238,15 @@ if (lightbox) {
   });
 
 }
+});
+</script>
+
+
+<!-- lightbox -->
+
+<div id="blogLightbox" class="blog-lightbox">
+  <img src="" alt="">
+</div>
 
 </body>
 </html>
