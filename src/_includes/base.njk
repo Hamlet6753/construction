@@ -250,5 +250,60 @@ if(lightbox){
   <img src="" alt="">
 </div>
 
+/* ===== TABLE OF CONTENTS ===== */
+
+const content = document.getElementById("postContent");
+const tocList = document.getElementById("tocList");
+
+if(content && tocList){
+
+  const headings = content.querySelectorAll("h2, h3");
+
+  headings.forEach((heading, i) => {
+
+    const id = "section-" + i;
+    heading.id = id;
+
+    const li = document.createElement("li");
+
+    const a = document.createElement("a");
+    a.href = "#" + id;
+    a.textContent = heading.textContent;
+
+    if(heading.tagName === "H3"){
+      a.style.marginLeft = "12px";
+    }
+
+    li.appendChild(a);
+    tocList.appendChild(li);
+
+  });
+
+  /* scroll spy */
+
+  const links = tocList.querySelectorAll("a");
+
+  window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    headings.forEach(h => {
+      const rect = h.getBoundingClientRect();
+      if(rect.top <= 120){
+        current = h.id;
+      }
+    });
+
+    links.forEach(link => {
+      link.classList.remove("active");
+      if(link.getAttribute("href") === "#" + current){
+        link.classList.add("active");
+      }
+    });
+
+  });
+
+}
+
 </body>
 </html>
