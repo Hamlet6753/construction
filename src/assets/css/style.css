@@ -998,6 +998,8 @@ main, footer, .hero-content{
 
 /* ===== TABLE OF CONTENTS ===== */
 
+/* ===== POST LAYOUT ===== */
+
 .post-layout{
   display:grid;
   grid-template-columns: minmax(0,1fr) 260px;
@@ -1011,22 +1013,25 @@ main, footer, .hero-content{
   min-width:0;
 }
 
-/* TOC */
+/* TOC (праворуч, без рамок і фону) */
 
 .post-toc{
   position:sticky;
   top:120px;
-
+  margin-top:22px;
+  font-size:14px;
   height:max-content;
-
-  padding:18px;
-
-  border-radius:16px;
-  border:1px solid var(--border);
-  background:white;
 }
 
-/* list */
+/* заголовок */
+
+.toc-title{
+  font-weight:800;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+/* список */
 
 .post-toc ul{
   list-style:none;
@@ -1040,17 +1045,35 @@ main, footer, .hero-content{
 
 .post-toc a{
   display:block;
-  padding:6px 8px;
-  border-radius:8px;
-
-  color:var(--muted);
+  padding:4px 0;
   text-decoration:none;
+  color:var(--muted);
 }
 
+/* активний пункт */
+
 .post-toc a.active{
-  background:rgba(31,79,216,0.08);
   color:#000;
   font-weight:700;
+}
+
+/* hover */
+
+.post-toc a:hover{
+  color:#000;
+}
+
+/* offset для заголовків */
+
+.post-content h2,
+.post-content h3{
+  scroll-margin-top:120px;
+}
+
+/* ===== MOBILE ===== */
+
+.toc-toggle{
+  display:none;
 }
 
 @media (max-width:900px){
@@ -1059,9 +1082,36 @@ main, footer, .hero-content{
   grid-template-columns:1fr;
 }
 
+/* TOC стає блоком перед текстом */
+
 .post-toc{
   position:relative;
   margin-bottom:24px;
+}
+
+/* кнопка акордеона */
+
+.toc-toggle{
+  display:block;
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:transparent;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+/* список ховається */
+
+.post-toc ul{
+  display:none;
+}
+
+/* відкритий */
+
+.post-toc.open ul{
+  display:block;
 }
 
 }
