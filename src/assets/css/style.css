@@ -946,6 +946,64 @@ main, footer, .hero-content{
   margin:0 6px;
 }
 
+/* ===== TABLE OF CONTENTS ===== */
+
+.post-layout{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) 280px;
+  gap:40px;
+  align-items:start;
+}
+
+.post-toc{
+  position:sticky;
+  top:120px;
+
+  background: var(--card-bg);
+  border-radius:18px;
+  border:1px solid var(--border);
+
+  padding:18px 18px;
+
+  font-size:14px;
+}
+
+.toc-title{
+  font-weight:800;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+.post-toc ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.post-toc a{
+  display:block;
+  padding:6px 8px;
+  border-radius:8px;
+
+  color:var(--muted);
+  text-decoration:none;
+
+  transition: background .15s ease;
+}
+
+.post-toc a:hover{
+  background: rgba(31,79,216,0.08);
+}
+
+.post-toc a.active{
+  background: rgba(31,79,216,0.12);
+  color:var(--text);
+  font-weight:700;
+}
+
 /* lightbox для картинок */
 .post-content img{
   cursor: zoom-in;
