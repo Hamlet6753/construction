@@ -957,11 +957,10 @@ main, footer, .hero-content{
 
 .post-toc{
   position:sticky;
+  margin-top: 22px;
   top:120px;
 
-  background: var(--card-bg);
   border-radius:18px;
-  border:1px solid var(--border);
 
   padding:18px 18px;
 
