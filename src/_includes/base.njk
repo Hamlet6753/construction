@@ -1,309 +1,128 @@
-<!doctype html>
-<html lang="uk">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "BreadcrumbList",
- "itemListElement": [
-  {
-   "@type": "ListItem",
-   "position": 1,
-   "name": "Головна",
-   "item": "https://khomenko-build.work"
-  }
-  {% if section %}
-  ,
-  {
-   "@type": "ListItem",
-   "position": 2,
-   "name": "{{ section_title }}",
-   "item": "https://khomenko-build.work/{{ section }}/"
-  }
-  {% endif %}
-  {% if title %}
-  ,
-  {
-   "@type": "ListItem",
-   "position": 3,
-   "name": "{{ title }}",
-   "item": "https://khomenko-build.work{{ page.url }}"
-  }
-  {% endif %}
- ]
+const data={
+email:form.querySelector('[name="email"]').value.trim(),
+text:form.querySelector('[name="text"]').value.trim(),
+recaptcha:token
+};
+
+const res = await fetch("/api/contact",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data)
+});
+
+if(res.ok){
+statusEl.textContent="Повідомлення надіслано!";
+form.reset();
+}else{
+statusEl.textContent="Помилка при надсиланні.";
 }
 
+}catch(err){
+console.error(err);
+statusEl.textContent="Помилка мережі.";
+}
 
+});
 
-</script>
-<title>{{ title or "Хоменко Андрій" }}</title>
-
-{% set site_url = "https://khomenko-build.work" %}
-{% set page_url = site_url + page.url %}
-
-<link rel="canonical" href="{{ page_url }}">
-
-<!-- SEO -->
-<meta name="description" content="{{ description or 'Блог інженера-будівельника про будівельну галузь України, інфраструктуру та розвиток міст.' }}">
-<meta name="keywords" content="{{ keywords or 'будівництво, інженерія, інфраструктура, дороги, Україна' }}">
-<meta name="author" content="{{ author or 'Хоменко Андрій' }}">
-
-{% if noindex %}
-<meta name="robots" content="noindex, nofollow">
-{% else %}
-<meta name="robots" content="index, follow">
-{% endif %}
-
-<!-- Open Graph -->
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ title }}">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:url" content="{{ page_url }}">
-<meta property="og:site_name" content="Khomenko Build">
-
-{% if image %}
-<meta property="og:image" content="{{ site_url }}{{ image }}">
-{% else %}
-<meta property="og:image" content="{{ site_url }}/assets/images/og-default.jpg">
-{% endif %}
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title }}">
-<meta name="twitter:description" content="{{ description }}">
-{% if image %}
-<meta name="twitter:image" content="{{ site_url }}{{ image }}">
-{% endif %}
-
-<!-- CSS -->
-<link rel="stylesheet" href="/assets/css/style.css?v=1">
-
-<!-- Icons -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<!-- reCAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV"></script>
-
-</head>
-
-<body>
-
-{% include "header.njk" %}
-
-{% if hero %}
-<section class="hero">
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<h1>{{ hero_title }}</h1>
-<h3>{{ hero_subtitle }}</h3>
-</div>
-</section>
-{% endif %}
-
-{% include "breadcrumbs.njk" %}
-
-<main>
-{{ content | safe }}
-</main>
-
-{% include "footer.njk" %}
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-/* =========================
-   DROPDOWN
-========================= */
-
-const dd = document.getElementById("normDropdown");
-
-if (dd) {
-
-  const trigger = dd.querySelector(".dropdown-trigger");
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  function setExpanded(isOpen){
-    dd.classList.toggle("open", isOpen);
-    trigger.setAttribute("aria-expanded", String(isOpen));
-  }
-
-  if(!canHover){
-
-    trigger.addEventListener("click", (e)=>{
-      e.preventDefault();
-      setExpanded(!dd.classList.contains("open"));
-    });
-
-    document.addEventListener("click",(e)=>{
-      if(!dd.contains(e.target)) setExpanded(false);
-    });
-
-  } else {
-
-    dd.addEventListener("mouseenter",()=>setExpanded(true));
-    dd.addEventListener("mouseleave",()=>setExpanded(false));
-
-  }
-
-  document.addEventListener("keydown",(e)=>{
-    if(e.key==="Escape") setExpanded(false);
-  });
+});
 
 }
 
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-const forms = document.querySelectorAll(".contactForm");
-
-if(forms.length){
-
-  forms.forEach(form=>{
-
-    const statusEl = form.querySelector(".formStatus") || {textContent:""};
-
-    form.addEventListener("submit", async (e)=>{
-
-      e.preventDefault();
-      statusEl.textContent="Надсилаю...";
-
-      try{
-
-        await new Promise(resolve=>grecaptcha.ready(resolve));
-
-        const token = await grecaptcha.execute(
-          "6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV",
-          {action:"contact"}
-        );
-
-        const data={
-          email:form.querySelector('[name="email"]').value.trim(),
-          text:form.querySelector('[name="text"]').value.trim(),
-          recaptcha:token
-        };
-
-        const res = await fetch("/api/contact",{
-          method:"POST",
-          headers:{"Content-Type":"application/json"},
-          body:JSON.stringify(data)
-        });
-
-        if(res.ok){
-          statusEl.textContent="Повідомлення надіслано!";
-          form.reset();
-        }else{
-          statusEl.textContent="Помилка при надсиланні.";
-        }
-
-      }catch(err){
-        console.error(err);
-        statusEl.textContent="Помилка мережі.";
-      }
-
-    });
-
-  });
-
-}
-
-
-/* =========================
-   IMAGE LIGHTBOX
-========================= */
+/* IMAGE LIGHTBOX */
 
 const lightbox = document.getElementById("blogLightbox");
 
 if(lightbox){
 
-  const lightboxImg = lightbox.querySelector("img");
+const lightboxImg = lightbox.querySelector("img");
 
-  document.querySelectorAll("main img").forEach(img=>{
+document.querySelectorAll("main img").forEach(img=>{
 
-    img.style.cursor="zoom-in";
+img.style.cursor="zoom-in";
 
-    img.addEventListener("click",()=>{
-      lightboxImg.src = img.src;
-      lightbox.classList.add("open");
-    });
+img.addEventListener("click",()=>{
+lightboxImg.src = img.src;
+lightbox.classList.add("open");
+});
 
-  });
+});
 
-  lightbox.addEventListener("click",()=>{
-    lightbox.classList.remove("open");
-  });
+lightbox.addEventListener("click",()=>{
+lightbox.classList.remove("open");
+});
 
 }
 
-});
-</script>
-
-
-<!-- lightbox -->
-
-<div id="blogLightbox" class="blog-lightbox">
-  <img src="" alt="">
-</div>
-
-/* ===== TABLE OF CONTENTS ===== */
+/* TABLE OF CONTENTS */
 
 const content = document.getElementById("postContent");
 const tocList = document.getElementById("tocList");
 
 if(content && tocList){
 
-  const headings = content.querySelectorAll("h2, h3");
+const headings = content.querySelectorAll("h2, h3");
 
-  headings.forEach((heading, i) => {
+headings.forEach((heading,i)=>{
 
-    const id = "section-" + i;
-    heading.id = id;
+const id = "section-"+i;
+heading.id=id;
 
-    const li = document.createElement("li");
+const li=document.createElement("li");
+const a=document.createElement("a");
 
-    const a = document.createElement("a");
-    a.href = "#" + id;
-    a.textContent = heading.textContent;
+a.href="#"+id;
+a.textContent=heading.textContent;
 
-    if(heading.tagName === "H3"){
-      a.style.marginLeft = "12px";
-    }
+if(heading.tagName==="H3"){
+a.style.marginLeft="12px";
+}
 
-    li.appendChild(a);
-    tocList.appendChild(li);
+li.appendChild(a);
+tocList.appendChild(li);
 
-  });
+});
 
-  /* scroll spy */
+const links = tocList.querySelectorAll("a");
 
-  const links = tocList.querySelectorAll("a");
+window.addEventListener("scroll",()=>{
 
-  window.addEventListener("scroll", () => {
+let current="";
 
-    let current = "";
+headings.forEach(h=>{
+const rect = h.getBoundingClientRect();
+if(rect.top <= 120){
+current = h.id;
+}
+});
 
-    headings.forEach(h => {
-      const rect = h.getBoundingClientRect();
-      if(rect.top <= 120){
-        current = h.id;
-      }
-    });
+links.forEach(link=>{
+link.classList.remove("active");
+if(link.getAttribute("href")==="#"+current){
+link.classList.add("active");
+}
+});
 
-    links.forEach(link => {
-      link.classList.remove("active");
-      if(link.getAttribute("href") === "#" + current){
-        link.classList.add("active");
-      }
-    });
-
-  });
+});
 
 }
+
+/* TOC MOBILE */
+
+const tocToggle = document.querySelector(".toc-toggle");
+const toc = document.getElementById("postToc");
+
+if(tocToggle && toc){
+tocToggle.addEventListener("click",()=>{
+toc.classList.toggle("open");
+});
+}
+
+});
+</script>
+
+<div id="blogLightbox" class="blog-lightbox">
+<img src="" alt="">
+</div>
 
 </body>
 </html>
