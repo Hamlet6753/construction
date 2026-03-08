@@ -3,7 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Головна",
+   "item": "https://khomenko-build.work"
+  }
+  {% if section %}
+  ,
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "{{ section_title }}",
+   "item": "https://khomenko-build.work/{{ section }}/"
+  }
+  {% endif %}
+  {% if title %}
+  ,
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "{{ title }}",
+   "item": "https://khomenko-build.work{{ page.url }}"
+  }
+  {% endif %}
+ ]
+}
+</script>
 <title>{{ title or "Хоменко Андрій" }}</title>
 
 {% set site_url = "https://khomenko-build.work" %}
