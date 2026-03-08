@@ -1000,12 +1000,12 @@ main, footer, .hero-content{
 
 .post-layout{
   display:grid;
-  grid-template-columns: minmax(0,1fr) 280px;
+  grid-template-columns:minmax(0,1fr) 260px;
   gap:40px;
   align-items:start;
 }
 
-/* TOC container */
+/* TOC */
 
 .post-toc{
   position:sticky;
@@ -1013,20 +1013,13 @@ main, footer, .hero-content{
 
   margin-top:22px;
 
-  border-radius:18px;
-  padding:18px;
+  padding:16px;
+  border-radius:16px;
 
-  font-size:14px;
+  background:white;
+  border:1px solid var(--border);
 
   height:max-content;
-}
-
-/* title */
-
-.toc-title{
-  font-weight:800;
-  margin-bottom:12px;
-  font-size:16px;
 }
 
 /* list */
@@ -1035,16 +1028,11 @@ main, footer, .hero-content{
   list-style:none;
   margin:0;
   padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
 }
 
 .post-toc li{
-  margin:0;
+  margin:6px 0;
 }
-
-/* links */
 
 .post-toc a{
   display:block;
@@ -1055,18 +1043,16 @@ main, footer, .hero-content{
   color:var(--muted);
   text-decoration:none;
 
-  transition:background .15s ease,color .15s ease;
+  transition:.15s;
 }
 
 .post-toc a:hover{
   background:rgba(31,79,216,0.08);
 }
 
-/* ACTIVE */
-
 .post-toc a.active{
   background:rgba(31,79,216,0.08);
-  color:var(--text);   /* чорний текст */
+  color:var(--text);
   font-weight:700;
 }
 
@@ -1079,41 +1065,46 @@ main, footer, .hero-content{
 
 /* ===== MOBILE ===== */
 
+.toc-toggle{
+  display:none;
+}
+
 @media (max-width:900px){
 
 .post-layout{
   grid-template-columns:1fr;
 }
 
+/* TOC стає блоком над текстом */
+
 .post-toc{
   position:relative;
-  margin-bottom:20px;
+  margin-bottom:24px;
 }
 
-}
-
-/* ===== TOC MOBILE ACCORDION ===== */
-
-.toc-toggle{
-  display:none;
-}
-
-@media (max-width:900px){
+/* кнопка акордеона */
 
 .toc-toggle{
   display:block;
   width:100%;
-  padding:12px;
+  padding:14px;
+
+  border-radius:14px;
   border:1px solid var(--border);
-  border-radius:10px;
+
   background:white;
+
   font-weight:700;
-  margin-bottom:10px;
 }
+
+/* список ховається */
 
 .post-toc ul{
   display:none;
+  margin-top:12px;
 }
+
+/* відкритий */
 
 .post-toc.open ul{
   display:block;
