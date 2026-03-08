@@ -999,7 +999,7 @@ main, footer, .hero-content{
 
 .post-toc a.active{
   background: rgb(241, 253, 254);
-  color:var(--text);
+  color: rgb(0, 1, 44);
   font-weight:700;
 }
 
