@@ -1,0 +1,13 @@
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="/">Головна</a>
+
+  {% if section %}
+    <span>›</span>
+    <a href="/{{ section }}/">{{ section_title }}</a>
+  {% endif %}
+
+  {% if title %}
+    <span>›</span>
+    <span>{{ title }}</span>
+  {% endif %}
+</nav>
