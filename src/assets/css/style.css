@@ -1000,9 +1000,15 @@ main, footer, .hero-content{
 
 .post-layout{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 260px;
+  grid-template-columns: minmax(0,1fr) 260px;
   gap:40px;
   align-items:start;
+}
+
+/* CONTENT */
+
+.post-content{
+  min-width:0;
 }
 
 /* TOC */
@@ -1011,15 +1017,13 @@ main, footer, .hero-content{
   position:sticky;
   top:120px;
 
-  margin-top:22px;
-
-  padding:16px;
-  border-radius:16px;
-
-  background:white;
-  border:1px solid var(--border);
-
   height:max-content;
+
+  padding:18px;
+
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:white;
 }
 
 /* list */
@@ -1037,36 +1041,16 @@ main, footer, .hero-content{
 .post-toc a{
   display:block;
   padding:6px 8px;
-
   border-radius:8px;
 
   color:var(--muted);
   text-decoration:none;
-
-  transition:.15s;
-}
-
-.post-toc a:hover{
-  background:rgba(31,79,216,0.08);
 }
 
 .post-toc a.active{
   background:rgba(31,79,216,0.08);
-  color:var(--text);
+  color:#000;
   font-weight:700;
-}
-
-/* headings offset */
-
-.post-content h2,
-.post-content h3{
-  scroll-margin-top:120px;
-}
-
-/* ===== MOBILE ===== */
-
-.toc-toggle{
-  display:none;
 }
 
 @media (max-width:900px){
@@ -1075,39 +1059,9 @@ main, footer, .hero-content{
   grid-template-columns:1fr;
 }
 
-/* TOC стає блоком над текстом */
-
 .post-toc{
   position:relative;
   margin-bottom:24px;
-}
-
-/* кнопка акордеона */
-
-.toc-toggle{
-  display:block;
-  width:100%;
-  padding:14px;
-
-  border-radius:14px;
-  border:1px solid var(--border);
-
-  background:white;
-
-  font-weight:700;
-}
-
-/* список ховається */
-
-.post-toc ul{
-  display:none;
-  margin-top:12px;
-}
-
-/* відкритий */
-
-.post-toc.open ul{
-  display:block;
 }
 
 }
