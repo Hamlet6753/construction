@@ -35,28 +35,7 @@
  ]
 }
 
-/* ===== BLOG IMAGE LIGHTBOX ===== */
 
-const lightbox = document.getElementById("blogLightbox");
-
-if (lightbox) {
-
-  const lightboxImg = lightbox.querySelector("img");
-
-  document.querySelectorAll(".post-content img").forEach(img => {
-
-    img.addEventListener("click", () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add("open");
-    });
-
-  });
-
-  lightbox.addEventListener("click", () => {
-    lightbox.classList.remove("open");
-  });
-
-}
 
 </script>
 <title>{{ title or "Хоменко Андрій" }}</title>
