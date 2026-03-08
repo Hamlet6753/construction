@@ -115,91 +115,95 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-const dd = document.getElementById('normDropdown');
+/* =========================
+   DROPDOWN
+========================= */
+
+const dd = document.getElementById("normDropdown");
 
 if (dd) {
 
-const trigger = dd.querySelector('.dropdown-trigger');
-const menu = dd.querySelector('.dropdown-menu');
+  const trigger = dd.querySelector(".dropdown-trigger");
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function setExpanded(isOpen){
+    dd.classList.toggle("open", isOpen);
+    trigger.setAttribute("aria-expanded", String(isOpen));
+  }
 
-function setExpanded(isOpen) {
-dd.classList.toggle('open', isOpen);
-trigger.setAttribute('aria-expanded', String(isOpen));
-}
+  if(!canHover){
 
-if (!canHover) {
+    trigger.addEventListener("click", (e)=>{
+      e.preventDefault();
+      setExpanded(!dd.classList.contains("open"));
+    });
 
-trigger.addEventListener('click', (e) => {
-e.preventDefault();
-setExpanded(!dd.classList.contains('open'));
-});
+    document.addEventListener("click",(e)=>{
+      if(!dd.contains(e.target)) setExpanded(false);
+    });
 
-document.addEventListener('click', (e) => {
-if (!dd.contains(e.target)) setExpanded(false);
-});
+  } else {
 
-} else {
+    dd.addEventListener("mouseenter",()=>setExpanded(true));
+    dd.addEventListener("mouseleave",()=>setExpanded(false));
 
-dd.addEventListener('mouseenter', () => setExpanded(true));
-dd.addEventListener('mouseleave', () => setExpanded(false));
+  }
 
-}
-
-document.addEventListener('keydown', (e) => {
-if (e.key === 'Escape') setExpanded(false);
-});
+  document.addEventListener("keydown",(e)=>{
+    if(e.key==="Escape") setExpanded(false);
+  });
 
 }
 
-/* CONTACT FORM */
+
+/* =========================
+   CONTACT FORM
+========================= */
 
 const forms = document.querySelectorAll(".contactForm");
 
-if (forms.length) {
+if(forms.length){
 
-  forms.forEach(form => {
+  forms.forEach(form=>{
 
-    const statusEl = form.querySelector(".formStatus") || { textContent: "" };
+    const statusEl = form.querySelector(".formStatus") || {textContent:""};
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async (e)=>{
 
       e.preventDefault();
+      statusEl.textContent="Надсилаю...";
 
-      statusEl.textContent = "Надсилаю...";
+      try{
 
-      try {
-
-        await new Promise(resolve => grecaptcha.ready(resolve));
+        await new Promise(resolve=>grecaptcha.ready(resolve));
 
         const token = await grecaptcha.execute(
           "6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV",
-          { action: "contact" }
+          {action:"contact"}
         );
 
-        const data = {
-          email: form.querySelector('[name="email"]').value.trim(),
-          text: form.querySelector('[name="text"]').value.trim(),
-          recaptcha: token
+        const data={
+          email:form.querySelector('[name="email"]').value.trim(),
+          text:form.querySelector('[name="text"]').value.trim(),
+          recaptcha:token
         };
 
-        const res = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+        const res = await fetch("/api/contact",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(data)
         });
 
-        if (res.ok) {
-          statusEl.textContent = "Повідомлення надіслано!";
+        if(res.ok){
+          statusEl.textContent="Повідомлення надіслано!";
           form.reset();
-        } else {
-          statusEl.textContent = "Помилка при надсиланні.";
+        }else{
+          statusEl.textContent="Помилка при надсиланні.";
         }
 
-      } catch (err) {
+      }catch(err){
         console.error(err);
-        statusEl.textContent = "Помилка мережі.";
+        statusEl.textContent="Помилка мережі.";
       }
 
     });
@@ -208,36 +212,34 @@ if (forms.length) {
 
 }
 
-});
 
-});
-
-}
-
-/* ===== IMAGE LIGHTBOX ===== */
+/* =========================
+   IMAGE LIGHTBOX
+========================= */
 
 const lightbox = document.getElementById("blogLightbox");
 
-if (lightbox) {
+if(lightbox){
 
   const lightboxImg = lightbox.querySelector("img");
 
-  document.querySelectorAll("main img").forEach(img => {
+  document.querySelectorAll("main img").forEach(img=>{
 
-    img.style.cursor = "zoom-in";
+    img.style.cursor="zoom-in";
 
-    img.addEventListener("click", () => {
+    img.addEventListener("click",()=>{
       lightboxImg.src = img.src;
       lightbox.classList.add("open");
     });
 
   });
 
-  lightbox.addEventListener("click", () => {
+  lightbox.addEventListener("click",()=>{
     lightbox.classList.remove("open");
   });
 
 }
+
 });
 </script>
 
