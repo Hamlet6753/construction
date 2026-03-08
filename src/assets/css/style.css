@@ -1047,7 +1047,6 @@ main, footer, .hero-content{
 .post-toc{
   position:sticky;
   top:120px;
-  border-left:1px solid var(--border);
   padding-left:20px;
   font-size:14px;
 }
