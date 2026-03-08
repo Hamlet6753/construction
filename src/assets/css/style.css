@@ -998,7 +998,7 @@ main, footer, .hero-content{
 }
 
 .post-toc a.active{
-  background: rgb(241, 253, 254);
+  background: rgba(31,79,216,0.08);
   color: rgb(0, 1, 44);
   font-weight:700;
 }
