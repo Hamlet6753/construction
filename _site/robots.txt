@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://khomenko-build.work/sitemap.xml
