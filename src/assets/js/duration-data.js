@@ -29,21 +29,7 @@ window.normativeDataset = [
     sourceTable: "Таблиця А.1",
     sourceNote: "Будинки садибного типу 500 м2"
   },
-  {
-    id: "residential-apartment-2f-panel-unknown",
-    group: "residential",
-    subtype: "apartment",
-    label: "Багатоквартирний будинок 1-2 поверхи, панельний",
-    capacityType: "area",
-    capacityUnit: "m2",
-    normativeCapacity: 0,
-    floors: 2,
-    structureType: "panel",
-    normativeDurationTotal: 4,
-    undergroundDuration: 0.5,
-    sourceTable: "Таблиця А.1",
-    sourceNote: "Будинки багатоквартирні 1-2-поверхові"
-  },
+  
   {
     id: "residential-apartment-4f-750-brick-panel",
     group: "residential",
