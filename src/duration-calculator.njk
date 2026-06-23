@@ -1,0 +1,400 @@
+---
+layout: base.njk
+title: Калькулятор тривалості будівництва
+description: Онлайн-калькулятор орієнтовної нормативної тривалості будівництва об'єктів за ДСТУ Б А.3.1-22:2013.
+keywords: калькулятор тривалості будівництва, ПОБ, ПВР, ДСТУ Б А.3.1-22:2013, тривалість будівництва
+section: calculator
+section_title: Калькулятор
+hero: true
+hero_title: Калькулятор тривалості будівництва
+hero_subtitle: Орієнтовний розрахунок нормативної тривалості будівництва з урахуванням типу об'єкта, потужності та умов виконання робіт
+permalink: /duration-calculator/
+---
+
+<section class="sectionwork calc-section">
+
+  <div class="calc-intro">
+    <h2>Розрахунок нормативної тривалості будівництва</h2>
+    <p>
+      Калькулятор визначає орієнтовну тривалість будівництва на основі нормативного аналога,
+      фактичної потужності об'єкта та коригуючих умов будівництва.
+    </p>
+    <p class="calc-note">
+      Результат є попереднім інженерним розрахунком і не замінює повноцінну розробку ПОБ.
+    </p>
+  </div>
+
+  <div class="calc-layout">
+
+    <form id="durationCalcForm" class="calc-form">
+
+      <div class="calc-step">
+        <h3>1. Тип об'єкта</h3>
+
+        <label>
+          Група об'єкта
+          <select id="objectGroup" required>
+            <option value="">Оберіть групу</option>
+            <option value="residential">Житловий будинок</option>
+            <option value="public">Громадська будівля</option>
+            <option value="hotel">Готель</option>
+            <option value="network">Інженерні мережі</option>
+          </select>
+        </label>
+
+        <label>
+          Підтип об'єкта
+          <select id="objectSubtype" required>
+            <option value="">Спочатку оберіть групу</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="calc-step" id="dynamicFields">
+        <h3>2. Вихідні дані об'єкта</h3>
+        <p class="calc-muted">Поля з'являться після вибору типу об'єкта.</p>
+      </div>
+
+      <div class="calc-step">
+        <h3>3. Нормативний аналог</h3>
+
+        <label>
+          Нормативний показник аналога
+          <input id="normativeCapacity" type="number" min="0" step="0.01" required>
+        </label>
+
+        <label>
+          Нормативна тривалість аналога, міс.
+          <input id="normativeDuration" type="number" min="0" step="0.01" required>
+        </label>
+
+        <label>
+          У тому числі підземна частина, міс. якщо є
+          <input id="undergroundDuration" type="number" min="0" step="0.01" value="0">
+        </label>
+      </div>
+
+      <div class="calc-step">
+        <h3>4. Умови будівництва</h3>
+
+        <label class="calc-check">
+          <input type="checkbox" id="denseDevelopment">
+          Будівництво в умовах щільної забудови
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="utilitiesPresent">
+          У зоні робіт є діючі інженерні мережі
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="limitedSite">
+          Обмежений будівельний майданчик
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="activeFacility">
+          Роботи виконуються на території діючого підприємства або установи
+        </label>
+      </div>
+
+      <div class="calc-step">
+        <h3>5. Підземна частина та геологія</h3>
+
+        <label>
+          Тип фундаментів
+          <select id="foundationType">
+            <option value="standard">Звичайні фундаменти</option>
+            <option value="pile">Пальові фундаменти</option>
+            <option value="slab">Плитний фундамент</option>
+            <option value="deep">Заглиблена підземна частина</option>
+          </select>
+        </label>
+
+        <label>
+          Глибина фундаментів
+          <select id="foundationDepth">
+            <option value="normal">До 2 м</option>
+            <option value="medium">2-4 м</option>
+            <option value="deep">4-6 м</option>
+            <option value="veryDeep">Більше 6 м</option>
+          </select>
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="basement">
+          Є підвал або підземна частина
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="undergroundParking">
+          Є підземний паркінг
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="sheetPile">
+          Потрібне шпунтове огородження котловану
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="dewatering">
+          Потрібне водопониження або водовідлив
+        </label>
+
+        <label>
+          Інженерно-геологічні умови
+          <select id="geology">
+            <option value="normal">Звичайні</option>
+            <option value="complex">Складні</option>
+            <option value="veryComplex">Особливо складні</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="calc-step">
+        <h3>6. Організація робіт</h3>
+
+        <label>
+          Режим роботи
+          <select id="shifts">
+            <option value="1">1 зміна</option>
+            <option value="2">2 зміни</option>
+            <option value="3">3 зміни</option>
+          </select>
+        </label>
+
+        <label class="calc-check">
+          <input type="checkbox" id="winterWorks">
+          Основні роботи виконуються в зимовий період
+        </label>
+      </div>
+
+      <button class="calc-submit" type="submit">Розрахувати тривалість</button>
+
+    </form>
+
+    <aside class="calc-result" id="calcResult">
+      <h3>Результат</h3>
+
+      <div class="calc-result-main">
+        <span id="resultDuration">-</span>
+        <small>місяців</small>
+      </div>
+
+      <div class="calc-result-list">
+        <p><strong>Тс:</strong> <span id="resultBase">-</span></p>
+        <p><strong>K1:</strong> <span id="resultK1">-</span></p>
+        <p><strong>K2:</strong> <span id="resultK2">-</span></p>
+        <p><strong>K3:</strong> <span id="resultK3">-</span></p>
+        <p><strong>Коефіцієнт потужності:</strong> <span id="resultPower">-</span></p>
+      </div>
+
+      <p class="calc-note">
+        Формула: Т = Тс x K1 x K2 x K3
+      </p>
+    </aside>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const subtypeMap = {
+    residential: [
+      { value: "apartment", label: "Багатоквартирний житловий будинок", capacity: "area", unit: "м2" },
+      { value: "private_house", label: "Садибний житловий будинок", capacity: "area", unit: "м2" },
+      { value: "dormitory", label: "Гуртожиток", capacity: "area", unit: "м2" }
+    ],
+
+    public: [
+      { value: "office", label: "Офісна будівля", capacity: "area", unit: "м2" },
+      { value: "school", label: "Школа", capacity: "students", unit: "учнів" },
+      { value: "cinema", label: "Кінотеатр", capacity: "seats", unit: "місць" },
+      { value: "theatre", label: "Театр / концертний зал", capacity: "seats", unit: "місць" },
+      { value: "clinic", label: "Поліклініка", capacity: "visits", unit: "відвідувань за зміну" },
+      { value: "hospital", label: "Лікарня", capacity: "beds", unit: "ліжок" },
+      { value: "restaurant", label: "Ресторан / їдальня", capacity: "seats", unit: "місць" },
+      { value: "warehouse", label: "Склад", capacity: "volume", unit: "м3" }
+    ],
+
+    hotel: [
+      { value: "hotel", label: "Готель", capacity: "area", unit: "м2" }
+    ],
+
+    network: [
+      { value: "water_pipe", label: "Зовнішній водопровід", capacity: "length", unit: "км" },
+      { value: "sewer_pipe", label: "Зовнішня каналізація", capacity: "length", unit: "км" }
+    ]
+  };
+
+  const capacityLabels = {
+    area: "Фактична загальна площа",
+    students: "Фактична кількість учнів",
+    seats: "Фактична кількість місць",
+    visits: "Фактична кількість відвідувань за зміну",
+    beds: "Фактична кількість ліжок",
+    volume: "Фактичний об'єм будівлі",
+    length: "Фактична довжина мережі"
+  };
+
+  const objectGroup = document.getElementById("objectGroup");
+  const objectSubtype = document.getElementById("objectSubtype");
+  const dynamicFields = document.getElementById("dynamicFields");
+  const form = document.getElementById("durationCalcForm");
+
+  objectGroup.addEventListener("change", () => {
+    const group = objectGroup.value;
+    objectSubtype.innerHTML = '<option value="">Оберіть підтип</option>';
+
+    if (!group || !subtypeMap[group]) return;
+
+    subtypeMap[group].forEach(item => {
+      const option = document.createElement("option");
+      option.value = item.value;
+      option.textContent = item.label;
+      option.dataset.capacity = item.capacity;
+      option.dataset.unit = item.unit;
+      objectSubtype.appendChild(option);
+    });
+
+    dynamicFields.innerHTML = '<h3>2. Вихідні дані об\'єкта</h3><p class="calc-muted">Оберіть підтип об\'єкта.</p>';
+  });
+
+  objectSubtype.addEventListener("change", () => {
+    const option = objectSubtype.options[objectSubtype.selectedIndex];
+    const capacity = option.dataset.capacity;
+    const unit = option.dataset.unit;
+
+    if (!capacity) return;
+
+    let html = `
+      <h3>2. Вихідні дані об'єкта</h3>
+
+      <label>
+        ${capacityLabels[capacity]}, ${unit}
+        <input id="actualCapacity" type="number" min="0" step="0.01" required>
+      </label>
+    `;
+
+    if (["area"].includes(capacity)) {
+      html += `
+        <label>
+          Поверховість
+          <input id="floors" type="number" min="1" step="1">
+        </label>
+
+        <label>
+          Конструктивна схема
+          <select id="structureType">
+            <option value="brick">Цегляна / зі стінових дрібних виробів</option>
+            <option value="panel">Панельна</option>
+            <option value="monolithic">Монолітна</option>
+            <option value="frame_monolithic">Каркасно-монолітна</option>
+            <option value="steel">Металевий каркас</option>
+          </select>
+        </label>
+      `;
+    }
+
+    if (objectGroup.value === "network") {
+      html += `
+        <label>
+          Матеріал труб
+          <select id="pipeMaterial">
+            <option value="steel">Сталеві</option>
+            <option value="polyethylene">Поліетиленові</option>
+            <option value="cast_iron">Чавунні</option>
+            <option value="reinforced_concrete">Залізобетонні</option>
+          </select>
+        </label>
+
+        <label>
+          Діаметр труб, мм
+          <input id="pipeDiameter" type="number" min="0" step="1">
+        </label>
+      `;
+    }
+
+    dynamicFields.innerHTML = html;
+  });
+
+  function getK1() {
+    let k = 1;
+
+    if (document.getElementById("denseDevelopment").checked) k += 0.10;
+    if (document.getElementById("utilitiesPresent").checked) k += 0.05;
+    if (document.getElementById("limitedSite").checked) k += 0.05;
+    if (document.getElementById("activeFacility").checked) k += 0.05;
+
+    const geology = document.getElementById("geology").value;
+    if (geology === "complex") k += 0.10;
+    if (geology === "veryComplex") k += 0.15;
+
+    return k;
+  }
+
+  function getK2() {
+    let k = 1;
+
+    const foundationType = document.getElementById("foundationType").value;
+    const foundationDepth = document.getElementById("foundationDepth").value;
+
+    if (foundationType === "pile") k += 0.05;
+    if (foundationType === "deep") k += 0.10;
+    if (foundationDepth === "medium") k += 0.05;
+    if (foundationDepth === "deep") k += 0.10;
+    if (foundationDepth === "veryDeep") k += 0.15;
+
+    if (document.getElementById("basement").checked) k += 0.05;
+    if (document.getElementById("undergroundParking").checked) k += 0.10;
+    if (document.getElementById("sheetPile").checked) k += 0.05;
+    if (document.getElementById("dewatering").checked) k += 0.05;
+
+    return k;
+  }
+
+  function getK3() {
+    let k = 1;
+
+    const shifts = Number(document.getElementById("shifts").value);
+
+    if (shifts === 2) k -= 0.10;
+    if (shifts === 3) k -= 0.15;
+
+    if (document.getElementById("winterWorks").checked) k += 0.05;
+
+    return k;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const actualCapacity = Number(document.getElementById("actualCapacity")?.value || 0);
+    const normativeCapacity = Number(document.getElementById("normativeCapacity").value || 0);
+    const normativeDuration = Number(document.getElementById("normativeDuration").value || 0);
+
+    if (!actualCapacity || !normativeCapacity || !normativeDuration) {
+      alert("Заповніть фактичний показник, нормативний показник і нормативну тривалість.");
+      return;
+    }
+
+    const powerRatio = actualCapacity / normativeCapacity;
+    const baseDuration = normativeDuration * powerRatio;
+
+    const k1 = getK1();
+    const k2 = getK2();
+    const k3 = getK3();
+
+    const finalDuration = baseDuration * k1 * k2 * k3;
+
+    document.getElementById("resultDuration").textContent = finalDuration.toFixed(1);
+    document.getElementById("resultBase").textContent = baseDuration.toFixed(2) + " міс.";
+    document.getElementById("resultK1").textContent = k1.toFixed(2);
+    document.getElementById("resultK2").textContent = k2.toFixed(2);
+    document.getElementById("resultK3").textContent = k3.toFixed(2);
+    document.getElementById("resultPower").textContent = powerRatio.toFixed(3);
+  });
+
+});
+</script>
