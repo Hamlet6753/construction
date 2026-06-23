@@ -34,3 +34,19 @@ collections:
         required: false
 
       - { label: "Контент", name: "body", widget: "markdown" }
+
+            - label: "FAQ"
+        name: "faq"
+        widget: "list"
+        required: false
+        summary: "{{fields.question}}"
+        fields:
+          - label: "Питання"
+            name: "question"
+            widget: "string"
+            required: true
+
+          - label: "Відповідь"
+            name: "answer"
+            widget: "text"
+            required: true
