@@ -56,23 +56,19 @@ permalink: /duration-calculator/
       </div>
 
       <div class="calc-step">
-        <h3>3. Нормативний аналог</h3>
+  <h3>3. Нормативний аналог</h3>
 
-        <label>
-          Нормативний показник аналога
-          <input id="normativeCapacity" type="number" min="0" step="0.01" required>
-        </label>
+  <label>
+    Оберіть нормативний аналог
+    <select id="normativeAnalog" required>
+      <option value="">Спочатку оберіть тип об'єкта</option>
+    </select>
+  </label>
 
-        <label>
-          Нормативна тривалість аналога, міс.
-          <input id="normativeDuration" type="number" min="0" step="0.01" required>
-        </label>
-
-        <label>
-          У тому числі підземна частина, міс. якщо є
-          <input id="undergroundDuration" type="number" min="0" step="0.01" value="0">
-        </label>
-      </div>
+  <div class="calc-analog-info" id="analogInfo">
+    <p class="calc-muted">Після вибору аналога тут з'являться нормативні дані.</p>
+  </div>
+</div>
 
       <div class="calc-step">
         <h3>4. Умови будівництва</h3>
@@ -196,7 +192,7 @@ permalink: /duration-calculator/
 
   </div>
 </section>
-
+<script src="/assets/js/duration-data.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -242,6 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const objectSubtype = document.getElementById("objectSubtype");
   const dynamicFields = document.getElementById("dynamicFields");
   const form = document.getElementById("durationCalcForm");
+const normativeAnalog = document.getElementById("normativeAnalog");
+const analogInfo = document.getElementById("analogInfo");
 
   objectGroup.addEventListener("change", () => {
     const group = objectGroup.value;
@@ -260,64 +258,118 @@ document.addEventListener("DOMContentLoaded", () => {
 
     dynamicFields.innerHTML = '<h3>2. Вихідні дані об\'єкта</h3><p class="calc-muted">Оберіть підтип об\'єкта.</p>';
   });
+normativeAnalog.innerHTML =
+  '<option value="">Спочатку оберіть підтип</option>';
+
+analogInfo.innerHTML =
+  '<p class="calc-muted">Після вибору аналога тут з\'являться нормативні дані.</p>';
 
   objectSubtype.addEventListener("change", () => {
-    const option = objectSubtype.options[objectSubtype.selectedIndex];
-    const capacity = option.dataset.capacity;
-    const unit = option.dataset.unit;
 
-    if (!capacity) return;
+  const option = objectSubtype.options[objectSubtype.selectedIndex];
+  const capacity = option.dataset.capacity;
+  const unit = option.dataset.unit;
 
-    let html = `
-      <h3>2. Вихідні дані об'єкта</h3>
+  if (!capacity) return;
+
+  let html = `
+    <h3>2. Вихідні дані об'єкта</h3>
+
+    <label>
+      ${capacityLabels[capacity]}, ${unit}
+      <input id="actualCapacity" type="number" min="0" step="0.01" required>
+    </label>
+  `;
+
+  if (["area"].includes(capacity)) {
+    html += `
+      <label>
+        Поверховість
+        <input id="floors" type="number" min="1" step="1">
+      </label>
 
       <label>
-        ${capacityLabels[capacity]}, ${unit}
-        <input id="actualCapacity" type="number" min="0" step="0.01" required>
+        Конструктивна схема
+        <select id="structureType">
+          <option value="brick">Цегляна / зі стінових дрібних виробів</option>
+          <option value="panel">Панельна</option>
+          <option value="monolithic">Монолітна</option>
+          <option value="frame_monolithic">Каркасно-монолітна</option>
+          <option value="steel">Металевий каркас</option>
+        </select>
       </label>
     `;
+  }
 
-    if (["area"].includes(capacity)) {
-      html += `
-        <label>
-          Поверховість
-          <input id="floors" type="number" min="1" step="1">
-        </label>
+  if (objectGroup.value === "network") {
+    html += `
+      <label>
+        Матеріал труб
+        <select id="pipeMaterial">
+          <option value="steel">Сталеві</option>
+          <option value="polyethylene">Поліетиленові</option>
+          <option value="cast_iron">Чавунні</option>
+          <option value="reinforced_concrete">Залізобетонні</option>
+        </select>
+      </label>
 
-        <label>
-          Конструктивна схема
-          <select id="structureType">
-            <option value="brick">Цегляна / зі стінових дрібних виробів</option>
-            <option value="panel">Панельна</option>
-            <option value="monolithic">Монолітна</option>
-            <option value="frame_monolithic">Каркасно-монолітна</option>
-            <option value="steel">Металевий каркас</option>
-          </select>
-        </label>
-      `;
-    }
+      <label>
+        Діаметр труб, мм
+        <input id="pipeDiameter" type="number" min="0" step="1">
+      </label>
+    `;
+  }
 
-    if (objectGroup.value === "network") {
-      html += `
-        <label>
-          Матеріал труб
-          <select id="pipeMaterial">
-            <option value="steel">Сталеві</option>
-            <option value="polyethylene">Поліетиленові</option>
-            <option value="cast_iron">Чавунні</option>
-            <option value="reinforced_concrete">Залізобетонні</option>
-          </select>
-        </label>
+  dynamicFields.innerHTML = html;
 
-        <label>
-          Діаметр труб, мм
-          <input id="pipeDiameter" type="number" min="0" step="1">
-        </label>
-      `;
-    }
+  refreshNormativeAnalogs();
 
-    dynamicFields.innerHTML = html;
+});
+function refreshNormativeAnalogs() {
+  const group = objectGroup.value;
+  const subtype = objectSubtype.value;
+
+  normativeAnalog.innerHTML = '<option value="">Оберіть нормативний аналог</option>';
+  analogInfo.innerHTML = '<p class="calc-muted">Після вибору аналога тут з\'являться нормативні дані.</p>';
+
+  if (!group || !subtype || !window.normativeDataset) return;
+
+  const analogs = window.normativeDataset.filter(item =>
+    item.group === group &&
+    item.subtype === subtype
+  );
+
+  if (!analogs.length) {
+    normativeAnalog.innerHTML = '<option value="">Для цього типу поки немає нормативних аналогів</option>';
+    return;
+  }
+
+  analogs.forEach(item => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.textContent = item.label;
+    normativeAnalog.appendChild(option);
   });
+}
+normativeAnalog.addEventListener("change", () => {
+
+  const analog = window.normativeDataset.find(
+    item => item.id === normativeAnalog.value
+  );
+
+  if (!analog) {
+    analogInfo.innerHTML =
+      '<p class="calc-muted">Після вибору аналога тут з\'являться нормативні дані.</p>';
+    return;
+  }
+
+  analogInfo.innerHTML = `
+    <p><strong>Нормативний показник:</strong> ${analog.normativeCapacity} ${analog.capacityUnit}</p>
+    <p><strong>Нормативна тривалість:</strong> ${analog.normativeDurationTotal} міс.</p>
+    <p><strong>Джерело:</strong> ${analog.sourceTable}, ${analog.sourceNote}</p>
+  `;
+
+});
 
   function getK1() {
     let k = 1;
@@ -371,8 +423,15 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const actualCapacity = Number(document.getElementById("actualCapacity")?.value || 0);
-    const normativeCapacity = Number(document.getElementById("normativeCapacity").value || 0);
-    const normativeDuration = Number(document.getElementById("normativeDuration").value || 0);
+    const analog = window.normativeDataset.find(item => item.id === normativeAnalog.value);
+
+if (!analog) {
+  alert("Оберіть нормативний аналог.");
+  return;
+}
+
+const normativeCapacity = Number(analog.normativeCapacity || 0);
+const normativeDuration = Number(analog.normativeDurationTotal || 0);
 
     if (!actualCapacity || !normativeCapacity || !normativeDuration) {
       alert("Заповніть фактичний показник, нормативний показник і нормативну тривалість.");
