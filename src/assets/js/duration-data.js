@@ -1,141 +1,272 @@
-const normativeDataset = [
+window.normativeDataset = [
   {
-    id: "residential-monolithic-16f-18000",
+    id: "residential-private-200-brick-panel",
+    group: "residential",
+    subtype: "private_house",
+    label: "Садибний будинок 200 м2, зі стінових дрібних виробів з панельним перекриттям",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 200,
+    floors: 1,
+    structureType: "brick_panel",
+    normativeDurationTotal: 5,
+    undergroundDuration: 0.5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "Будинки садибного типу 200 м2"
+  },
+  {
+    id: "residential-private-500-brick-panel",
+    group: "residential",
+    subtype: "private_house",
+    label: "Садибний будинок 500 м2, зі стінових дрібних виробів з панельним перекриттям",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 500,
+    floors: 1,
+    structureType: "brick_panel",
+    normativeDurationTotal: 6,
+    undergroundDuration: 0.5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "Будинки садибного типу 500 м2"
+  },
+  {
+    id: "residential-apartment-2f-panel-unknown",
     group: "residential",
     subtype: "apartment",
-    label: "Житловий будинок, монолітно-каркасний, 16 поверхів",
-
+    label: "Багатоквартирний будинок 1-2 поверхи, панельний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 0,
+    floors: 2,
+    structureType: "panel",
+    normativeDurationTotal: 4,
+    undergroundDuration: 0.5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "Будинки багатоквартирні 1-2-поверхові"
+  },
+  {
+    id: "residential-apartment-4f-750-brick-panel",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 3-4 поверхи, 750 м2, стінові дрібні вироби + панельне перекриття",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 750,
+    floors: 4,
+    structureType: "brick_panel",
+    normativeDurationTotal: 6,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "3-4 поверхи, 750 м2"
+  },
+  {
+    id: "residential-apartment-4f-1500-brick-panel",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 3-4 поверхи, 1500 м2, стінові дрібні вироби + панельне перекриття",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 1500,
+    floors: 4,
+    structureType: "brick_panel",
+    normativeDurationTotal: 7,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "3-4 поверхи, 1500 м2"
+  },
+  {
+    id: "residential-apartment-4f-2500-brick-panel",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 3-4 поверхи, 2500 м2, стінові дрібні вироби + панельне перекриття",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 2500,
+    floors: 4,
+    structureType: "brick_panel",
+    normativeDurationTotal: 7.5,
+    undergroundDuration: 1.5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "3-4 поверхи, 2500 м2"
+  },
+  {
+    id: "residential-apartment-5f-1500-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 5 поверхів, 1500 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 1500,
+    floors: 5,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 5.5,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "5 поверхів, 1500 м2"
+  },
+  {
+    id: "residential-apartment-5f-3000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 5 поверхів, 3000 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 3000,
+    floors: 5,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 6,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "5 поверхів, 3000 м2"
+  },
+  {
+    id: "residential-apartment-5f-4500-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 5 поверхів, 4500 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 4500,
+    floors: 5,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 6.5,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "5 поверхів, 4500 м2"
+  },
+  {
+    id: "residential-apartment-5f-6000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 5 поверхів, 6000 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 6000,
+    floors: 5,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 7,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "5 поверхів, 6000 м2"
+  },
+  {
+    id: "residential-apartment-10f-3000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 10 поверхів, 3000 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 3000,
+    floors: 10,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 7,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "10 поверхів, 3000 м2"
+  },
+  {
+    id: "residential-apartment-10f-6000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 10 поверхів, 6000 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 6000,
+    floors: 10,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 8,
+    undergroundDuration: 1,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "10 поверхів, 6000 м2"
+  },
+  {
+    id: "residential-apartment-10f-12000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 10 поверхів, 12000 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 12000,
+    floors: 10,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 10,
+    undergroundDuration: 1.5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "10 поверхів, 12000 м2"
+  },
+  {
+    id: "residential-apartment-16f-6000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 16 поверхів, 6000 м2, каркасно-монолітний",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 6000,
+    floors: 16,
+    structureType: "frame_monolithic",
+    normativeDurationTotal: 10,
+    undergroundDuration: 1.5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "16 поверхів, 6000 м2"
+  },
+  {
+    id: "residential-apartment-25f-18000-frame-monolithic",
+    group: "residential",
+    subtype: "apartment",
+    label: "Багатоквартирний будинок 25 поверхів, 18000 м2, каркасно-монолітний",
     capacityType: "area",
     capacityUnit: "m2",
     normativeCapacity: 18000,
-
-    floors: 16,
+    floors: 25,
     structureType: "frame_monolithic",
-
     normativeDurationTotal: 15,
     undergroundDuration: 2.5,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Житлові будинки"
+    sourceTable: "Таблиця А.1",
+    sourceNote: "25 поверхів, 18000 м2"
   },
-
   {
-    id: "school-1000-students",
-    group: "public",
-    subtype: "school",
-    label: "Школа на 1000 учнів",
-
-    capacityType: "students",
-    capacityUnit: "students",
-    normativeCapacity: 1000,
-
-    floors: null,
-    structureType: null,
-
-    normativeDurationTotal: null,
-    undergroundDuration: 0,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Школи"
-  },
-
-  {
-    id: "clinic-600-visits",
-    group: "public",
-    subtype: "clinic",
-    label: "Поліклініка на 600 відвідувань за зміну",
-
-    capacityType: "visits",
-    capacityUnit: "visits_per_shift",
-    normativeCapacity: 600,
-
-    floors: null,
-    structureType: null,
-
-    normativeDurationTotal: null,
-    undergroundDuration: 0,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Поліклініки"
-  },
-
-  {
-    id: "hospital-600-beds",
-    group: "public",
-    subtype: "hospital",
-    label: "Лікарня на 600 ліжок",
-
-    capacityType: "beds",
-    capacityUnit: "beds",
-    normativeCapacity: 600,
-
-    floors: null,
-    structureType: null,
-
-    normativeDurationTotal: null,
-    undergroundDuration: 0,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Лікарні"
-  },
-
-  {
-    id: "canteen-100-seats",
-    group: "public",
-    subtype: "restaurant",
-    label: "Їдальня на 100 місць",
-
-    capacityType: "seats",
-    capacityUnit: "seats",
+    id: "residential-underground-parking-100",
+    group: "residential",
+    subtype: "underground_part",
+    label: "Окремо розташована або вбудована підземна будівля / гараж-стоянка, 100 м2",
+    capacityType: "area",
+    capacityUnit: "m2",
     normativeCapacity: 100,
-
     floors: null,
-    structureType: null,
-
-    normativeDurationTotal: null,
-    undergroundDuration: 0,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Ресторани / їдальні"
+    structureType: "monolithic",
+    normativeDurationTotal: 5,
+    undergroundDuration: 4,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "Заглиблена споруда 100 м2"
   },
-
   {
-    id: "warehouse-30000-m3",
-    group: "public",
-    subtype: "warehouse",
-    label: "Складська будівля об'ємом 30000 м3",
-
-    capacityType: "volume",
-    capacityUnit: "m3",
-    normativeCapacity: 30000,
-
-    floors: 1,
-    structureType: null,
-
-    normativeDurationTotal: null,
-    undergroundDuration: 0,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Склади"
+    id: "residential-underground-parking-200",
+    group: "residential",
+    subtype: "underground_part",
+    label: "Окремо розташована або вбудована підземна будівля / гараж-стоянка, 200 м2",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 200,
+    floors: null,
+    structureType: "monolithic",
+    normativeDurationTotal: 6,
+    undergroundDuration: 5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "Заглиблена споруда 200 м2"
   },
-
   {
-    id: "water-pipe-pe-300-1km",
-    group: "network",
-    subtype: "water_pipe",
-    label: "Водопровід, поліетиленові труби DN300, 1 км",
-
-    capacityType: "length",
-    capacityUnit: "km",
-    normativeCapacity: 1,
-
-    pipeMaterial: "polyethylene",
-    pipeDiameter: 300,
-
-    normativeDurationTotal: null,
-    undergroundDuration: 0,
-
-    sourceTable: "Додаток А",
-    sourceNote: "Зовнішні мережі водопроводу"
+    id: "residential-underground-parking-500",
+    group: "residential",
+    subtype: "underground_part",
+    label: "Окремо розташована або вбудована підземна будівля / гараж-стоянка, 500 м2",
+    capacityType: "area",
+    capacityUnit: "m2",
+    normativeCapacity: 500,
+    floors: null,
+    structureType: "monolithic",
+    normativeDurationTotal: 7,
+    undergroundDuration: 5,
+    sourceTable: "Таблиця А.1",
+    sourceNote: "Заглиблена споруда 500 м2"
   }
 ];
