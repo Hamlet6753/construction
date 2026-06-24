@@ -260,7 +260,8 @@ const analogInfo = document.getElementById("analogInfo");
     subtypeMap[group].forEach(item => {
       const option = document.createElement("option");
       option.value = item.value;
-      option.textContent = item.label;
+      option.textContent =
+`${item.label} - ${getStructureName(item.structureType)}`;
       option.dataset.capacity = item.capacity;
       option.dataset.unit = item.unit;
       objectSubtype.appendChild(option);
@@ -354,6 +355,36 @@ function refreshNormativeAnalogs() {
     item.group === group &&
     item.subtype === subtype
   );
+
+function getStructureName(type) {
+
+  const map = {
+
+    wooden: "дерев'яні",
+
+    brick_panel: "кладочні + панельне перекриття",
+
+    brick_monolithic: "кладочні + монолітне перекриття",
+
+    frame_prefabricated: "збірний каркас",
+
+    steel_frame: "металевий каркас",
+
+    frame_monolithic: "каркасно-монолітні",
+
+    monolithic: "монолітні",
+
+    monolithic_wall: "монолітні стінові",
+
+    panel: "панельні"
+
+  };
+
+
+
+  return map[type] || type;
+
+}
 
   if (!analogs.length) {
     normativeAnalog.innerHTML = '<option value="">Для цього типу поки немає нормативних аналогів</option>';
