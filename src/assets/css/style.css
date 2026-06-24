@@ -1415,3 +1415,10 @@ main, footer, .hero-content{
 .contact-modal .contactForm button[type="submit"]{
   width:100%;
 }
+
+
+/* HIDE RECAPTCHA BADGE */
+.grecaptcha-badge {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
