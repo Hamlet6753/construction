@@ -186,7 +186,7 @@ permalink: /duration-calculator/
       </div>
 
       <p class="calc-note">
-        Формула: Т = Тс x K1 x K2 x K3
+        Формула: Т = Тс x K1 x K2 / K3
       </p>
     </aside>
 
@@ -446,7 +446,7 @@ const normativeDuration = Number(analog.normativeDurationTotal || 0);
     const k2 = getK2();
     const k3 = getK3();
 
-    const finalDuration = baseDuration * k1 * k2 * k3;
+    const finalDuration = baseDuration * k1 * k2 / k3;
 
     document.getElementById("resultDuration").textContent = finalDuration.toFixed(1);
     document.getElementById("resultBase").textContent = baseDuration.toFixed(2) + " міс.";
