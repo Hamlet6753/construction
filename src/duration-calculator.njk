@@ -257,6 +257,7 @@ const analogInfo = document.getElementById("analogInfo");
     });
 
     dynamicFields.innerHTML = '<h3>2. Вихідні дані об\'єкта</h3><p class="calc-muted">Оберіть підтип об\'єкта.</p>';
+
   });
 normativeAnalog.innerHTML =
   '<option value="">Спочатку оберіть підтип</option>';
@@ -343,7 +344,7 @@ function refreshNormativeAnalogs() {
     normativeAnalog.innerHTML = '<option value="">Для цього типу поки немає нормативних аналогів</option>';
     return;
   }
-
+analogs.sort((a, b) => a.normativeCapacity - b.normativeCapacity);
   analogs.forEach(item => {
     const option = document.createElement("option");
     option.value = item.id;
