@@ -1311,106 +1311,24 @@ main, footer, .hero-content{
 
 /* FLOATING BUTTON */
 .contact-fab{
-  position:fixed;
-  right:24px;
-  bottom:24px;
+  position: fixed;
 
-  height:64px;
-  padding:0 24px;
+  right: 24px;
+  bottom: 24px;
 
-  border:none;
-  border-radius:999px;
+  width: auto;
+  min-width: 0;
+  max-width: none;
 
-  background:#1f4fd8;
-  color:#fff;
+  display: inline-flex;
 
-  display:flex;
-  align-items:center;
-  gap:12px;
+  align-items: center;
+  justify-content: center;
 
-  font-size:16px;
-  font-weight:700;
+  padding: 0 20px;
+  height: 56px;
 
-  cursor:pointer;
+  border-radius: 999px;
 
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-
-  z-index:9990;
-
-  animation: fabBounce 3s infinite;
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.contact-fab:hover{
-  transform:translateY(-3px);
-  box-shadow:0 14px 40px rgba(0,0,0,.22);
-}
-
-.contact-fab__icon{
-  font-size:24px;
-}
-
-@keyframes fabBounce{
-
-  0%{
-    transform:translateY(0);
-  }
-
-  4%{
-    transform:translateY(-5px);
-  }
-
-  8%{
-    transform:translateY(0);
-  }
-
-  12%{
-    transform:translateY(-3px);
-  }
-
-  16%{
-    transform:translateY(0);
-  }
-
-  100%{
-    transform:translateY(0);
-  }
-}
-
-@media (max-width:768px){
-
-  .contact-fab{
-    right:16px;
-    bottom:16px;
-
-    height:56px;
-    padding:0 18px;
-
-    font-size:14px;
-  }
-
-}
-
-@keyframes fabPulse {
-
-  0% {
-    box-shadow:0 0 0 0 rgba(31,79,216,.45);
-  }
-
-  70% {
-    box-shadow:0 0 0 12px rgba(31,79,216,0);
-  }
-
-  100% {
-    box-shadow:0 0 0 0 rgba(31,79,216,0);
-  }
-
-}
-
-.contact-fab.pulse{
-  animation:
-    fabBounce 3s infinite,
-    fabPulse 2s infinite;
+  z-index: 99999;
 }
