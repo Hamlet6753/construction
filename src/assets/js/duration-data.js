@@ -498,6 +498,21 @@ window.normativeDataset = [
     "sourceNote": "Готель 60000 м² загальної площі; конструкція: каркасно-монолітні"
   },
   {
+    "id": "hotel-motel-60000-m-zahalnoi-ploshchi-panel-60000-0",
+    "group": "hotel",
+    "subtype": "motel",
+    "label": "Мотель",
+    "capacityType": null,
+    "capacityUnit": null,
+    "normativeCapacity": null,
+    "floors": null,
+    "structureType": "wood",
+    "normativeDurationTotal": 32.0,
+    "undergroundDuration": 7.0,
+    "sourceTable": "Таблиця А.3",
+    "sourceNote": "Мотель; конструкція: дерев'яні"
+  },
+  {
     "id": "hotel-hotel-hotel-60000-m-zahalnoi-ploshchi-monolithic-60000-0",
     "group": "hotel",
     "subtype": "hotel",
