@@ -300,26 +300,21 @@ const fab = document.getElementById("contactFab");
 const modal = document.getElementById("contactModal");
 
 if (fab && modal) {
-
   const closeBtn = modal.querySelector(".contact-modal__close");
   const backdrop = modal.querySelector(".contact-modal__backdrop");
 
-  fab.addEventListener("click", () => {
+  fab.addEventListener("click", e => {
+    e.preventDefault();
     modal.classList.add("open");
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      modal.classList.remove("open");
-    });
-  }
+  closeBtn?.addEventListener("click", () => {
+    modal.classList.remove("open");
+  });
 
-  if (backdrop) {
-    backdrop.addEventListener("click", () => {
-      modal.classList.remove("open");
-    });
-  }
-
+  backdrop?.addEventListener("click", () => {
+    modal.classList.remove("open");
+  });
 }
 });
 </script>
