@@ -359,5 +359,13 @@ if (fab && modal) {
   </div>
 
 </div>
+const contactFab = document.getElementById("contactFab");
+const contactModal = document.getElementById("contactModal");
+
+if (contactFab && contactModal) {
+  contactFab.addEventListener("click", () => {
+    contactModal.classList.add("open");
+  });
+}
 </body>
 </html>
