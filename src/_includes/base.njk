@@ -301,19 +301,24 @@ const modal = document.getElementById("contactModal");
 
 if (fab && modal) {
 
+  const closeBtn = modal.querySelector(".contact-modal__close");
+  const backdrop = modal.querySelector(".contact-modal__backdrop");
+
   fab.addEventListener("click", () => {
     modal.classList.add("open");
   });
 
-  modal.querySelector(".contact-modal__close")
-    .addEventListener("click", () => {
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
       modal.classList.remove("open");
     });
+  }
 
-  modal.querySelector(".contact-modal__backdrop")
-    .addEventListener("click", () => {
+  if (backdrop) {
+    backdrop.addEventListener("click", () => {
       modal.classList.remove("open");
     });
+  }
 
 }
 });
@@ -359,13 +364,6 @@ if (fab && modal) {
   </div>
 
 </div>
-const contactFab = document.getElementById("contactFab");
-const contactModal = document.getElementById("contactModal");
-
-if (contactFab && contactModal) {
-  contactFab.addEventListener("click", () => {
-    contactModal.classList.add("open");
-  });
 }
 </body>
 </html>
