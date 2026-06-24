@@ -1307,3 +1307,84 @@ main, footer, .hero-content{
     top:auto;
   }
 }
+
+
+/* FLOATING BUTTON */
+.contact-fab{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+
+  width:72px;
+  height:72px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#1f4fd8;
+  color:#fff;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+  z-index:9990;
+}
+
+.contact-fab svg{
+  width:34px;
+  height:34px;
+}
+
+.contact-fab:hover{
+  transform:translateY(-2px);
+}
+
+.contact-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:10000;
+}
+
+.contact-modal.open{
+  display:block;
+}
+
+.contact-modal__backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.55);
+}
+
+.contact-modal__window{
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  width:min(90vw,600px);
+
+  background:#fff;
+  border-radius:24px;
+
+  padding:32px;
+}
+
+.contact-modal__close{
+  position:absolute;
+  right:20px;
+  top:15px;
+
+  border:none;
+  background:none;
+
+  font-size:32px;
+  cursor:pointer;
+}
