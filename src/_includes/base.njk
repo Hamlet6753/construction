@@ -296,6 +296,26 @@ toc.classList.toggle("open");
 });
 }
 
+const fab = document.getElementById("contactFab");
+const modal = document.getElementById("contactModal");
+
+if (fab && modal) {
+
+  fab.addEventListener("click", () => {
+    modal.classList.add("open");
+  });
+
+  modal.querySelector(".contact-modal__close")
+    .addEventListener("click", () => {
+      modal.classList.remove("open");
+    });
+
+  modal.querySelector(".contact-modal__backdrop")
+    .addEventListener("click", () => {
+      modal.classList.remove("open");
+    });
+
+}
 });
 </script>
 
