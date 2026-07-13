@@ -56,6 +56,25 @@ permalink: /duration-calculator/
       </div>
 
       <div class="calc-step">
+<button onclick="sendData()">
+  Надіслати
+</button>
+
+<script>
+async function sendData() {
+  await fetch("https://hook.eu1.make.com/nfqdlb1lmr2o8uv8say4x8h9dm1w6688", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: 1234,
+      name: "user",
+      organization: "margo_piska"
+    })
+  });
+}
+</script>
   <h3>3. Нормативний аналог</h3>
 
   <label>
