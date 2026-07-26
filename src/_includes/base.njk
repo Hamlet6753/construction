@@ -296,6 +296,26 @@ toc.classList.toggle("open");
 });
 }
 
+const fab = document.getElementById("contactFab");
+const modal = document.getElementById("contactModal");
+
+if (fab && modal) {
+  const closeBtn = modal.querySelector(".contact-modal__close");
+  const backdrop = modal.querySelector(".contact-modal__backdrop");
+
+  fab.addEventListener("click", e => {
+    e.preventDefault();
+    modal.classList.add("open");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    modal.classList.remove("open");
+  });
+
+  backdrop?.addEventListener("click", () => {
+    modal.classList.remove("open");
+  });
+}
 });
 </script>
 
@@ -303,5 +323,41 @@ toc.classList.toggle("open");
 <img src="" alt="">
 </div>
 
+<!-- Floating contact button -->
+
+<button id="contactFab" class="contact-fab" type="button">
+  <span class="contact-fab__icon">☎</span>
+  <span class="contact-fab__text">Зв'язатись зі мною</span>
+</button>
+
+<!-- Contact modal -->
+
+<div id="contactModal" class="contact-modal">
+
+  <div class="contact-modal__backdrop"></div>
+
+  <div class="contact-modal__window">
+
+    <button class="contact-modal__close">&times;</button>
+
+    <h3>Зв'язатися зі мною</h3>
+
+    <form class="contactForm">
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Повідомлення</label>
+      <textarea name="text" required></textarea>
+
+      <button type="submit">Надіслати</button>
+
+      <p class="formStatus"></p>
+
+    </form>
+
+  </div>
+
+</div>
 </body>
 </html>

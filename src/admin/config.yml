@@ -16,21 +16,45 @@ collections:
     slug: "{{slug}}"
 
     fields:
-      - { label: "Заголовок", name: "title", widget: "string" }
+      - label: "Заголовок"
+        name: "title"
+        widget: "string"
 
       - label: "Slug (URL)"
         name: "slug"
         widget: "string"
         required: true
-        hint: "Тільки латиниця, цифри та дефіси. Наприклад: reconstruction-urban-arseas"
+        hint: "Тільки латиниця, цифри та дефіси. Наприклад: reconstruction-urban-areas"
 
-      - { label: "Дата", name: "date", widget: "datetime" }
+      - label: "Дата"
+        name: "date"
+        widget: "datetime"
 
-      - { label: "Опис", name: "description", widget: "text", required: false }
+      - label: "Опис"
+        name: "description"
+        widget: "text"
+        required: false
 
       - label: "Зображення"
         name: "image"
         widget: "image"
         required: false
 
-      - { label: "Контент", name: "body", widget: "markdown" }
+      - label: "Контент"
+        name: "body"
+        widget: "markdown"
+
+      - label: "FAQ"
+        name: "faq"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Питання"
+            name: "question"
+            widget: "string"
+            required: true
+
+          - label: "Відповідь"
+            name: "answer"
+            widget: "text"
+            required: true

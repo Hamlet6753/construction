@@ -42,8 +42,47 @@ section_title: Блог
   </aside>
 
 </div>
+
+{% if faq and faq.length %}
+<section class="post-faq">
+  <h2>Поширені запитання</h2>
+
+  <div class="faq-list">
+    {% for item in faq %}
+      <details class="faq-item">
+        <summary>{{ item.question }}</summary>
+        <div class="faq-answer">
+          <p>{{ item.answer }}</p>
+        </div>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
   </article>
 </section>
+
+{% if faq and faq.length %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in faq %}
+    {
+      "@type": "Question",
+      "name": {{ item.question | dump | safe }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.answer | dump | safe }}
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
 
 <section class="sectionwork">
 
