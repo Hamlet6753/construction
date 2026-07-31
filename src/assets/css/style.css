@@ -97,6 +97,7 @@ overflow-wrap: anywhere;
   font-weight: 600;
   border: none;
   cursor: pointer;
+  width: 250px;
 }
 
 .contactForm button:hover {
