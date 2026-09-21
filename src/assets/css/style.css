@@ -490,13 +490,24 @@ main{
 
 /* Превʼю-картинка (плаваюча) */
 /* ===== Floating preview (no overlay) ===== */
+.acc-preview.is-visible{
+  display: block;
+}
+
+/* ===== FLOATING WORK PREVIEW ===== */
+
 .acc-preview{
   position: fixed;
   inset: 0;
-  background: transparent !important;
-  pointer-events: none;
+  z-index: 9508;
+
   display: none;
-  z-index: 9500;
+
+  pointer-events: none;
+  background: transparent !important;
+
+  /* безпечна зона від країв viewport */
+  padding: 32px;
 }
 
 .acc-preview.is-visible{
@@ -505,15 +516,40 @@ main{
 
 .acc-preview-img{
   position: fixed;
+
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0.85);
-  max-width: min(980px, 92vw);
-  max-height: 82vh;
-  border-radius: 16px;
-  box-shadow: 0 22px 70px rgba(0,0,0,.22);
+
+  width: auto;
+  height: auto;
+
+  /*
+   * Картинка фізично не може бути більшою
+   * за видиму область браузера.
+   */
+  max-width: min(850px, calc(100vw - 80px));
+  max-height: calc(100vh - 100px);
+
+  object-fit: contain;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+
+  box-shadow: 0 22px 70px rgba(0,0,0,.25);
+
+  transform: translate(-50%, -50%) scale(.85);
+
+  pointer-events: none;
 }
 
+/* На мобільних floating preview не показуємо */
+
+@media (max-width: 900px){
+  .acc-preview{
+    display: none !important;
+  }
+}
 
 /* На мобілці hover не має сенсу — просто не показуємо превʼю */
 @media (max-width: 900px) {
