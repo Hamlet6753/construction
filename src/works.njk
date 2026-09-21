@@ -637,11 +637,35 @@ document.querySelectorAll('.media-img.clickable').forEach(img => {
   let mixX = mx * 0.65 + cx * 0.35;
   let mixY = my * 0.55 + cy * 0.45;
 
-  mixX += 90;
-  mixY -= 140;
+  mixX += 70;
+  mixY -= 60;
 
-  tx = clamp(mixX, 120, window.innerWidth - 120);
-  ty = clamp(mixY, 140, window.innerHeight - 140);
+  /*
+   * Враховуємо фактичний розмір preview.
+   * Завжди залишаємо мінімум 24px до краю viewport.
+   */
+  const rect = previewImg.getBoundingClientRect();
+
+  const halfW = Math.min(rect.width / 2, (window.innerWidth - 48) / 2);
+  const halfH = Math.min(rect.height / 2, (window.innerHeight - 48) / 2);
+
+  const minX = halfW + 24;
+  const maxX = window.innerWidth - halfW - 24;
+
+  const minY = halfH + 24;
+  const maxY = window.innerHeight - halfH - 24;
+
+  tx = clamp(
+    mixX,
+    Math.min(minX, cx),
+    Math.max(maxX, cx)
+  );
+
+  ty = clamp(
+    mixY,
+    Math.min(minY, cy),
+    Math.max(maxY, cy)
+  );
 }
 
 
