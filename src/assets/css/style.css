@@ -378,8 +378,6 @@ main{
   transition: transform .3s ease;
 }
 
-.lightbox-img:hover{ transform: scale(1.03); }
-
 .lightbox-close{
   position:absolute;
   top:20px;
