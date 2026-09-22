@@ -1605,22 +1605,20 @@ body.lightbox-open {
 }
 
 
-/* ========================================
-   PARTNERS CAROUSEL
-======================================== */
+/* ===== PARTNERS CAROUSEL ===== */
 
 .partners-carousel {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 28px 0 32px;
+  padding: 32px 0;
   overflow: hidden;
 }
 
 .partners-carousel__heading {
   text-align: center;
   margin-bottom: 28px;
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
 .partners-carousel__heading h2 {
@@ -1632,129 +1630,116 @@ body.lightbox-open {
 }
 
 .partners-carousel__heading p {
-  margin-top: 5px;
+  margin: 6px 0 0;
   font-size: 17px;
   color: var(--muted);
 }
 
-/* Видима область */
+
+/* Видима зона */
 
 .partners-carousel__viewport {
   width: 100%;
   overflow: hidden;
-  position: relative;
 }
 
-/* Плавне затемнення по краях */
 
-.partners-carousel__viewport::before,
-.partners-carousel__viewport::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 60px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.partners-carousel__viewport::before {
-  left: 0;
-  background: linear-gradient(
-    to right,
-    var(--page-bg),
-    transparent
-  );
-}
-
-.partners-carousel__viewport::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    var(--page-bg),
-    transparent
-  );
-}
-
-/* Стрічка */
+/* Вся рухома стрічка */
 
 .partners-carousel__track {
   display: flex;
   align-items: center;
-  gap: 28px;
+
+  gap: 24px;
 
   width: max-content;
 
-  animation: partnersScroll 35s linear infinite;
+  animation-name: partnersScroll;
+  animation-duration: 45s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  will-change: transform;
 }
 
-/* При наведенні зупиняємо */
 
-.partners-carousel__viewport:hover
-.partners-carousel__track {
-  animation-play-state: paused;
-}
-
-/* Картка партнера */
+/* Картка */
 
 .partner-card {
-  flex: 0 0 250px;
-  height: 110px;
+  flex: 0 0 230px;
+
+  width: 230px;
+  height: 100px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 20px 28px;
+  box-sizing: border-box;
 
-  background: rgba(255,255,255,0.72);
+  padding: 18px 24px;
+
+  background: rgba(255,255,255,.72);
   border: 1px solid var(--border);
   border-radius: 16px;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    background .2s ease;
 }
 
-.partner-card:hover {
-  transform: translateY(-3px);
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 10px 28px rgba(0,0,0,.08);
-}
 
 /* Логотип */
 
 .partner-card img {
   display: block;
 
-  max-width: 100%;
-  max-height: 65px;
-
   width: auto;
   height: auto;
+
+  max-width: 100%;
+  max-height: 62px;
 
   object-fit: contain;
 }
 
-/* Рух рівно на половину дубльованої стрічки */
+
+/*
+11 карток першого набору:
+
+11 x 230px = 2530px
+
+10 внутрішніх gap:
+10 x 24px = 240px
+
++ один gap між першим та другим набором = 24px
+
+Отже для переходу точно до другого набору:
+2530 + 264 = 2794px
+*/
 
 @keyframes partnersScroll {
+
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(calc(-50% - 14px));
+    transform: translate3d(-2794px, 0, 0);
   }
+
 }
+
+
+/* Зупинка при наведенні */
+
+.partners-carousel__viewport:hover .partners-carousel__track {
+  animation-play-state: paused;
+}
+
 
 /* MOBILE */
 
 @media (max-width: 768px) {
 
   .partners-carousel {
-    padding: 22px 0 26px;
+    padding: 24px 0;
   }
 
   .partners-carousel__heading {
@@ -1769,32 +1754,38 @@ body.lightbox-open {
     font-size: 15px;
   }
 
-  .partners-carousel__track {
-    gap: 16px;
-    animation-duration: 28s;
-  }
-
   .partner-card {
-    flex-basis: 190px;
-    height: 90px;
-    padding: 16px 22px;
+    flex-basis: 180px;
+    width: 180px;
+    height: 84px;
+    padding: 14px 18px;
   }
 
   .partner-card img {
-    max-height: 52px;
+    max-height: 50px;
   }
 
-  .partners-carousel__viewport::before,
-  .partners-carousel__viewport::after {
-    width: 30px;
-  }
-
-}
-
-/* Accessibility */
-
-@media (prefers-reduced-motion: reduce) {
   .partners-carousel__track {
-    animation: none;
+    gap: 16px;
+    animation-duration: 38s;
   }
+
+  /*
+  11 x 180 = 1980
+  11 x 16 = 176
+  Разом = 2156px
+  */
+
+  @keyframes partnersScroll {
+
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-2156px, 0, 0);
+    }
+
+  }
+
 }
