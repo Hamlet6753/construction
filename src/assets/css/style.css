@@ -1603,3 +1603,198 @@ body.lightbox-open {
     font-size: 30px;
   }
 }
+
+
+/* ========================================
+   PARTNERS CAROUSEL
+======================================== */
+
+.partners-carousel {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 0 32px;
+  overflow: hidden;
+}
+
+.partners-carousel__heading {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 0 24px;
+}
+
+.partners-carousel__heading h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.partners-carousel__heading p {
+  margin-top: 5px;
+  font-size: 17px;
+  color: var(--muted);
+}
+
+/* Видима область */
+
+.partners-carousel__viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Плавне затемнення по краях */
+
+.partners-carousel__viewport::before,
+.partners-carousel__viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.partners-carousel__viewport::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--page-bg),
+    transparent
+  );
+}
+
+.partners-carousel__viewport::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--page-bg),
+    transparent
+  );
+}
+
+/* Стрічка */
+
+.partners-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  width: max-content;
+
+  animation: partnersScroll 35s linear infinite;
+}
+
+/* При наведенні зупиняємо */
+
+.partners-carousel__viewport:hover
+.partners-carousel__track {
+  animation-play-state: paused;
+}
+
+/* Картка партнера */
+
+.partner-card {
+  flex: 0 0 250px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px 28px;
+
+  background: rgba(255,255,255,0.72);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+/* Логотип */
+
+.partner-card img {
+  display: block;
+
+  max-width: 100%;
+  max-height: 65px;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* Рух рівно на половину дубльованої стрічки */
+
+@keyframes partnersScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 14px));
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .partners-carousel {
+    padding: 22px 0 26px;
+  }
+
+  .partners-carousel__heading {
+    margin-bottom: 20px;
+  }
+
+  .partners-carousel__heading h2 {
+    font-size: 22px;
+  }
+
+  .partners-carousel__heading p {
+    font-size: 15px;
+  }
+
+  .partners-carousel__track {
+    gap: 16px;
+    animation-duration: 28s;
+  }
+
+  .partner-card {
+    flex-basis: 190px;
+    height: 90px;
+    padding: 16px 22px;
+  }
+
+  .partner-card img {
+    max-height: 52px;
+  }
+
+  .partners-carousel__viewport::before,
+  .partners-carousel__viewport::after {
+    width: 30px;
+  }
+
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-carousel__track {
+    animation: none;
+  }
+}
