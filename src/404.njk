@@ -8,14 +8,74 @@ eleventyExcludeFromCollections: true
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>404 - Сторінку не знайдено</title>
+  <meta name="robots" content="noindex, follow">
+  <title>404 - Сторінку не знайдено | Хоменко Андрій</title>
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="/assets/css/style.css?v=1">
+  <style>
+    .not-found { max-width: 1200px; margin: 0 auto; padding: 64px 24px 80px; }
+    .not-found__panel { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 64px; min-height: 400px; padding: 48px; border: 1px solid var(--border); border-radius: 24px; background: var(--card-bg); box-shadow: 0 16px 48px rgba(31,41,55,.04); }
+    .not-found__drawing { position: relative; display: grid; place-items: center; min-height: 300px; border: 1px solid rgba(31,79,216,.16); border-radius: 16px; color: var(--blue); background: linear-gradient(rgba(31,79,216,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(31,79,216,.06) 1px,transparent 1px),#f5f7fc; background-size: 24px 24px; }
+    .not-found__number { font-size: clamp(96px,12vw,160px); font-weight: 800; line-height: 1; letter-spacing: -.07em; padding-right: .07em; color: transparent; -webkit-text-stroke: 2px var(--blue); }
+    .not-found__drawing::before,.not-found__drawing::after { content: ""; position: absolute; width: 40px; height: 40px; border-color: var(--blue); border-style: solid; }
+    .not-found__drawing::before { top: 18px; left: 18px; border-width: 2px 0 0 2px; }
+    .not-found__drawing::after { bottom: 18px; right: 18px; border-width: 0 2px 2px 0; }
+    .not-found__label { position: absolute; bottom: 26px; left: 26px; display: flex; align-items: center; gap: 8px; color: #41444a; font-size: 12px; font-weight: 600; letter-spacing: .07em; }
+    .not-found__label::before { content: ""; width: 8px; height: 8px; background: var(--yellow); border-radius: 2px; }
+    .not-found h1 { font-size: clamp(28px,3.5vw,42px); line-height: 1.18; font-weight: 750; letter-spacing: -.025em; }
+    .not-found__copy { margin-top: 20px; color: var(--muted); font-size: 17px; max-width: 440px; }
+    .not-found__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .not-found__button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 12px 20px; border-radius: 10px; background: var(--blue); color: #fff; font-size: 15px; font-weight: 600; border: 1px solid var(--blue); transition: background .15s,transform .15s; }
+    .not-found__button:hover { background: #193fab; transform: translateY(-1px); }
+    .not-found__button--secondary { color: var(--text); background: transparent; border-color: #cbd2dc; }
+    .not-found__button--secondary:hover { color: var(--blue); background: #f1f4fc; }
+    .not-found__button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+    .not-found__help { margin-top: 22px; font-size: 14px; color: var(--muted); }
+    .not-found__help a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    @media(max-width: 760px) { .not-found { padding: 28px 16px 40px; } .not-found__panel { grid-template-columns: 1fr; gap: 30px; padding: 24px; border-radius: 18px; } .not-found__drawing { min-height: 210px; } .not-found__number { font-size: 112px; } .not-found__copy { font-size: 16px; } }
+    @media(max-width: 400px) { .not-found__actions { flex-direction: column; } .not-found__panel { padding: 20px; } }
+    @media(prefers-reduced-motion: reduce) { .not-found__button { transition: none; } }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>404 - Сторінку не знайдено</h1>
-    <p>Цю сторінку або файл видалено, або адреса неправильна.</p>
-    <p><a href="/">На головну</a></p>
+  {% include "header.njk" %}
+  <main class="not-found" id="main-content">
+    <section class="not-found__panel" aria-labelledby="not-found-title">
+      <div class="not-found__drawing" aria-hidden="true">
+        <span class="not-found__number">404</span>
+        <span class="not-found__label">АДРЕСУ НЕ ЗНАЙДЕНО</span>
+      </div>
+      <div>
+        <h1 id="not-found-title">Цієї сторінки немає на плані</h1>
+        <p class="not-found__copy">Можливо, сторінку або файл видалено, переміщено чи в адресі є помилка. Повернімося туди, де є потрібна інформація.</p>
+        <div class="not-found__actions">
+          <a class="not-found__button" href="/">На головну</a>
+          <a class="not-found__button not-found__button--secondary" href="/works/">Переглянути роботи</a>
+        </div>
+        <p class="not-found__help">Шукаєте конкретний матеріал? <a href="mailto:andrewhomenko675@gmail.com">Напишіть мені</a></p>
+      </div>
+    </section>
   </main>
+  {% include "footer.njk" %}
+  <script>
+    const dropdown = document.getElementById('normDropdown');
+    const trigger = dropdown?.querySelector('.dropdown-trigger');
+    trigger?.addEventListener('click', () => {
+      const open = dropdown.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && dropdown) {
+        dropdown.classList.remove('open');
+        trigger?.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('click', event => {
+      if (dropdown && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('open');
+        trigger?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
 </body>
 </html>
