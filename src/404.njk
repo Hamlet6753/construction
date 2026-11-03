@@ -35,6 +35,15 @@ eleventyExcludeFromCollections: true
     @media(max-width: 760px) { .not-found { padding: 28px 16px 40px; } .not-found__panel { grid-template-columns: 1fr; gap: 30px; padding: 24px; border-radius: 18px; } .not-found__drawing { min-height: 210px; } .not-found__number { font-size: 112px; } .not-found__copy { font-size: 16px; } }
     @media(max-width: 400px) { .not-found__actions { flex-direction: column; } .not-found__panel { padding: 20px; } }
     @media(prefers-reduced-motion: reduce) { .not-found__button { transition: none; } }
+    .contact-dialog { width: min(500px, calc(100% - 32px)); max-height: calc(100dvh - 32px); overflow: auto; padding: 32px; border: 0; border-radius: 18px; background: white; color: var(--text); box-shadow: 0 24px 80px #0003; }
+    .contact-dialog::backdrop { background: #0f172a88; }
+    .contact-dialog h2 { margin: 0 30px 24px 0; font-size: 24px; }
+    .contact-dialog__close { position: absolute; right: 16px; top: 12px; border: 0; background: none; font-size: 30px; cursor: pointer; }
+    .contact-dialog input,.contact-dialog textarea { font: inherit; }
+    .contact-dialog textarea { min-height: 130px; resize: vertical; }
+    .contact-dialog button:disabled { opacity: .6; cursor: wait; }
+    .contact-dialog__privacy { font-size: 12px; color: var(--muted); }
+    .contact-dialog__privacy a { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -52,12 +61,72 @@ eleventyExcludeFromCollections: true
           <a class="not-found__button" href="/">На головну</a>
           <a class="not-found__button not-found__button--secondary" href="/works/">Переглянути роботи</a>
         </div>
-        <p class="not-found__help">Шукаєте конкретний матеріал? <a href="mailto:andrewhomenko675@gmail.com">Напишіть мені</a></p>
+        <p class="not-found__help">Шукаєте конкретний матеріал? <a href="#contact-dialog" id="open-contact" aria-haspopup="dialog">Напишіть мені</a></p>
       </div>
     </section>
   </main>
   {% include "footer.njk" %}
+  <dialog id="contact-dialog" class="contact-dialog" aria-labelledby="contact-title">
+    <button type="button" class="contact-dialog__close" aria-label="Закрити форму">&times;</button>
+    <h2 id="contact-title">Зв'язатися зі мною</h2>
+    <form class="contactForm" id="contact-form-404">
+      <label for="contact-email">Email</label>
+      <input id="contact-email" type="email" name="email" autocomplete="email" required>
+      <label for="contact-message">Повідомлення</label>
+      <textarea id="contact-message" name="text" required></textarea>
+      <button type="submit">Надіслати</button>
+      <p class="formStatus" role="status" aria-live="polite"></p>
+    </form>
+    <p class="contact-dialog__privacy">Ця форма захищена reCAPTCHA. Застосовуються <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Політика конфіденційності</a> та <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Умови використання</a> Google.</p>
+  </dialog>
   <script>
+    const dialog = document.getElementById('contact-dialog');
+    const form = document.getElementById('contact-form-404');
+    const recaptchaKey = '6LfiB4MsAAAAAAN_XAclo4Esl_4LvB6BCLzHvmbV';
+    let recaptchaLoaded;
+    function loadRecaptcha() {
+      if (!recaptchaLoaded) recaptchaLoaded = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://www.google.com/recaptcha/api.js?render=' + recaptchaKey;
+        script.onload = () => grecaptcha.ready(resolve);
+        script.onerror = () => { recaptchaLoaded = null; reject(new Error('reCAPTCHA unavailable')); };
+        document.head.appendChild(script);
+      });
+      return recaptchaLoaded;
+    }
+    document.getElementById('open-contact').addEventListener('click', event => {
+      event.preventDefault();
+      dialog.showModal();
+      loadRecaptcha().catch(() => {});
+    });
+    dialog.querySelector('.contact-dialog__close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      const rect = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
+    });
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const button = form.querySelector('[type="submit"]');
+      if (button.disabled) return;
+      const status = form.querySelector('.formStatus');
+      button.disabled = true;
+      status.textContent = 'Надсилаю...';
+      try {
+        await loadRecaptcha();
+        const recaptcha = await grecaptcha.execute(recaptchaKey, { action: 'contact' });
+        const response = await fetch('/api/contact', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: form.elements.email.value.trim(), text: form.elements.text.value.trim(), recaptcha })
+        });
+        if (!response.ok) throw new Error('Submission failed');
+        status.textContent = 'Повідомлення надіслано!';
+        form.reset();
+      } catch {
+        status.textContent = 'Не вдалося надіслати повідомлення. Спробуйте ще раз.';
+      } finally {
+        button.disabled = false;
+      }
+    });
     const dropdown = document.getElementById('normDropdown');
     const trigger = dropdown?.querySelector('.dropdown-trigger');
     trigger?.addEventListener('click', () => {
