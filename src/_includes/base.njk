@@ -78,7 +78,6 @@
 </script>
 
 <link rel="stylesheet" href="/assets/css/style.css?v=1">
-<link rel="stylesheet" href="/assets/css/refresh.css?v=1">
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -88,32 +87,11 @@
 
 </head>
 
-<body{% if page.url == "/" %} class="home-page"{% endif %}>
+<body>
 
 {% include "header.njk" %}
 
-{% if page.url == "/" %}
-<section class="home-hero" aria-labelledby="home-title">
-  <div>
-    <p class="home-hero__label">ПОБ / ПВР / ТЕХНОЛОГІЧНІ КАРТИ</p>
-    <h1 id="home-title">Чіткий план.<br><span>Впевнене будівництво.</span></h1>
-    <p class="home-hero__description">Проєкти організації будівництва та виконання робіт для цивільних, промислових та інфраструктурних об'єктів.</p>
-    <div class="home-hero__actions">
-      <a href="#contact" class="design-button">Обговорити проєкт <span aria-hidden="true">&rarr;</span></a>
-      <a href="/works/" class="design-button design-button--light">Виконані роботи</a>
-    </div>
-  </div>
-  <div class="home-hero__visual">
-    <img src="/assets/css/background.jpg" alt="Будівельний майданчик під час армування перекриття" fetchpriority="high">
-    <div class="home-hero__caption"><strong>Від умов майданчика до готового рішення</strong>Організація, технологія та безпека будівельних робіт</div>
-  </div>
-</section>
-<div class="home-metrics" aria-label="Досвід та спеціалізація">
-  <div><strong>13</strong><span>років практичного досвіду</span></div>
-  <div><strong>170+</strong><span>реалізованих проєктів</span></div>
-  <div><strong>Україна</strong><span>робота з об'єктами по всій країні</span></div>
-</div>
-{% elif hero %}
+{% if hero %}
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
